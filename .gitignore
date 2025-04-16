@@ -5,6 +5,7 @@
 /dotnetapp/obj/
 TestProject/TestProject.csp
 /TestProject/
+/tests
 # Frontend Files
 
 /reactapp/node_modules
