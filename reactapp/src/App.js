@@ -10,7 +10,7 @@ import BookReaderViewBook from './BookReaderComponents/BookReaderViewBook'
 const App = () => {
   return (
     <div>
-        
+
     </div>
   )
 }
