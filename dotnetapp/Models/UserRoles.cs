@@ -8,5 +8,6 @@ namespace dotnetapp.Models
     public class UserRoles
     {
         
+        
     }
 }
