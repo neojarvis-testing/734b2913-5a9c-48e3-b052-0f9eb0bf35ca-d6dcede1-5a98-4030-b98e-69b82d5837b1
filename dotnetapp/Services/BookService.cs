@@ -18,7 +18,7 @@ namespace dotnetapp.Services
         }
         public async Task<bool> AddBook(Book book)
         {
-            var checkBook = await _context.Books.FindAsync(book);
+            var checkBook = await _context.Books.FindAsync(book.BookId);
             if (checkBook!=null)
             {
                 throw new Exception("Failed to add book");
@@ -50,7 +50,6 @@ namespace dotnetapp.Services
                {
                 return false;
                }
-                books.BookId=book.BookId;
                 books.Title=book.Title;
                 books.Author=book.Author;
                 books.Genre=book.Genre;

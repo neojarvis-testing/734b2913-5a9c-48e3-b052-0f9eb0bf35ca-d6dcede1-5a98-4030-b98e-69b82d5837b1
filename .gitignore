@@ -3,12 +3,17 @@
 /dotnetapp/cred.sh
 /dotnetapp/bin/
 /dotnetapp/obj/
+TestProject/TestProject.csp
+/TestProject/
+
 # Frontend Files
 
 /reactapp/node_modules
 reactapp/src/apiConfig.js
 reactapp/package-lock.json
+/reactapp/src/tests
 
 # Testing Files
 /nunit
-/react 
+/react
+/TestProject/ 
