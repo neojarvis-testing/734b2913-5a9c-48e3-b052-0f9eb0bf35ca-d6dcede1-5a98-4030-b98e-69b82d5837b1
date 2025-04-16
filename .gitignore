@@ -12,7 +12,9 @@ reactapp/src/tests
 /reactapp/node_modules
 reactapp/src/apiConfig.js
 reactapp/package-lock.json
+/reactapp/src/tests
 
 # Testing Files
 /nunit
-/react 
+/react
+/TestProject/ 
