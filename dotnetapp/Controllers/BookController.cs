@@ -9,7 +9,7 @@ using dotnetapp.Models;
 namespace dotnetapp.Controllers
 {
     [ApiController]
-    [Route("api/[books]")]
+    [Route("api/books")]
     public class BookController : ControllerBase
     {
         private readonly BookService bookService;
@@ -52,7 +52,7 @@ namespace dotnetapp.Controllers
         try{
             var books=await bookService.AddBook(book);
             if(!books) return StatusCode(500,"Failed to add book");
-            return Created("","Book added successfully");
+            return Created("", new { Message = "Book added successfully" });
         }
         catch(Exception e){
             return StatusCode(500, e.Message);
