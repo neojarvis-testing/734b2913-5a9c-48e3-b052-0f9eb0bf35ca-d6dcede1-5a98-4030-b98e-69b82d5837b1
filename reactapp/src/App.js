@@ -1,18 +1,30 @@
-import React from 'react'
-import ErrorPage from './Components/ErrorPage'
-import HomePage from './Components/HomePage'
-import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNavbar'
-import Login from './Components/Login'
-import Signup from './Components/Signup'
+
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import ErrorPage from './Components/ErrorPage';
+import HomePage from './Components/HomePage';
+import Login from './Components/Login';
+import Signup from './Components/Signup';
+import BookForm from './BookRecommenderComponents/BookForm'; // Import BookForm component
+import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNavbar';
+import ViewBook from './BookRecommenderComponents/ViewBook';
 
 const App = () => {
   return (
-    <div>
-        <BookRecommenderNavbar/>
-        <Login/>
-        <Signup/>
-    </div>
-  )
-}
+    <Router>
+      <BookRecommenderNavbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/bookform" element={<BookForm />} />
+        <Route path="/bookform/:id" element={<BookForm />} />
+        <Route path="*" element={<ErrorPage />} />
+        <Route path="/viewbooks" element={<ViewBook />} />
 
-export default App
+      </Routes>
+    </Router>
+  );
+};
+export default App;

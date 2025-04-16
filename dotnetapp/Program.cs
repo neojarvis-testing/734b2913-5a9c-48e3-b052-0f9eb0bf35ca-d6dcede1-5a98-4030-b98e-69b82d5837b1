@@ -5,6 +5,7 @@ using dotnetapp.Data;
 using dotnetapp.Services;
 using Microsoft.AspNetCore.Identity;
 using dotnetapp.Models;
+using Microsoft.IdentityModel.Tokens;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,32 +19,32 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("connstring")));
 
 //Services Dependency
-builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<BookService>();
 
 //Configuring Identity
-// builder.Services.AddIdenttiy<ApplicationUser, IdentityRole>()
-// .AddEntityFrameworkStores<ApplicationDbContext>()
-// .AddDefaultTokenProviders();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+.AddEntityFrameworkStores<ApplicationDbContext>()
+.AddDefaultTokenProviders();
 
-// //Configuring JWT Authentication
-// var jwtSetting = builder.Configuration.GetSection("JWT");
-// var secretKey = Encoding.UTF8.getBytes(jwtSettings["Secret"]);
+//Configuring JWT Authentication
+var jwtSettings = builder.Configuration.GetSection("JWT");
+var secretKey = Encoding.UTF8.GetBytes(jwtSettings["Secret"]);
 
-// builder.Services.AffAuthentication(options=>{
-//     options.DefaultAuthenticationScheme = JwtBearerDefaults.AuthenticationScheme;
-// })
-// .AddJwtBearer(options=>{
-//     options.TokenValidationParameters = new TokenValidationParameters{
-//         ValidateIssuer = true,
-//         ValidateAudience = true,
-//         ValidateLifetime = true,
-//         ValidateIssuerSigningKey = true,
-//         ValidateIssuer = jwtSettings["ValidIssuer"],
-//         IssuerSigningKey = new SymmetricSecuritykey(sercetKey)
+builder.Services.AddAuthentication(options=>{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options=>{
+    options.TokenValidationParameters = new TokenValidationParameters{
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = jwtSettings["ValidIssuer"],
+        IssuerSigningKey = new SymmetricSecurityKey(secretKey)
 
-//     };
-// });
+    };
+});
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -65,8 +66,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
-// app.UseAuthentication();
+app.UseAuthentication();
 app.MapControllers();
 
 app.Run();
