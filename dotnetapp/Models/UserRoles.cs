@@ -7,7 +7,7 @@ namespace dotnetapp.Models
 {
     public class UserRoles
     {
-        
-        
+        public string  BookRecommender{get;set;}
+        public string BookReader{get;set;}
     }
 }
