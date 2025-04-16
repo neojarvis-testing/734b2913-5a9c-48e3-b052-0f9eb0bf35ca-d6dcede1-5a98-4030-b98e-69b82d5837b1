@@ -22,28 +22,28 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<BookService>();
 
 //Configuring Identity
-builder.Services.AddIdenttiy<ApplicationUser, IdentityRole>()
-.AddEntityFrameworkStores<ApplicationDbContext>()
-.AddDefaultTokenProviders();
+// builder.Services.AddIdenttiy<ApplicationUser, IdentityRole>()
+// .AddEntityFrameworkStores<ApplicationDbContext>()
+// .AddDefaultTokenProviders();
 
-//Configuring JWT Authentication
-var jwtSetting = builder.Configuration.GetSection("JWT");
-var secretKey = Encoding.UTF8.getBytes(jwtSettings["Secret"]);
+// //Configuring JWT Authentication
+// var jwtSetting = builder.Configuration.GetSection("JWT");
+// var secretKey = Encoding.UTF8.getBytes(jwtSettings["Secret"]);
 
-builder.Services.AffAuthentication(options=>{
-    options.DefaultAuthenticationScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options=>{
-    options.TokenValidationParameters = new TokenValidationParameters{
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidateIssuer = jwtSettings["ValidIssuer"],
-        IssuerSigningKey = new SymmetricSecuritykey(sercetKey)
+// builder.Services.AffAuthentication(options=>{
+//     options.DefaultAuthenticationScheme = JwtBearerDefaults.AuthenticationScheme;
+// })
+// .AddJwtBearer(options=>{
+//     options.TokenValidationParameters = new TokenValidationParameters{
+//         ValidateIssuer = true,
+//         ValidateAudience = true,
+//         ValidateLifetime = true,
+//         ValidateIssuerSigningKey = true,
+//         ValidateIssuer = jwtSettings["ValidIssuer"],
+//         IssuerSigningKey = new SymmetricSecuritykey(sercetKey)
 
-    };
-});
+//     };
+// });
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -66,7 +66,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseAuthentication();
+// app.UseAuthentication();
 app.MapControllers();
 
 app.Run();
