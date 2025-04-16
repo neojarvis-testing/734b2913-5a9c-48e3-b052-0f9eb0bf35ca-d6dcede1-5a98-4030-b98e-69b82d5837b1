@@ -50,7 +50,10 @@ namespace dotnetapp.Services
                {
                 return false;
                }
+<<<<<<< HEAD
                                                                                                      
+=======
+>>>>>>> 3294cc7bf06d425386ffebbef0bdb220fd5e1942
                 books.Title=book.Title;
                 books.Author=book.Author;
                 books.Genre=book.Genre;
