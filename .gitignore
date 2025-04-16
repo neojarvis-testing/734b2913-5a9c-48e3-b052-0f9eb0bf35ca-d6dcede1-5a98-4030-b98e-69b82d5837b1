@@ -1,7 +1,8 @@
 # Backend Files
 /dotnetapp/Migrations/
 /dotnetapp/cred.sh
-
+/dotnetapp/bin/
+/dotnetapp/obj/
 # Frontend Files
 
 /reactapp/node_modules
