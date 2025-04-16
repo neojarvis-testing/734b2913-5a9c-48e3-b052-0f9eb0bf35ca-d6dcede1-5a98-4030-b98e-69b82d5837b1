@@ -18,7 +18,8 @@ namespace dotnetapp.Services
         }
         public async Task<bool> AddBook(Book book)
         {
-            if (_context.Books.Any(b => b.Title == book.Title))
+            var checkBook = await _context.Books.FindAsync(book);
+            if (checkBook!=null)
             {
                 throw new Exception("Failed to add book");
             }
@@ -39,7 +40,7 @@ namespace dotnetapp.Services
         }
         public async Task <IEnumerable<Book>> GetAllBooks()
         {
-            return await _context.ToListAsync();
+            return await _context.Books.ToListAsync();
         }
         
         public async Task<bool> UpdateBook(int bookId,Book book)
@@ -58,14 +59,14 @@ namespace dotnetapp.Services
                 await _context.SaveChangesAsync();
                 return true;
         }
-        public async Task<book> DeleteBook(int bookId)
+        public async Task<bool> DeleteBook(int bookId)
         {
-            var books=await _context.FindAsync(bookId);
+            var books=await _context.Books.FindAsync(bookId);
             if(books==null)
             {
                 return false;
             }
-            Books.Remove(bookId);
+            _context.Books.Remove(books);
             await _context.SaveChangesAsync();
             return true;
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.Services;
+using dotnetapp.Models;
 
 namespace dotnetapp.Controllers
 {
@@ -24,7 +25,7 @@ namespace dotnetapp.Controllers
             return Ok(await bookService.GetAllBooks());
         }
         catch(Exception e){
-            Console.WriteLine(e.Message);
+            return StatusCode(500, e.Message);
         }
     }
 
@@ -40,7 +41,7 @@ namespace dotnetapp.Controllers
             return Ok(books);
         }
         catch(Exception e){
-            Console.WriteLine(e.Message);
+            return StatusCode(500, e.Message);
         }
     }
 
@@ -49,12 +50,12 @@ namespace dotnetapp.Controllers
     [HttpPost]
     public async Task<ActionResult>AddBook([FromBody] Book book){
         try{
-            var books=bookService.AddBook(book);
+            var books=await bookService.AddBook(book);
             if(!books) return StatusCode(500,"Failed to add book");
             return Created("","Book added successfully");
         }
         catch(Exception e){
-            Console.WriteLine(e.Message);
+            return StatusCode(500, e.Message);
         }
     }
 
@@ -71,7 +72,7 @@ namespace dotnetapp.Controllers
 
         }
         catch(Exception e){
-            Console.WriteLine(e.Message);
+            return StatusCode(500, e.Message);
         }
     }
 
@@ -86,7 +87,7 @@ namespace dotnetapp.Controllers
             return Ok("Book deleted successfully");
         }
         catch(Exception e){
-            Console.WriteLine(e.Message);
+            return StatusCode(500, e.Message);
         }
     }
 
