@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import baseUrl from '../apiConfig';
+import BookRecommenderNavbar from './BookReaderNavbar';
 
 
 export const BookReaderViewBook = () => {
+
     const [books, setBook] = useState([]);
     const [successMessage, setSuccessMessage] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
