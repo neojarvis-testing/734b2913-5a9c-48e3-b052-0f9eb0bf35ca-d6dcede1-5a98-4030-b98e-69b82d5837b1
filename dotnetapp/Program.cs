@@ -8,6 +8,13 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options=>{
+    options.AddDefaultPolicy(pol=>
+    pol.AllowAnyOrigin().
+    AllowAnyMethod().
+    AllowAnyHeader());
+    });
  
 // Add services to the container.
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -68,11 +75,11 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
  
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseAuthentication();
  
 app.UseAuthorization();
  
 app.MapControllers();
- 
+app.UseCors();
 app.Run();
