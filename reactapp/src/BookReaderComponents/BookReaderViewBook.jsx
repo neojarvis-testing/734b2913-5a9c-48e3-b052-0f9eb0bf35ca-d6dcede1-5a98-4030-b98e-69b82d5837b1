@@ -10,7 +10,7 @@ export const BookReaderViewBook = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
-    const fetchCourses=()=>{
+    const fetchBooks=()=>{
         axios.get(`${baseUrl}/books`).then((response)=>{setBook(response.data);})
         .catch(()=>{
             setErrorMessage("Failed");
@@ -18,28 +18,10 @@ export const BookReaderViewBook = () => {
     }
 
     useEffect(() => {
-        fetchCourses();
+        fetchBooks();
     },[]);
 
 
-    const handleDelete = (id) =>{
-        console.log('delete book with ID:',id);
-        axios.delete(`${baseUrl}/books/${id}`)
-        .then(()=>{console.log('deleted');
-        setBook(books.filter((book) => book.BookId !== id));
-        setSuccessMessage('Book deleted successfully')
-        setTimeout(()=>{setSuccessMessage('');},2000)
-        })
-        .catch(()=>{setErrorMessage('Failed to delete course.');
-});
-        
-    };
-    const handleEdit = (id)=>{
-        navigate(`/edit-course/${id}`);
-    }
-
-
-  
   return (
     <div className="container">
         <h1 className="book">Available List</h1>
@@ -64,15 +46,12 @@ export const BookReaderViewBook = () => {
             <tbody>
             {books.map(book => (
                 <tr key = {book.BookId || book.Title}>
-                    <td><img src={book.coverImage} alt={book.title} style={{ width: '50px', height: 'auto' }} /></td>
-                    <td>{book.Title}</td>
-                    <td>{book.Author}</td>
-                    <td>{book.Genre}</td>
-                    <td>{book.PublishedDate}</td>
-                    <td>
-                    <button className="edit-btn" onClick={()=>handleEdit(book.BookId)}>Edit</button>
-                    <button className="delete-btn" onClick = {()=>handleDelete(book.BookId)}>Delete</button>
-                    </td>
+                    
+                    <td><img src={book.coverImage} alt={book.Title} style={{ width: '50px', height: 'auto' }} /></td>
+                    <td>{book.title}</td>
+                    <td>{book.author}</td>
+                    <td>{book.genre}</td>
+                    <td>{book.publishedDate}</td>
                 </tr>
             ))}
             </tbody>
