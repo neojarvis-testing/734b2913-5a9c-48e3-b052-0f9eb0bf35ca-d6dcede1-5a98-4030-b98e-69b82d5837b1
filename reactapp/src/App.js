@@ -9,22 +9,13 @@ import BookForm from './BookRecommenderComponents/BookForm';
 import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNavbar';
 import ViewBook from './BookRecommenderComponents/ViewBook';
 import BookReaderViewBook from './BookReaderComponents/BookReaderViewBook';
+import BookReaderNavbar from './BookReaderComponents/BookReaderNavbar';
 
 const App = () => {
   return (
     <Router>
       <div>
-        <BookRecommenderNavbar/>
-        <Routes>
-        <Route path ="/" element={<BookReaderViewBook />} />
-        <Route path ="*" element={< ErrorPage/>} />
-        <Route path ="/" element={<HomePage />} />
-        <Route path ="/login" element={<Login />} />
-        <Route path ="/signup" element={<Signup />} />
-        <Route path ="/bookform" element={<BookForm />} />
-        <Route path ="/" element={<BookRecommenderNavbar />} />
-        <Route path ="/viewbook" element={<ViewBook />} />
-        </Routes>
+        <BookReaderNavbar/>
       </div>
     </Router>
   );
