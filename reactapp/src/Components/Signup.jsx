@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
-import './Signup.css'
+import './Signup.css';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -23,9 +23,13 @@ const Signup = () => {
   const validators = {
     username: (value) => value.trim() ? '' : "User Name is required",
     email: (value) => !value.trim() ? "Email is required" : /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ? '' : "Invalid email format",
-    mobileNumber: (value) => !value ? "Mobile Number is required" : /^[6-9]\d{9}$/.test(value) ? '' : "Invalid mobile number",
+    mobileNumber: (value) => !value ? "Mobile number is required" : /^[6-9]\d{9}$/.test(value) ? '' : "Invalid mobile number",
     password: (value) => value.trim() ? '' : "Password is required",
-    confirmPassword: (value) => value === formData.password ? '' : "Passwords do not match",
+    confirmPassword: (value) => {
+      if (!value.trim()) return "Confirm Password is required";
+      if (value !== formData.password) return "Passwords do not match";
+      return '';
+    },
     userRole: (value) => value.trim() ? '' : "Role is required"
   };
 
@@ -64,7 +68,7 @@ const Signup = () => {
 
   return (
     <div className="signup-container">
-      <h2>Sign Up for Book Finder Project</h2>
+      <h2>Signup</h2>
       {formError && <div className="error-message">{formError}</div>}
       {successMessage && <div className="success-message">{successMessage}</div>}
       <form onSubmit={handleSubmit}>
@@ -77,7 +81,7 @@ const Signup = () => {
         ].map(({ label, name, type }) => (
           <div className="input-group" key={name}>
             <label htmlFor={name}>{label} *</label>
-            <input id={name} name={name} type={type} onChange={handleChange} />
+            <input id={name} name={name} type={type} onChange={handleChange} placeholder={label} />
             {errors[name] && <span className="error-message">{errors[name]}</span>}
           </div>
         ))}
