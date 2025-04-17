@@ -13,7 +13,12 @@ export const BookReaderViewBook = () => {
     const navigate = useNavigate();
 
     const fetchBooks=()=>{
-        axios.get(`${baseUrl}/books`).then((response)=>{setBook(response.data);})
+        console.log(localStorage.getItem("token"))
+        axios.get(`${baseUrl}/books`,{
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },}
+            ).then((response)=>{setBook(response.data);})
         .catch(()=>{
             setErrorMessage("Failed");
         })

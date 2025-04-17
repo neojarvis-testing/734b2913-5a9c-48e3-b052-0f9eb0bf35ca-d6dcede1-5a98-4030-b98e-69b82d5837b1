@@ -46,6 +46,7 @@ const Login = () => {
         .then((res) => {
           console.log(res);
           const fetchedToken = res.data.token;
+          localStorage.setItem("token", fetchedToken);
           const decoded = jwtDecode(fetchedToken);
           console.log("Decoded Token:", decoded);
           setDecodedToken(decoded.role);
