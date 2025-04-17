@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -10,18 +9,24 @@ import BookForm from './BookRecommenderComponents/BookForm';
 import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNavbar';
 import ViewBook from './BookRecommenderComponents/ViewBook';
 import BookReaderViewBook from './BookReaderComponents/BookReaderViewBook';
-import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 
 const App = () => {
   return (
     <Router>
       <div>
+        <BookRecommenderNavbar />
         <Routes>
-        <Route path ="/" element={<BookReaderViewBook />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/bookreader" element={<BookReaderViewBook />} />
+          <Route path="/viewbook" element={<ViewBook />} />
+          <Route path="/bookform" element={<BookForm />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
