@@ -45,7 +45,6 @@ export const BookReaderViewBook = () => {
                         <th>Author</th>
                         <th>Publication Date</th>
                         <th>Genre</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
             
