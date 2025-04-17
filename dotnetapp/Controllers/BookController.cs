@@ -8,6 +8,7 @@ using dotnetapp.Models;
 
 namespace dotnetapp.Controllers
 {
+    //[Authorize]
     [ApiController]
     [Route("api/books")]
     public class BookController : ControllerBase
@@ -52,11 +53,11 @@ namespace dotnetapp.Controllers
         try{
             var books=await bookService.AddBook(book);
             if(!books) return StatusCode(500,"Failed to add book");
-<<<<<<< HEAD
+
             return Created("",new {Message="Book added successfully"});
-=======
+
             return Created("", new { Message = "Book added successfully" });
->>>>>>> 3294cc7bf06d425386ffebbef0bdb220fd5e1942
+
         }
         catch(Exception e){
             return StatusCode(500, e.Message);

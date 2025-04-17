@@ -13,7 +13,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-
+builder.Services.AddCors(options=>{
+    options.AddDefaultPolicy(pol=>
+    pol.AllowAnyOrigin().
+    AllowAnyMethod().
+    AllowAnyHeader());
+    });
 
 //Configuring entity framework core for Sql Server
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("connstring")));
@@ -68,5 +73,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.UseAuthentication();
 app.MapControllers();
-
+app.UseCors();
 app.Run();
