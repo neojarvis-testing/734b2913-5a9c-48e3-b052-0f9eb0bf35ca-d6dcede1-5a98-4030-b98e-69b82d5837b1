@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import baseUrl from '../apiConfig';
-import BookRecommenderNavbar from './BookReaderNavbar';
 
 
 export const BookReaderViewBook = () => {
@@ -13,7 +12,12 @@ export const BookReaderViewBook = () => {
     const navigate = useNavigate();
 
     const fetchBooks=()=>{
-        axios.get(`${baseUrl}/books`).then((response)=>{setBook(response.data);})
+        console.log(localStorage.getItem("token"))
+        axios.get(`${baseUrl}/books`,{
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },}
+            ).then((response)=>{setBook(response.data);})
         .catch(()=>{
             setErrorMessage("Failed");
         })
