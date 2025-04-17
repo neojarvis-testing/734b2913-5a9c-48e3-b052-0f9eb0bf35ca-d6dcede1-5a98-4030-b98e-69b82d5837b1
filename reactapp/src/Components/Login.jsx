@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode"; // Correct import
+import { jwtDecode } from "jwt-decode"; 
 import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState(null);
   const navigate = useNavigate();
-  const [decodedToken, setDecodedToken] = useState(null); // State to store decoded token
+  const [decodedToken, setDecodedToken] = useState(null); 
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -81,14 +81,6 @@ const Login = () => {
         <button type="submit" disabled={loading}>{loading ? "Logging in..." : "Login"}</button>
       </form>
       <p>Don't have an account? <a href="/signup">Sign Up</a></p>
-
-      {/* Display decoded token for debugging */}
-      {decodedToken && (
-        <div className="decoded-token">
-          <h3>Decoded Token:</h3>
-          <pre>{JSON.stringify(decodedToken, null, 2)}</pre>
-        </div>
-      )}
     </div>
   );
 };

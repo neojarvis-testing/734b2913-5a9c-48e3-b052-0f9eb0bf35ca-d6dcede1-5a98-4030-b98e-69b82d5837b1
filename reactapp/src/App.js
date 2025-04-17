@@ -7,6 +7,7 @@ import Login from './Components/Login';
 import Signup from './Components/Signup';
 import BookForm from './BookRecommenderComponents/BookForm'; 
 import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNavbar';
+import BookReaderNavbar from './BookReaderComponents/BookReaderNavbar';
 import ViewBook from './BookRecommenderComponents/ViewBook';
 import BookReaderViewBook from './BookReaderComponents/BookReaderViewBook';
 
@@ -15,7 +16,7 @@ const App = () => {
     <Router>
       <div>
         <Routes>
-        <Route path ="/readerviewbook" element={<BookReaderViewBook />} />
+        <Route path ="/readerviewbook" element={<BookReaderNavbar />} />
         <Route path ="*" element={< ErrorPage/>} />
         <Route path ="/home" element={<HomePage />} />
         <Route path ="/" element={<Login />} />
