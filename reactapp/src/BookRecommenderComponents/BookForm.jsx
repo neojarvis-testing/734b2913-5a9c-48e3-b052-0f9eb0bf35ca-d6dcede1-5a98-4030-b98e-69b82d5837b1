@@ -29,7 +29,7 @@ const BookForm = ({mode="add"}) => {
             console.log(id);
           setLoading(true);
         axios
-            .get(`${API_BASE_URL}/${id}`, {headers: {
+            .get(`${API_BASE_URL}/books/${id}`, {headers: {
                 Authorization: `Bearer ${localStorage.getItem("token")}`
               }})
             .then((response)=>{
@@ -89,7 +89,7 @@ const BookForm = ({mode="add"}) => {
             console.log(mode);
  
             axios
-                .post(API_BASE_URL,bookData, {headers: {
+                .post(`${API_BASE_URL}/books`,bookData, {headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
                   }})
                 .then(()=>{
