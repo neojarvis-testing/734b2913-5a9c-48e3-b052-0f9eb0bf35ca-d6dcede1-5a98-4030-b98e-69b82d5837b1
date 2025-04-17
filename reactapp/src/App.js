@@ -6,25 +6,22 @@ import ErrorPage from './Components/ErrorPage';
 import HomePage from './Components/HomePage';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
-import BookForm from './BookRecommenderComponents/BookForm'; // Import BookForm component
+import BookForm from './BookRecommenderComponents/BookForm'; 
 import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNavbar';
 import ViewBook from './BookRecommenderComponents/ViewBook';
+import BookReaderViewBook from './BookReaderComponents/BookReaderViewBook';
+import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
 
 const App = () => {
   return (
     <Router>
-      <BookRecommenderNavbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/bookform" element={<BookForm />} />
-        <Route path="/bookform/:id" element={<BookForm />} />
-        <Route path="*" element={<ErrorPage />} />
-        <Route path="/viewbooks" element={<ViewBook />} />
-
-      </Routes>
+      <div>
+        <Routes>
+        <Route path ="/" element={<BookReaderViewBook />} />
+        </Routes>
+      </div>
     </Router>
-  );
-};
-export default App;
+  )
+}
+
+export default App

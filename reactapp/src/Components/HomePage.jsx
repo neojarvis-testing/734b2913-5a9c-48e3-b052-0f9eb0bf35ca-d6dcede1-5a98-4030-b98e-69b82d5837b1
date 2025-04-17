@@ -13,7 +13,7 @@ const HomePage = () => {
       <p>An app to discover, explore, and recommend books tailored to your reading preferences.</p>
       <footer>
         <p>Contact Us</p>
-        <p>Email: telos@support.com</p>
+        <p>Email:  telos@support.com</p>
         <p>Phone: 007</p>
       </footer>
     </div>
