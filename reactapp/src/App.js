@@ -14,7 +14,6 @@ const App = () => {
   return (
     <Router>
       <div>
-        <BookRecommenderNavbar/>
         <Routes>
         <Route path ="/" element={<BookReaderViewBook />} />
         <Route path ="*" element={< ErrorPage/>} />
@@ -23,7 +22,7 @@ const App = () => {
         <Route path ="/signup" element={<Signup />} />
         <Route path ="/bookform" element={<BookForm />} />
         <Route path ="/" element={<BookRecommenderNavbar />} />
-        <Route path ="/viewbook" element={<ViewBook />} />
+        <Route path ="/viewbook" element={<BookRecommenderNavbar/>} />
         </Routes>
       </div>
     </Router>

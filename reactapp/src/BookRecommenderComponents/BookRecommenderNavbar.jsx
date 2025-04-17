@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BookRecommenderNavbarFooter from './BookRecommenderNavbarFooter';
+import ViewBook from './ViewBook.jsx';
 
 const BookRecommenderNavbar = ({ username, role }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -67,6 +68,7 @@ const BookRecommenderNavbar = ({ username, role }) => {
           </div>
         </div>
       )}
+      <ViewBook/>
       <BookRecommenderNavbarFooter/>
     </div>
   );
