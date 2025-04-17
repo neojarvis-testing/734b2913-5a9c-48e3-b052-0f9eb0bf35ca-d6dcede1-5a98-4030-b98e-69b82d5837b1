@@ -41,7 +41,7 @@ namespace dotnetapp.Services
             {
                 return (400, "Invalid email");
             }
-            if (user.Password != model.Password) // Replace with hashed password comparison in production
+            if (user.Password != model.Password)
             {
                 return (400, "Invalid password");
             }
