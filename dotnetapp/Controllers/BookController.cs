@@ -8,6 +8,7 @@ using dotnetapp.Models;
 
 namespace dotnetapp.Controllers
 {
+    //[Authorize]
     [ApiController]
     [Route("api/books")]
     public class BookController : ControllerBase
