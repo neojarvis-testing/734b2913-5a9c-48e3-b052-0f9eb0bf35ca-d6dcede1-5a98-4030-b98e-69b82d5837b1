@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BookRecommenderNavbarFooter from './BookRecommenderNavbarFooter';
 import ViewBook from './ViewBook.jsx';
+import BookForm from './BookForm.jsx';
 
 const BookRecommenderNavbar = ({ username, role }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -17,20 +18,20 @@ const BookRecommenderNavbar = ({ username, role }) => {
   };
 
   const handleAddBookClick = () => {
-    navigate('/bookform'); // Navigates to BookForm component for adding a new book
+    navigate('/bookform'); 
   };
 
   const handleViewBookClick = () => {
-    navigate('/viewbooks'); // Navigates to ViewBooks component displaying books in a table
+    navigate('/viewbook');
   };
 
   const handleLogoutClick = () => {
-    setShowLogoutModal(true); // Show logout confirmation modal
+    setShowLogoutModal(true); 
   };
 
   const handleConfirmLogout = () => {
     setShowLogoutModal(false);
-    navigate('/login'); // Navigates to Login component after logout confirmation
+    navigate('/login'); 
   };
 
   return (
@@ -68,8 +69,6 @@ const BookRecommenderNavbar = ({ username, role }) => {
           </div>
         </div>
       )}
-      <ViewBook/>
-      <BookRecommenderNavbarFooter/>
     </div>
   );
 };
