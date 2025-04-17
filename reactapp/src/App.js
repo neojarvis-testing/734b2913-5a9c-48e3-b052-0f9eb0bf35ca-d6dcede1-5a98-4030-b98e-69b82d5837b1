@@ -10,7 +10,7 @@ import BookForm from './BookRecommenderComponents/BookForm';
 import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNavbar';
 import ViewBook from './BookRecommenderComponents/ViewBook';
 import BookReaderViewBook from './BookReaderComponents/BookReaderViewBook';
-import { BrowserRouter as Router, Routes,Route } from 'react-router-dom'
+
 
 const App = () => {
   return (
