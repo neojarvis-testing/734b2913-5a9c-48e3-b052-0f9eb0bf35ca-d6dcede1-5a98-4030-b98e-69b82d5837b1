@@ -23,7 +23,7 @@ namespace dotnetapp.Controllers
 
     public async Task<ActionResult<IEnumerable<Book>>>GetAllBooks(){
         try{
-            return Ok(await bookService.GetAllBooks());
+            return Ok(await bookService.GetAllBooks()); 
         }
         catch(Exception e){
             return StatusCode(500, e.Message);

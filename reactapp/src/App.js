@@ -19,14 +19,13 @@ const App = () => {
         <BookRecommenderNavbar/>
         <Routes>
         <Route path ="/" element={<BookReaderViewBook />} />
-        <Route path ="*" element={<ErrorPage />} />
+        <Route path ="*" element={< ErrorPage/>} />
         <Route path ="/" element={<HomePage />} />
         <Route path ="/login" element={<Login />} />
-        <Route path ="/signup" element={<Signup/>} />
-        <Route path ="/bookform" element={<BookForm/>} />
-        <Route path ="/" element={<BookRecommenderNavbar/>} />
-        <Route path ="/viewbook" element={<ViewBook/>} />
-        
+        <Route path ="/signup" element={<Signup />} />
+        <Route path ="/bookform" element={<BookForm />} />
+        <Route path ="/" element={<BookRecommenderNavbar />} />
+        <Route path ="/viewbook" element={<ViewBook />} />
         </Routes>
       </div>
     </Router>
