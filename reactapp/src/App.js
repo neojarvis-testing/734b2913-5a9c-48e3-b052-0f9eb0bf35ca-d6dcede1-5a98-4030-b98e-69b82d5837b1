@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -10,7 +9,6 @@ import BookForm from './BookRecommenderComponents/BookForm';
 import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNavbar';
 import ViewBook from './BookRecommenderComponents/ViewBook';
 import BookReaderViewBook from './BookReaderComponents/BookReaderViewBook';
-
 
 const App = () => {
   return (
@@ -29,7 +27,7 @@ const App = () => {
         </Routes>
       </div>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

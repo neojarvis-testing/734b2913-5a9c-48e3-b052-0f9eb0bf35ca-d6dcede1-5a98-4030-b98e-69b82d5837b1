@@ -9,6 +9,6 @@ namespace dotnetapp.Models
     {
         public string  BookRecommender{get;set;}
         public string BookReader{get;set;}
-
+       
     }
 }
