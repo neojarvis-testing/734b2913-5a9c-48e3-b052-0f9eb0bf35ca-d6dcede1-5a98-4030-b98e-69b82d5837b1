@@ -13,9 +13,13 @@ const ViewBooks = () => {
   const fetchBooks = () => {
     setLoading(true);
     axios
-      .get(API_BASE_URL)
+      .get(`${API_BASE_URL}/books`,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },})
       .then((response) => {
         setBooks(response.data);
+        console.log(response.data);
         setLoading(false);
       })
       .catch(() => {
@@ -71,13 +75,13 @@ const ViewBooks = () => {
           <tbody>
             {books.map((book) => (
               <tr key={book.BookId}>
-                <td>{book.Title}</td>
-                <td>{book.Author}</td>
-                <td>{book.Genre}</td>
-                <td>{book.PublishedDate}</td>
+                <td>{book.title}</td>
+                <td>{book.author}</td>
+                <td>{book.genre}</td>
+                <td>{book.publishedDate}</td>
                 <td>
-                  <button onClick={() => handleEditClick(book.BookId)}>Edit</button>
-                  <button onClick={()=>handleDelete(book.BookId)}>Delete</button>
+                  <button onClick={() => handleEditClick(book.bookId)}>Edit</button>
+                  <button onClick={()=>handleDelete(book.bookId)}>Delete</button>
                 </td>
               </tr>
             ))}

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import baseUrl from '../apiConfig';
+import API_BASE_URL from '../apiConfig';
 
 
 export const BookReaderViewBook = () => {
@@ -13,7 +13,7 @@ export const BookReaderViewBook = () => {
 
     const fetchBooks=()=>{
         console.log(localStorage.getItem("token"))
-        axios.get(`${baseUrl}/books`,{
+        axios.get(`${API_BASE_URL}/books`,{
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },}
@@ -45,7 +45,6 @@ export const BookReaderViewBook = () => {
                         <th>Author</th>
                         <th>Publication Date</th>
                         <th>Genre</th>
-                        <th>Action</th>
                     </tr>
                 </thead>
             
