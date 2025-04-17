@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { jwtDecode } from "jwt-decode"; // Correct import
 import API_BASE_URL from '../apiConfig';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +13,8 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState(null);
+  const navigate = useNavigate();
+  const [decodedToken, setDecodedToken] = useState(null); // State to store decoded token
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -36,19 +40,23 @@ const Login = () => {
     if (Object.keys(Errors).length === 0) {
       setLoading(true);
       setFormError(null);
-      
 
       axios
-        .post(API_BASE_URL,formData)
-        .then(() => {
-          alert("Login successful!");
+        .post(`${API_BASE_URL}/login`, formData)
+        .then((res) => {
+          console.log(res);
+          const fetchedToken = res.data.token;
+          const decoded = jwtDecode(fetchedToken);
+          console.log("Decoded Token:", decoded);
+          setDecodedToken(decoded.role);
+          navigate(decoded.role==='BookReader'?"/readerviewbook":"/viewbook");
           setLoading(false);
-          window.location.href = "/dashboard";
         })
         .catch(() => {
           setFormError("Error logging in");
           setLoading(false);
         });
+        
     }
   };
 
@@ -73,6 +81,14 @@ const Login = () => {
         <button type="submit" disabled={loading}>{loading ? "Logging in..." : "Login"}</button>
       </form>
       <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+
+      {/* Display decoded token for debugging */}
+      {decodedToken && (
+        <div className="decoded-token">
+          <h3>Decoded Token:</h3>
+          <pre>{JSON.stringify(decodedToken, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 };

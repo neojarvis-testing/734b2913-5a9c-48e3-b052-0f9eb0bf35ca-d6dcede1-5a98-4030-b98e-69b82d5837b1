@@ -14,15 +14,14 @@ const App = () => {
   return (
     <Router>
       <div>
-        <BookRecommenderNavbar/>
         <Routes>
-        <Route path ="/" element={<BookReaderViewBook />} />
+        <Route path ="/readerviewbook" element={<BookReaderViewBook />} />
         <Route path ="*" element={< ErrorPage/>} />
-        <Route path ="/" element={<HomePage />} />
+        <Route path ="/home" element={<HomePage />} />
+        <Route path ="/" element={<Login />} />
         <Route path ="/login" element={<Login />} />
         <Route path ="/signup" element={<Signup />} />
         <Route path ="/bookform" element={<BookForm />} />
-        <Route path ="/" element={<BookRecommenderNavbar />} />
         <Route path ="/viewbook" element={<ViewBook />} />
         </Routes>
       </div>
