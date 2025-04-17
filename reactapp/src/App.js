@@ -10,7 +10,7 @@ import BookRecommenderNavbar from './BookRecommenderComponents/BookRecommenderNa
 import BookReaderNavbar from './BookReaderComponents/BookReaderNavbar';
 import ViewBook from './BookRecommenderComponents/ViewBook';
 import BookReaderViewBook from './BookReaderComponents/BookReaderViewBook';
-import BookReaderNavbar from './BookReaderComponents/BookReaderNavbar';
+
 
 const App = () => {
   return (
