@@ -3,12 +3,8 @@
 /dotnetapp/cred.sh
 /dotnetapp/bin/
 /dotnetapp/obj/
-<<<<<<< HEAD
-
-=======
 TestProject/TestProject.csp
 /TestProject/
->>>>>>> 3294cc7bf06d425386ffebbef0bdb220fd5e1942
 # Frontend Files
 
 /reactapp/node_modules
@@ -18,11 +14,7 @@ reactapp/package-lock.json
 
 # Testing Files
 /nunit
-<<<<<<< HEAD
 /react 
 /TestProject/
 
-=======
-/react
-/TestProject/ 
->>>>>>> 3294cc7bf06d425386ffebbef0bdb220fd5e1942
+
