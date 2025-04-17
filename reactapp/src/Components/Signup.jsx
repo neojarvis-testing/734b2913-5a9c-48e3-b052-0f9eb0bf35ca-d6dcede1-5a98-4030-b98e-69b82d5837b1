@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import API_BASE_URL from '../apiConfig';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,8 @@ const Signup = () => {
 
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
+  const [formError,setFormError]=useState(null);
+  const [successMessage,setSuccessMessage]=useState("");
 
   const validateEmail = (email) => {
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -31,26 +35,62 @@ const Signup = () => {
     e.preventDefault();
     let validationErrors = {};
 
-    if (!formData.username) validationErrors.username = "User Name is required";
-    if (!formData.email) validationErrors.email = "Email is required";
-    else if (!validateEmail(formData.email)) validationErrors.email = "Invalid email format";
+    if (!formData.username.trim())
+    {
+     validationErrors.username = "User Name is required";
+    }
+    if (!formData.email.trim())
+    {
+     validationErrors.email = "Email is required";
+    }
+    else if (!validateEmail(formData.email))
+    {
+     validationErrors.email = "Invalid email format";
+    }
 
-    if (!formData.mobile) validationErrors.mobile = "Mobile Number is required";
-    else if (!validateMobile(formData.mobile)) validationErrors.mobile = "Invalid mobile number";
+    if (!formData.mobile) 
+    {
+      validationErrors.mobile = "Mobile Number is required";
+    }
+    else if (!validateMobile(formData.mobile)) 
+    {
+      validationErrors.mobile = "Invalid mobile number";
+    }
 
-    if (!formData.password) validationErrors.password = "Password is required";
-    if (!formData.confirmPassword) validationErrors.confirmPassword = "Confirm Password is required";
-    else if (formData.password !== formData.confirmPassword) validationErrors.confirmPassword = "Passwords do not match";
+    if (!formData.password.trim()) 
+    {
+    validationErrors.password = "Password is required";
+    }
+    if (!formData.confirmPassword.trim())
+    {
+      validationErrors.confirmPassword = "Confirm Password is required";
+    }
+    else if (formData.password !== formData.confirmPassword) 
+    {
+      validationErrors.confirmPassword = "Passwords do not match";
+    }
 
-    if (!formData.role) validationErrors.role = "Role is required";
+    if (!formData.role.trim()) 
+    {
+      validationErrors.role = "Role is required";
+    }
 
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length === 0) {
-      setShowModal(true);
+    if (Object.keys(validationErrors).length === 0)
+    {
+      axios 
+          .post(API_BASE_URL,formData)
+           .then(()=>{
+            setSuccessMessage("Registration successful!");
+            setShowModal(true);
+           })
+           .catch(()=>{
+            setFormError("An error occured during registartion. Please try again.");
+           });
     }
   };
-
+      
   const handleModalClose = () => {
     setShowModal(false);
     window.location.href = "/login";
@@ -59,6 +99,8 @@ const Signup = () => {
   return (
     <div className="signup-container">
       <h2>Sign Up for Book Finder Project</h2>
+      {formError && <div className="error-message">{formError}</div>}
+      {successMessage && <div className="success-message">{successMessage}</div>}
       <form onSubmit={handleSubmit}>
         <div className="input-group">
           <label htmlFor="username">User Name *</label>
@@ -101,7 +143,8 @@ const Signup = () => {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <p>Signup successful! Click OK to proceed to the login page.</p>
+            <h3>Registration Successful!</h3>
+            <p>User Registration is Successful! Click OK to proceed to the login page.</p>
             <button onClick={handleModalClose}>OK</button>
           </div>
         </div>
@@ -111,3 +154,6 @@ const Signup = () => {
 };
 
 export default Signup;
+
+
+

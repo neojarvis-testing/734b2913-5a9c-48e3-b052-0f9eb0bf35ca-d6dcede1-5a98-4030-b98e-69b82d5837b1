@@ -16,7 +16,6 @@ namespace dotnetapp.Controllers
             _authService = authService;
         }
 
-        // POST: api/register
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User model)
         {
