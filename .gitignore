@@ -14,5 +14,7 @@ reactapp/package-lock.json
 
 # Testing Files
 /nunit
-/react
-/TestProject/ 
+/react 
+/TestProject/
+
+
