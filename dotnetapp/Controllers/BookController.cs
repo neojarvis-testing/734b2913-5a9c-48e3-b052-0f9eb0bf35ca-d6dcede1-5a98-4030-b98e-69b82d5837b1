@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using dotnetapp.Services;
 using dotnetapp.Models;
 
 namespace dotnetapp.Controllers
 {
-    //[Authorize]
     [ApiController]
     [Route("api/books")]
     public class BookController : ControllerBase
@@ -20,7 +20,7 @@ namespace dotnetapp.Controllers
         }
 
     [HttpGet]
-
+    [Authorize(Roles = "BookRecommender,BookReader")]
     public async Task<ActionResult<IEnumerable<Book>>>GetAllBooks(){
         try{
             return Ok(await bookService.GetAllBooks());
@@ -33,6 +33,7 @@ namespace dotnetapp.Controllers
 
 
     [HttpGet("{bookId}")]
+    [Authorize(Roles = "BookRecommender,BookReader")]
     public async Task<ActionResult<Book>>GetBookById(int bookId){
         try{
             var books=await bookService.GetBookById(bookId);
@@ -49,6 +50,7 @@ namespace dotnetapp.Controllers
 
 
     [HttpPost]
+    [Authorize(Roles = "BookRecommender")]
     public async Task<ActionResult>AddBook([FromBody] Book book){
         try{
             var books=await bookService.AddBook(book);
@@ -63,6 +65,7 @@ namespace dotnetapp.Controllers
 
 
     [HttpPut("{bookId}")]
+    [Authorize(Roles = "BookRecommender")]
     public async Task<ActionResult>UpdateBook(int bookId, [FromBody] Book book){
         try{
             if(book==null){
@@ -79,6 +82,7 @@ namespace dotnetapp.Controllers
 
 
     [HttpDelete("{bookId}")]
+    [Authorize(Roles = "BookRecommender")]
     public async Task<ActionResult>DeleteBook(int bookId){
         try{
             var books= await bookService.DeleteBook(bookId);
