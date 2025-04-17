@@ -13,9 +13,10 @@ const ViewBooks = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   const fetchBooks = async () => {
+    try{
     setLoading(true);
-    axios
-      .get(`API_BASE_URL/books`, {
+    await axios
+      .get(`${API_BASE_URL}/books`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -24,18 +25,20 @@ const ViewBooks = () => {
         setBooks(response.data);
         setLoading(false);
       })
-      .catch(() => {
-        setError("Failed to load books");
-        setLoading(false);
-      });
+    } catch (error) {
+      setError("Failed to load books");
+    } finally {
+      setLoading(false);
+    }
   }
 
   useEffect(() => {
     fetchBooks();
   }, []);
 
-  const handleDelete = (id) => {
-    axios
+  const handleDelete = async (id) => {
+    try{
+    await axios
       .delete(`${API_BASE_URL}/books/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -46,10 +49,11 @@ const ViewBooks = () => {
         fetchBooks();
         setTimeout(() => setSuccessMessage(""), 1000);
       })
-      .catch(() => {
-        setError("Failed to delete book");
-        setTimeout(() => setError(""), 1000);
-      });
+    } catch (error) {
+      setError("Failed to delete book");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleEditClick = (bookId) => {
@@ -64,7 +68,6 @@ const ViewBooks = () => {
       {error && <p className="text-danger">{error}</p>}
       {successMessage && <p className="text-success">{successMessage}</p>}
       {!loading && !error && books.length === 0 && <p className="no-records">Oops! No records found.</p>}
-      {!loading && !error && books.length > 0 && (
         <table className="book-table">
           <thead>
             <tr>
@@ -75,6 +78,7 @@ const ViewBooks = () => {
               <th>Action</th>
             </tr>
           </thead>
+      {!loading && !error && books.length > 0 && (
           <tbody>
             {books.map((book) => (
               <tr key={book.bookId}>
@@ -89,8 +93,8 @@ const ViewBooks = () => {
               </tr>
             ))}
           </tbody>
-        </table>
       )}
+        </table>
       <BookRecommenderNavbarFooter/>
     </div>
   );

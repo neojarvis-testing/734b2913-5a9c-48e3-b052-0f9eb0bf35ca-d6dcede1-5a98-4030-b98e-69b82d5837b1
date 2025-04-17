@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import API_BASE_URL from '../apiConfig';
+import BookReaderNavbar from './BookReaderNavbar'
+import BookRecommenderNavbar from '../BookRecommenderComponents/BookRecommenderNavbar';
 
 
 export const BookReaderViewBook = () => {
@@ -11,30 +13,29 @@ export const BookReaderViewBook = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
-    const fetchBooks=()=>{
+    const fetchBooks= async ()=>{
         console.log(localStorage.getItem("token"))
-        axios.get(`${API_BASE_URL}/books`,{
+        try{
+        await axios.get(`${API_BASE_URL}/books`,{
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
             },}
             ).then((response)=>{setBook(response.data);})
-        .catch(()=>{
+        }catch(error){
             setErrorMessage("Failed");
-        })
+        }
+        
     }
 
     useEffect(() => {
         fetchBooks();
     },[]);
-
-
   return (
     <div className="container">
-        <h1 className="book">Available List</h1>
+        <BookReaderNavbar/>
+        <h1 className="book">Available Books</h1>
         {successMessage && <p className = "success">{successMessage}</p>}
         {errorMessage && <p className="danger">{errorMessage}</p>}
-        {books.length === 0 ? (<p className="nocourse">No course available</p>
-        ) : ( 
 
         <ul>
             <table>
@@ -48,6 +49,8 @@ export const BookReaderViewBook = () => {
                     </tr>
                 </thead>
             
+        {books.length === 0 ? (<p className="nocourse">No course available</p>
+        ) : ( 
             <tbody>
             {books.map(book => (
                 <tr key = {book.BookId || book.Title}>
@@ -60,9 +63,10 @@ export const BookReaderViewBook = () => {
                 </tr>
             ))}
             </tbody>
+            )}
             </table>
         </ul>
-        )}
+        <BookRecommenderNavbar/>
     </div>
   );
   

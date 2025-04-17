@@ -18,20 +18,20 @@ const BookRecommenderNavbar = ({ username, role }) => {
   };
 
   const handleAddBookClick = () => {
-    navigate('/bookform'); // Navigates to BookForm component for adding a new book
+    navigate('/bookform'); 
   };
 
   const handleViewBookClick = () => {
-    navigate('/viewbooks'); // Navigates to ViewBooks component displaying books in a table
+    navigate('/viewbook');
   };
 
   const handleLogoutClick = () => {
-    setShowLogoutModal(true); // Show logout confirmation modal
+    setShowLogoutModal(true); 
   };
 
   const handleConfirmLogout = () => {
     setShowLogoutModal(false);
-    navigate('/login'); // Navigates to Login component after logout confirmation
+    navigate('/login'); 
   };
 
   return (

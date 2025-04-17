@@ -37,7 +37,7 @@ const Signup = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = Object.keys(validators).reduce((acc, key) => {
       const error = validators[key](formData[key]);
@@ -48,18 +48,19 @@ const Signup = () => {
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      axios
-        .post(`${API_BASE_URL}/register`, formData)
-        .then((res) => {
-          setSuccessMessage("Registration successful!");
-          setShowModal(true);
-          navigate("/login");
-        })
-        .catch(() => {
-          setFormError("An error occurred during registration. Please try again.");
-        });
-    }
-  };
+      try {
+        await axios
+          .post(`${API_BASE_URL}/register`, formData)
+          .then((res) => {
+            setSuccessMessage("Registration successful!");
+            setShowModal(true);
+            navigate("/login");
+          })
+      } catch (error) {
+        setFormError("An error occurred during registration. Please try again.");
+      }
+    };
+  }
 
   const handleModalClose = () => {
     setShowModal(false);
