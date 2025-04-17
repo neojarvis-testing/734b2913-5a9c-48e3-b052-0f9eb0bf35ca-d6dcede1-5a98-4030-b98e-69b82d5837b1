@@ -6,7 +6,6 @@ const ViewBooks = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Simulating book data fetch
     const fetchedBooks = [
       { id: 1, title: "Book Title 1", author: "Author 1", genre: "Fiction" },
       { id: 2, title: "Book Title 2", author: "Author 2", genre: "Non-Fiction" }
