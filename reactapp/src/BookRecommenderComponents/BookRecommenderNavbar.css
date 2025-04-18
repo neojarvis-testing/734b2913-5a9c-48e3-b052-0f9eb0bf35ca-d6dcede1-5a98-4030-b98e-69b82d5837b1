@@ -1,63 +1,63 @@
 .navbar {
-    background: linear-gradient(to right, #6a11cb, #2575fc);
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .navbar-brand {
-    color: white;
-    font-size: 1.5rem;
-  }
-  
-  .navbar-links {
-    display: flex;
-    align-items: center;
-  }
-  
-  .navbar-links a {
-    color: white;
-    margin-left: 1rem;
-    text-decoration: none;
-  }
-  
-  .navbar-links .text-danger {
-    color: red;
-  }
-  
-  .navbar-user {
-    color: white;
-    margin-left: auto;
-  }
-  
-  .demoreader-box {
-    background-color: white;
-    color: #6a11cb;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  .book-dropdown .dropdown-menu {
-    background-color: white;
-    border: none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 1000;
-  }
-  
-  .book-dropdown .dropdown-menu a {
-    color: black;
-    padding: 0.5rem 1rem;
-    display: block;
-    text-decoration: none;
-  }
-  
-  .book-dropdown .dropdown-menu a:hover {
-    background-color: #f8f9fa;
-  }
-  
+  background: linear-gradient(to right, #6a11cb, #2575fc);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar-brand {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-links a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
+.navbar-links .text-danger {
+  color: red;
+}
+
+.navbar-user {
+  color: white;
+  margin-left: auto;
+}
+
+.demoreader-box {
+  background-color: white;
+  color: #6a11cb;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.book-dropdown .dropdown-menu {
+  background-color: white;
+  border: none;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+}
+
+.book-dropdown .dropdown-menu a {
+  color: black;
+  padding: 0.5rem 1rem;
+  display: block;
+  text-decoration: none;
+}
+
+.book-dropdown .dropdown-menu a:hover {
+  background-color: #f8f9fa;
+}
+
