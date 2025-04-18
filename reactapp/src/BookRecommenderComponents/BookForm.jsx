@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 import BookRecommenderNavbar from './BookRecommenderNavbar';
 import BookRecommenderNavbarFooter from './BookRecommenderNavbarFooter';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BookForm = ({ mode = "add" }) => {
     const navigate = useNavigate();
@@ -115,7 +116,7 @@ const BookForm = ({ mode = "add" }) => {
         <div>
             <BookRecommenderNavbar />
             <div className="container mt-4">
-                <h2>{mode === "add" ? "Create New Book" : "Edit Book"}</h2>
+                <h2 className="text-center">{mode === "add" ? "Create New Book" : "Edit Book"}</h2>
                 {formError && <p className="text-danger">{formError}</p>}
                 {loading && <p>Loading...</p>}
                 {!loading && (
@@ -130,6 +131,7 @@ const BookForm = ({ mode = "add" }) => {
                                 <label className="form-label"><b>{label}*</b></label>
                                 <input
                                     type={type}
+                                    className="form-control w-100"
                                     name={name}
                                     placeholder={placeholder}
                                     value={formData[name]}
@@ -138,6 +140,7 @@ const BookForm = ({ mode = "add" }) => {
                                 {formErrors[name] && <p className="text-danger">{formErrors[name]}</p>}
                             </div>
                         ))}
+<<<<<<< HEAD
                         <div className="mb-3">
                             <label className="form-label"><b>Cover Image*</b></label>
                             <input
@@ -149,6 +152,12 @@ const BookForm = ({ mode = "add" }) => {
                         </div>
                         <button type="submit">{mode === "add" ? "Add Book" : "Update Book"}</button>
                         <button type="button" onClick={handleBack}>Back</button>
+=======
+                        <div className="d-flex justify-content-between">
+                            <button type="submit" className="btn btn-primary">{mode === "add" ? "Add Book" : "Update Book"}</button>
+                            <button type="button" className="btn btn-primary" onClick={handleBack}>Back</button>
+                        </div>
+>>>>>>> ef8391f197831dc6f7e0c199fefa41424c3cc077
                     </form>
                 )}
                 {successMessage && <p className="text-success">{successMessage}</p>}

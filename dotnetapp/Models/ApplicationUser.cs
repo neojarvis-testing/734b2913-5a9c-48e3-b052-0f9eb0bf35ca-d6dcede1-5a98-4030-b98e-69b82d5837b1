@@ -4,13 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace dotnetapp.Models
+
+public class ApplicationUser : IdentityUser
 {
-    public class ApplicationUser:IdentityUser
-    {
-        [Required]
-        [StringLength(30, ErrorMessage= "Name cannot exceed 30 characters.")]
-        public string Name {get;set;}
-    }
+    [Required]
+    [MaxLength(30)]
+    public string Name { get; set; }
 }
