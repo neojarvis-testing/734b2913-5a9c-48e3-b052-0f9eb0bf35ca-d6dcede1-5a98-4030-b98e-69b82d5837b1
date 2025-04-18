@@ -68,7 +68,7 @@ export const BookReaderViewBook = () => {
             )}
             </table>
         </ul>
-        <BookRecommenderNavbar/>
+        
     </div>
   );
   

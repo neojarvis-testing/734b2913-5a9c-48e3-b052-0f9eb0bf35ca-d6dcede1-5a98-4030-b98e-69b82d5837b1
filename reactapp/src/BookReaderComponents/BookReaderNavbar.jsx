@@ -1,6 +1,7 @@
 import React from 'react'
 import './BookReaderNavbar.css'
 import { Link } from 'react-router-dom';
+import BookReaderViewBook from './BookReaderViewBook';
 const BookRecommenderNavbar = () => {
   return (
     <div>
@@ -13,6 +14,7 @@ const BookRecommenderNavbar = () => {
           <Link to="/login">Logout</Link> 
           </div>
       </nav>
+      <BookReaderViewBook />
     </div>
     
   );
