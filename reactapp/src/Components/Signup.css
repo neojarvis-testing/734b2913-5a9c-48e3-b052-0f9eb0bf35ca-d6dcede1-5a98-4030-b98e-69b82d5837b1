@@ -1,100 +1,101 @@
 .signup-page {
-    height: 100vh;
-    background: #ddd; /* Updated background color */
-    display: flex;
-    justify-content: center;
-    align-items: center;
 
-  }
-  
-  .signup-container {
-    width: 70%; /* Reduced width */
-    max-width: 1000px;
-    height: 95%;
-    max-height: 800px;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    display: flex;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .signup-left {
-    flex: 1;
-    background: linear-gradient(to bottom, #25e2ff, #17a2b8);
-    color: #fff;
-    padding: 30px; /* Adjusted padding */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .signup-left h1 {
-    font-size: 2rem; /* Adjusted font size */
-    font-weight: bold;
-    margin-bottom: 5px; /* Reduced margin */
-  }
-  
-  .signup-left p {
-    font-size: 1rem; /* Adjusted font size */
-    line-height: 1.5;
-  }
-  
-  .signup-right {
-    flex: 1;
-    padding: 20px; /* Adjusted padding */
-  }
-  
-  .signup-card {
-    background: #fff;
-    border-radius: 10px;
-  }
-  
-  .signup-card h2 {
-    font-size: 1.5rem; /* Adjusted font size */
-    font-weight: bold;
-    margin-bottom: 15px;
-  }
-  
-  .signup-card .form-label {
-    font-weight: bold;
-    margin-bottom: 5px; /* Reduced margin between labels and inputs */
-  }
-  
-  .signup-card .form-control,
-  .signup-card .form-select {
-    border-radius: 5px;
-    margin-bottom: 10px; /* Reduced margin between inputs */
-  }
-  
-  .signup-card .btn {
-    background-color: #0072ff;
-    border: none;
-  }
-  
-  .signup-card .btn:hover {
+  height: 100vh;
+  background: #ddd; /* Updated background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    background-color: #0056d2;
-  }
-  
-  .signup-card a {
-    color: #0072ff;
-    text-decoration: none;
-  }
-  
-  .signup-card a:hover {
-    text-decoration: underline;
-  }
-  .astrik{
-    color: red;
-  }
-  
+}
+
+.signup-container {
+  width: 70%; /* Reduced width */
+  max-width: 1000px;
+  height: 95%;
+  max-height: 800px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.signup-left {
+  flex: 1;
+  background: linear-gradient(to bottom, #25e2ff, #17a2b8);
+  color: #fff;
+  padding: 30px; /* Adjusted padding */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-left h1 {
+  font-size: 2rem; /* Adjusted font size */
+  font-weight: bold;
+  margin-bottom: 5px; /* Reduced margin */
+}
+
+.signup-left p {
+  font-size: 1rem; /* Adjusted font size */
+  line-height: 1.5;
+}
+
+.signup-right {
+  flex: 1;
+  padding: 20px; /* Adjusted padding */
+}
+
+.signup-card {
+  background: #fff;
+  border-radius: 10px;
+}
+
+.signup-card h2 {
+  font-size: 1.5rem; /* Adjusted font size */
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.signup-card .form-label {
+  font-weight: bold;
+  margin-bottom: 5px; /* Reduced margin between labels and inputs */
+}
+
+.signup-card .form-control,
+.signup-card .form-select {
+  border-radius: 5px;
+  margin-bottom: 10px; /* Reduced margin between inputs */
+}
+
+.signup-card .btn {
+  background-color: #0072ff;
+  border: none;
+}
+
+.signup-card .btn:hover {
+
+  background-color: #0056d2;
+}
+
+.signup-card a {
+  color: #0072ff;
+  text-decoration: none;
+}
+
+.signup-card a:hover {
+  text-decoration: underline;
+}
+.astrik{
+  color: red;
+}
+
 .error-placeholder::placeholder {
-    color: red;
-    
+  color: red;
+ 
 }
 .error-user{
-    color: red;
+  color: red;
 }
-    
+

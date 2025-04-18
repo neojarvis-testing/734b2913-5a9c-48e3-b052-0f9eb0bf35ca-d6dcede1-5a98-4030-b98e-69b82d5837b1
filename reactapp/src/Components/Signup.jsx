@@ -4,8 +4,8 @@ import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 import "bootstrap/dist/css/bootstrap.min.css";
-
-
+ 
+ 
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -15,13 +15,13 @@ const Signup = () => {
     mobileNumber: '',
     userRole: ''
   });
-
+ 
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [formError, setFormError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
-
+ 
   const validators = {
     username: (value) => value.trim() ? '' : "User Name is required",
     email: (value) => !value.trim() ? "Email is required" : /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ? '' : "Invalid email format",
@@ -35,11 +35,11 @@ const Signup = () => {
     },
     userRole: (value) => value.trim() ? '' : "Role is required"
   };
-
+ 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = Object.keys(validators).reduce((acc, key) => {
@@ -47,9 +47,9 @@ const Signup = () => {
       if (error) acc[key] = error;
       return acc;
     }, {});
-
+ 
     setErrors(validationErrors);
-
+ 
     if (Object.keys(validationErrors).length === 0) {
       try {
         await axios
@@ -64,17 +64,17 @@ const Signup = () => {
       }
     };
   }
-
+ 
   const handleModalClose = () => {
     setShowModal(false);
     navigate("/login");
   };
-
+ 
   return (
     <div className="signup-page d-flex justify-content-center align-items-center">
        <div className="signup-container d-flex">
       <div className="signup-left d-flex flex-column justify-content-center align-items-center">
-      
+
         <h1>BookFinder</h1>
         <p>
        An app to discover, explore, and
@@ -105,16 +105,11 @@ const Signup = () => {
         <div className="mb-3">
           <label htmlFor="role" className="form-label">Role<span className="astrik"> *</span></label>
           <select id="role" name="userRole" onChange={handleChange} className="form-select">
-            <option value="">{errors.userRole && <span className="text-danger text-muted ">{errors.userRole}</span>||<span>Select Role</span>}</option>
-            <option value="BookRecommender">Admin</option>
-            <option value="BookReader">User</option>
-          </select>
-          
+
         {/*  */}
         </div>
         <button type="submit" className="btn btn-primary w-100">Submit</button>
       </form>
-      
       <p className="mt-2 text-center">Already have an account? <a href="/login">Login</a></p>
       {showModal && (
         <div className="modal fade show d-block">
@@ -138,13 +133,9 @@ const Signup = () => {
     </div>
     </div>
     </div>
-    
+   
   );
 };
-
+ 
 export default Signup;
-
-   
-
-
-
+ 
