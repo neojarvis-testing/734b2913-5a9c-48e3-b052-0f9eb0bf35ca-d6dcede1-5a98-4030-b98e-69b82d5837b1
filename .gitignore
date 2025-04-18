@@ -15,3 +15,4 @@ reactapp/package-lock.json
 /reactapp/src/tests
 
 # Testing Files
+package-lock.json

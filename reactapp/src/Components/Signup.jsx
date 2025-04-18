@@ -30,6 +30,7 @@ const Signup = () => {
     confirmPassword: (value) => {
       if (!value.trim()) return "Confirm Password is required";
       if (value !== formData.password) return "Passwords do not match";
+      if(value.length<6) return "Password must be long"
       return '';
     },
     userRole: (value) => value.trim() ? '' : "Role is required"
@@ -73,7 +74,7 @@ const Signup = () => {
     <div className="signup-page d-flex justify-content-center align-items-center">
        <div className="signup-container d-flex">
       <div className="signup-left d-flex flex-column justify-content-center align-items-center">
-     
+
         <h1>BookFinder</h1>
         <p>
        An app to discover, explore, and
@@ -98,22 +99,17 @@ const Signup = () => {
             <label htmlFor={name} className="form-label">{label}<span className="astrik"> *</span></label>
             <input id={name} name={name} type={type} onChange={handleChange} placeholder={errors[name]||label}
               className={`form-control ${errors[name] ? 'error-placeholder' : ''}`}/>
-          {errors[name] && <span className="text-danger"> {errors[name]}</span>}
           </div>
+          // {errors[name] && <span className="text-danger"> {errors[name]}
         ))}
         <div className="mb-3">
           <label htmlFor="role" className="form-label">Role<span className="astrik"> *</span></label>
           <select id="role" name="userRole" onChange={handleChange} className="form-select">
-            <option value="">{errors.userRole && <span className="error-user text-danger text-muted ">{errors.userRole}</span>||<span>Select Role</span>}</option>
-            <option value="BookRecommender">Admin</option>
-            <option value="BookReader">User</option>
-          </select>
-         
+
         {/*  */}
         </div>
         <button type="submit" className="btn btn-primary w-100">Submit</button>
       </form>
-     
       <p className="mt-2 text-center">Already have an account? <a href="/login">Login</a></p>
       {showModal && (
         <div className="modal fade show d-block">
