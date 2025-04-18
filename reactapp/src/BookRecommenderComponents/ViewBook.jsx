@@ -71,6 +71,7 @@ const ViewBooks = () => {
         <table className="book-table">
           <thead>
             <tr>
+              <th>Cover Image</th>
               <th>Title</th>
               <th>Author</th>
               <th>Genre</th>
@@ -82,6 +83,7 @@ const ViewBooks = () => {
           <tbody>
             {books.map((book) => (
               <tr key={book.bookId}>
+                <td><img src={book.coverImage} alt={book.Title} style={{ width: '50px', height: 'auto' }} /></td>
                 <td>{book.title}</td>
                 <td>{book.author}</td>
                 <td>{book.genre}</td>

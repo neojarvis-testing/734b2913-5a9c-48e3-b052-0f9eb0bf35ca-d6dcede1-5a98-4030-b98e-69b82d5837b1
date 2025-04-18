@@ -53,6 +53,20 @@ const BookForm = ({ mode = "add" }) => {
         }));
     };
 
+    const handleImageChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData((prevData) => ({
+                    ...prevData,
+                    coverImage: reader.result,
+                }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     const validateForm = () => {
         const errors = {};
         if (!formData.title.trim()) errors.title = "Title is required";
@@ -112,7 +126,6 @@ const BookForm = ({ mode = "add" }) => {
                             { label: "Author", name: "author", type: "text", placeholder: "Author" },
                             { label: "Published Date", name: "publishedDate", type: "date" },
                             { label: "Genre", name: "genre", type: "text", placeholder: "Genre" },
-                            { label: "Cover Image", name: "coverImage", type: "text", placeholder: "Cover Image" },
                         ].map(({ label, name, type, placeholder }) => (
                             <div className="mb-3" key={name}>
                                 <label className="form-label"><b>{label}*</b></label>
@@ -127,10 +140,24 @@ const BookForm = ({ mode = "add" }) => {
                                 {formErrors[name] && <p className="text-danger">{formErrors[name]}</p>}
                             </div>
                         ))}
+<<<<<<< HEAD
+                        <div className="mb-3">
+                            <label className="form-label"><b>Cover Image*</b></label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                            {formErrors.coverImage && <p className="text-danger">{formErrors.coverImage}</p>}
+                        </div>
+                        <button type="submit">{mode === "add" ? "Add Book" : "Update Book"}</button>
+                        <button type="button" onClick={handleBack}>Back</button>
+=======
                         <div className="d-flex justify-content-between">
                             <button type="submit" className="btn btn-primary">{mode === "add" ? "Add Book" : "Update Book"}</button>
                             <button type="button" className="btn btn-primary" onClick={handleBack}>Back</button>
                         </div>
+>>>>>>> ef8391f197831dc6f7e0c199fefa41424c3cc077
                     </form>
                 )}
                 {successMessage && <p className="text-success">{successMessage}</p>}
