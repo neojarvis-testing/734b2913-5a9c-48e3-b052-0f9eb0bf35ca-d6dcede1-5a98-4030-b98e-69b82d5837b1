@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import ErrorPage from './Components/ErrorPage';
 import HomePage from './Components/HomePage';
 import Login from './Components/Login';

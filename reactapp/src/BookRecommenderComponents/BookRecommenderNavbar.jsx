@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import BookRecommenderNavbarFooter from './BookRecommenderNavbarFooter';
-import ViewBook from './ViewBook.jsx';
-import BookForm from './BookForm.jsx';
+import './BookRecommenderNavbar.css'; 
 
 const BookRecommenderNavbar = ({ username, role }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -45,7 +43,7 @@ const BookRecommenderNavbar = ({ username, role }) => {
             onMouseEnter={handleBookHover} 
             onMouseLeave={handleBookLeave}
           >
-            <a href="#">Book</a>
+            <a href="#">Books</a>
             {showDropdown && (
               <div className="dropdown-menu">
                 <a href="#" onClick={handleAddBookClick}>Add Book</a>
@@ -53,7 +51,7 @@ const BookRecommenderNavbar = ({ username, role }) => {
               </div>
             )}
           </div>
-          <a href="#" onClick={handleLogoutClick}>Logout</a>
+          <a href="#" onClick={handleLogoutClick} className="text-danger">Logout</a>
         </div>
         <div className="navbar-user">
           {username} / {role}
