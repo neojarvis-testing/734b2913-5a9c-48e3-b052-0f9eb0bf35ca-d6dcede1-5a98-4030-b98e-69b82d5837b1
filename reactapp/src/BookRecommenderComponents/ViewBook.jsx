@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
@@ -13,46 +14,37 @@ const ViewBooks = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   const fetchBooks = async () => {
-    try{
-    setLoading(true);
-    await axios
-      .get(`${API_BASE_URL}/books`, {
+    try {
+      setLoading(true);
+      const response = await axios.get(`${API_BASE_URL}/books`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      })
-      .then((response) => {
-        setBooks(response.data);
-        setLoading(false);
-      })
+      });
+      setBooks(response.data);
+      setLoading(false);
     } catch (error) {
       setError("Failed to load books");
-    } finally {
       setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
     fetchBooks();
   }, []);
 
   const handleDelete = async (id) => {
-    try{
-    await axios
-      .delete(`${API_BASE_URL}/books/${id}`, {
+    try {
+      await axios.delete(`${API_BASE_URL}/books/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
-      })
-      .then(() => {
-        setSuccessMessage("Book successfully deleted");
-        fetchBooks();
-        setTimeout(() => setSuccessMessage(""), 1000);
-      })
+      });
+      setSuccessMessage("Book successfully deleted");
+      fetchBooks();
+      setTimeout(() => setSuccessMessage(""), 1000);
     } catch (error) {
       setError("Failed to delete book");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -61,41 +53,43 @@ const ViewBooks = () => {
   };
 
   return (
-    <div className="view-books-container">
+    <div className="container mt-4">
       <BookRecommenderNavbar />
-      <h2>Books</h2>
+      <h2 className="text-center mt-4 mb-4">Available Books</h2>
       {loading && <p>Loading...</p>}
       {error && <p className="text-danger">{error}</p>}
       {successMessage && <p className="text-success">{successMessage}</p>}
       {!loading && !error && books.length === 0 && <p className="no-records">Oops! No records found.</p>}
-        <table className="book-table">
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Genre</th>
-              <th>PublishedDate</th>
-              <th>Action</th>
+      <table className="table table-bordered table-striped text-center">
+        <thead className="thead-dark">
+          <tr>
+            <th>Cover Image</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Publication Date</th>
+            <th>Genre</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {books.map((book) => (
+            <tr key={book.bookId}>
+              <td>
+                <img src={book.coverImage} alt={book.title} style={{ width: '100px', height: '50px', objectFit: 'cover' }} />
+              </td>
+              <td>{book.title}</td>
+              <td>{book.author}</td>
+              <td>{book.publicationDate}</td>
+              <td>{book.genre}</td>
+              <td>
+                <button className="btn btn-primary btn-sm mr-2" onClick={() => handleEditClick(book.bookId)}>Edit</button>
+                <button className="btn btn-danger btn-sm" onClick={() => handleDelete(book.bookId)}>Delete</button>
+              </td>
             </tr>
-          </thead>
-      {!loading && !error && books.length > 0 && (
-          <tbody>
-            {books.map((book) => (
-              <tr key={book.bookId}>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.genre}</td>
-                <td>{book.publishedDate}</td>
-                <td>
-                  <button onClick={() => handleEditClick(book.bookId)}>Edit</button>
-                  <button onClick={() => handleDelete(book.bookId)}>Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-      )}
-        </table>
-      <BookRecommenderNavbarFooter/>
+          ))}
+        </tbody>
+      </table>
+      <BookRecommenderNavbarFooter />
     </div>
   );
 };

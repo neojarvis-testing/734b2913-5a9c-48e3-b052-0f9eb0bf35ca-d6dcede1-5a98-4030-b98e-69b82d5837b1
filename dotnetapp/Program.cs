@@ -13,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
-        policy.WithOrigins("https://8081-bfdfdcabdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io")
+        policy.WithOrigins("https://8081-ccceeeaadcbdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io")
               .AllowAnyMethod()
               .AllowAnyHeader());
 });
