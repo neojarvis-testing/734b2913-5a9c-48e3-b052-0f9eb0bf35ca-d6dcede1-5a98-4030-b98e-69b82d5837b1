@@ -3,18 +3,15 @@ import axios from "axios";
 import { jwtDecode } from "jwt-decode"; 
 import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
+import './Login.css';
+
 
 const Login = () => {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: ""
-  });
-
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState(null);
   const navigate = useNavigate();
-
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,8 +23,7 @@ const Login = () => {
 
     if (!formData.email) {
       Errors.email = "Email is required";
-    } 
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       Errors.email = "Invalid email format";
     }
 
@@ -40,48 +36,56 @@ const Login = () => {
     if (Object.keys(Errors).length === 0) {
       setLoading(true);
       setFormError(null);
-      try{
-      await axios
-        .post(`${API_BASE_URL}/login`, formData)
-        .then((res) => {
-          console.log(res);
-          const fetchedToken = res.data.token;
-          localStorage.setItem("token", fetchedToken);
-          const decoded = jwtDecode(fetchedToken);
-          console.log("Decoded Token:", decoded);
-          navigate(decoded.role==='BookReader'?"/readerviewbook":"/viewbook");
-          setLoading(false);
-        })
+      try {
+        const res = await axios.post(`${API_BASE_URL}/login`, formData);
+        const fetchedToken = res.data.token;
+        localStorage.setItem("token", fetchedToken);
+        const decoded = jwtDecode(fetchedToken);
+        navigate(decoded.role === "BookReader" ? "/readerviewbook" : "/viewbook");
       } catch (error) {
         setFormError("Error logging in");
       } finally {
         setLoading(false);
       }
-        
     }
   };
 
   return (
-    <div className="login-container">
-      <h1>BookFinder</h1>
-      <p>BookFinder—an app to discover, explore, and recommend books tailored to your reading preferences.</p>
+    <div className="container login-page">
+      <div className="row align-items-center justify-content-center">
+        {/* Left Section - BookFinder Info */}
+        <div className="col-md-6 left-section">
+          <h1 className="fw-bold">BookFinder</h1>
+          <p className="fs-5">An app to discover, explore, and recommend books tailored to your reading preferences.</p>
+        </div>
 
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="input-group">
-          <label htmlFor="email">Email *</label>
-          <input type="email" id="email" name="email" onChange={handleChange} />
-          {errors.email && <span className="error-message">{errors.email}</span>}
+       
+        <div className="col-md-6 right-section">
+          <h2 className="text-dark text-center mb-4">Login</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label htmlFor="email" className="form-label">Email *</label>
+              <input type="email" className="form-control" id="email" name="email" onChange={handleChange} />
+              {errors.email && <div className="text-danger">{errors.email}</div>}
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="password" className="form-label">Password *</label>
+              <input type="password" className="form-control" id="password" name="password" onChange={handleChange} />
+              {errors.password && <div className="text-danger">{errors.password}</div>}
+            </div>
+
+            {formError && <div className="text-danger mb-3">{formError}</div>}
+
+            {/* Blue Login Button */}
+            <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+              {loading ? "Logging in..." : "Login"}
+            </button>
+          </form>
+
+          <p className="text-center mt-3">Don't have an account? <a href="/signup">Sign Up</a></p>
         </div>
-        <div className="input-group">
-          <label htmlFor="password">Password *</label>
-          <input type="password" id="password" name="password" onChange={handleChange} />
-          {errors.password && <span className="error-message">{errors.password}</span>}
-        </div>
-        {formError && <span className="error-message">{formError}</span>}
-        <button type="submit" disabled={loading}>{loading ? "Logging in..." : "Login"}</button>
-      </form>
-      <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+      </div>
     </div>
   );
 };
