@@ -2,16 +2,29 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 
-namespace dotnetapp.Models
+public class User
 {
-    public class User
-    {
-        public int UserId{get;set;}
-        public string Email{get;set;}
-        public string Password{get;set;}
-        public string Username{get;set;}
-        public string MobileNumber{get;set;}
-        public string UserRole{get;set;}
-    }
+    [Key]
+    public int UserId { get; set; }
+
+    [Required]
+    [MaxLength(100)]
+    public string Username { get; set; }
+
+    [Required]
+    [EmailAddress]
+    public string Email { get; set; }
+
+    [Required]
+    [MaxLength(15)]
+    public string MobileNumber { get; set; }
+
+    [Required]
+    [MinLength(6)]
+    public string Password { get; set; }
+
+    [Required]
+    public string UserRole { get; set; }
 }

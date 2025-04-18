@@ -19,6 +19,7 @@ namespace dotnetapp.Controllers
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] User model)
         {
+            try{
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -31,11 +32,16 @@ namespace dotnetapp.Controllers
             }
 
             return StatusCode(statusCode, new { Message = message });
+            }catch(Exception e)
+            {
+                return StatusCode(500, e.Message);
+            }
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginModel model)
         {
+            try{
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -48,6 +54,10 @@ namespace dotnetapp.Controllers
             }
 
             return Ok(result);
+            }catch (Exception ex)
+            {
+                return StatusCode(500, $"Error: {ex.Message}");
+            }
         }
     }
 }
