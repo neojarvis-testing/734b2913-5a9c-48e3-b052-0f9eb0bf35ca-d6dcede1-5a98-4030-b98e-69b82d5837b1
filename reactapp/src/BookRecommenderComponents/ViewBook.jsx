@@ -60,6 +60,7 @@ const ViewBooks = () => {
       {error && <p className="text-danger">{error}</p>}
       {successMessage && <p className="text-success">{successMessage}</p>}
       {!loading && !error && books.length === 0 && <p className="no-records">Oops! No records found.</p>}
+
       <table className="table table-bordered table-striped text-center">
         <thead className="thead-dark">
           <tr>
@@ -90,6 +91,7 @@ const ViewBooks = () => {
         </tbody>
       </table>
       <BookRecommenderNavbarFooter />
+
     </div>
   );
 };
