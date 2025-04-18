@@ -1,7 +1,6 @@
 import React from 'react'
 import './BookReaderNavbar.css'
-import BookReaderViewBook from './BookReaderViewBook';
-
+import { Link } from 'react-router-dom';
 const BookRecommenderNavbar = () => {
   return (
     <div>
@@ -9,12 +8,11 @@ const BookRecommenderNavbar = () => {
         <div className="navbar-brand">BookFinder</div>   
         <div className="navbar-links">
           <p>DemoReader / BookReader</p>
-          <a href="/home">Home</a>
-          <a href="/">Book</a>
-          <a href="/login">Logout</a>
+          <Link to="/home">Home</Link>
+          <Link to="/">Book</Link> 
+          <Link to="/login">Logout</Link> 
           </div>
       </nav>
-      <BookReaderViewBook />
     </div>
     
   );

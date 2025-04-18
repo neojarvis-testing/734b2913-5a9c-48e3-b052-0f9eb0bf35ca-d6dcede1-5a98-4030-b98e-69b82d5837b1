@@ -24,7 +24,8 @@ const App = () => {
         <Route path ="/login" element={<Login />} />
         <Route path ="/signup" element={<Signup />} />
         <Route path ="/bookform" element={<BookForm />} />
-        <Route path ="/viewbook" element={<BookRecommenderNavbar/>} />
+        <Route path ="/viewbook" element={<ViewBook/>} />
+        <Route path ="/bookform/:id" element={<BookForm mode = 'edit'/>} />
 
         </Routes>
       </div>

@@ -14,13 +14,13 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState(null);
   const navigate = useNavigate();
-  const [decodedToken, setDecodedToken] = useState(null); 
+
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const Errors = {};
 
@@ -40,8 +40,8 @@ const Login = () => {
     if (Object.keys(Errors).length === 0) {
       setLoading(true);
       setFormError(null);
-
-      axios
+      try{
+      await axios
         .post(`${API_BASE_URL}/login`, formData)
         .then((res) => {
           console.log(res);
@@ -49,14 +49,14 @@ const Login = () => {
           localStorage.setItem("token", fetchedToken);
           const decoded = jwtDecode(fetchedToken);
           console.log("Decoded Token:", decoded);
-          setDecodedToken(decoded.role);
           navigate(decoded.role==='BookReader'?"/readerviewbook":"/viewbook");
           setLoading(false);
         })
-        .catch(() => {
-          setFormError("Error logging in");
-          setLoading(false);
-        });
+      } catch (error) {
+        setFormError("Error logging in");
+      } finally {
+        setLoading(false);
+      }
         
     }
   };
