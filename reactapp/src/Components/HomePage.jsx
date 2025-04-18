@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import BookRecommenderNavbar from '../BookReaderComponents/BookReaderNavbar';
+import BookRecommenderNavbar from '../BookRecommenderComponents/BookRecommenderNavbar';
 
 
 const HomePage = () => {

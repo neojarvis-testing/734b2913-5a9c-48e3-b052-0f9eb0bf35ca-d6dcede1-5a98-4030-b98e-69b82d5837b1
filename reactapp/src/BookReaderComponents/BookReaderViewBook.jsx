@@ -6,6 +6,7 @@ import BookReaderNavbar from './BookReaderNavbar'
 import BookRecommenderNavbar from '../BookRecommenderComponents/BookRecommenderNavbar';
 
 
+
 export const BookReaderViewBook = () => {
 
     const [books, setBook] = useState([]);
@@ -13,6 +14,7 @@ export const BookReaderViewBook = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
+   
     const fetchBooks= async ()=>{
         console.log(localStorage.getItem("token"))
         try{

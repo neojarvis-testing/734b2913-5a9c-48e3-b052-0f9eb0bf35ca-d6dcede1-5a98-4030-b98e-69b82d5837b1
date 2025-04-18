@@ -10,10 +10,13 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Retrieve BASE_URL from environment variables
+var allowedOrigin = Environment.GetEnvironmentVariable("BASE_URL") ?? "https://default-url.com";
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
-        policy.WithOrigins("https://8081-ccceeeaadcbdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io")
+        policy.WithOrigins(allowedOrigin)
               .AllowAnyMethod()
               .AllowAnyHeader());
 });
