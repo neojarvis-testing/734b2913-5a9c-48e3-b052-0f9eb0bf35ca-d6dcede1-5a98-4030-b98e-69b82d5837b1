@@ -50,7 +50,7 @@ const Signup = () => {
       formErrors.password = "Password is required";
     }
     else if (formData.password.length < 6) {
-      formErrors.password = "Password must be at least 8 characters long";
+      formErrors.password = "Password must be at least 6 characters long";
     }
     if (!formData.confirmPassword) {
       formErrors.confirmPassword = "Confirm Password is required";
@@ -65,25 +65,25 @@ const Signup = () => {
     setErrors(formErrors);
     return Object.keys(formErrors).length === 0;
   };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (validate()) {
+    try {
+      const { confirmPassword, ...payload } = formData;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (validate()) {
-      try {
-        const { confirmPassword, ...payload } = formData;
-
-        const response = await axios.post(
-          `${API_BASE_URL}/register`,
-          payload
-        );
-        console.log("Signup successful:", response.data);
-        setSuccessMessage(true); // Show success modal
-      } catch (error) {
-        console.error("Signup failed:", error.response?.data || error.message);
-        setErrors({ apiError: error.response?.data || "Signup failed. Please try again." });
-      }
+      const response = await axios.post(
+        `${API_BASE_URL}/register`,
+        payload
+      );
+      console.log("Signup successful:", response.data);
+      setSuccessMessage(true); // Show success modal
+    } catch (error) {
+      console.error("Signup failed:", error.response?.data || error.message);
+      const errorMessage = error.response?.data?.message || "Signup failed. Please try again.";
+      setErrors({ apiError: errorMessage });
     }
-  };
+  }
+};
 
   const redirectToLogin = () => {
     navigate('/login');
