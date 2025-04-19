@@ -140,20 +140,18 @@ const BookForm = ({ mode = "add" }) => {
                                 {formErrors[name] && <p className="text-danger">{formErrors[name]}</p>}
                             </div>
                         ))}
-
                         <div className="mb-3">
                             <label className="form-label"><b>Cover Image*</b></label>
                             <input
                                 type="file"
                                 accept="image/*"
-                                name="coverImage"
                                 onChange={handleChange}
                             />
                             {formErrors.coverImage && <p className="text-danger">{formErrors.coverImage}</p>}
                         </div>
-                        <div>
-                            <img src={formData.coverImage} alt="preview" style={{width:"200px", maxHeight:"200px", objectFit:"cover"}}/>
-                        </div>
+                        <button type="submit">{mode === "add" ? "Add Book" : "Update Book"}</button>
+                        <button type="button" onClick={handleBack}>Back</button>
+
                         <div className="d-flex justify-content-between">
                             <button type="submit" className="btn btn-primary">{mode === "add" ? "Add Book" : "Update Book"}</button>
                             <button type="button" className="btn btn-primary" onClick={handleBack}>Back</button>

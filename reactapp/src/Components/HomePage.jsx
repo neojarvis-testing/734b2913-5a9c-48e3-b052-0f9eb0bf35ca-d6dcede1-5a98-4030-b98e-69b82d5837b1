@@ -9,8 +9,8 @@ const HomePage = () => {
   console.log(localStorage.getItem("role"));
   return (
     <div>
-
-      {localStorage.getItem("role")!=="BookReader"?(<BookRecommenderNavbar/>):(<BookReaderNavbar/>)}
+    {localStorage.getItem("role")!=="BookReader"?(<BookRecommenderNavbar/>):(<BookReaderNavbar/>)}
+    
       <div className="container text-center">
         <div className="position-relative mb-4" style={{ 
           backgroundImage: "url('/bookbgimage.jpg')", 
