@@ -7,6 +7,7 @@ const BookRecommenderNavbar = () => {
   const username = localStorage.getItem('username') || 'Guest';
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showBookOptions, setShowBookOptions] = useState(false); // Toggle for Add/View Book
+
   const navigate = useNavigate();
 
   const handleAddBook = () => {
@@ -48,7 +49,15 @@ const BookRecommenderNavbar = () => {
                )}
           */}
 
-  
+            <div className="books-section">
+                <button onClick={handleToggleBooks} className="books-btn">Books ▼</button>
+                {showBookOptions && (
+                    <div className="book-actions">
+                        <button className="view-book-btn" onClick={() => navigate('/viewbook')}>View Book</button>
+                        <button className="add-book-btn" onClick={() => navigate('/bookform')}>Add Book</button>
+                    </div>
+                )}
+            </div>
           {localStorage.getItem("token") ? (
             <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
           ) : (
@@ -56,14 +65,6 @@ const BookRecommenderNavbar = () => {
           )}
         </div>
       </nav>
-
-      {/* Directly Showing Add Book & View Book Buttons Below Navbar */}
-      {showBookOptions && (
-        <div className="text-center mt-3">
-          <button className="btn btn-primary mx-2" onClick={handleViewBook}>View Book</button>
-          <button className="btn btn-secondary mx-2" onClick={handleAddBook}>Add Book</button>
-        </div>
-      )}
 
       {showLogoutModal && (
         <div className="modal">
