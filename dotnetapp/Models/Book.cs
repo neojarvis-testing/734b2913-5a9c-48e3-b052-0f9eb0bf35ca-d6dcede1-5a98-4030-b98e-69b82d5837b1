@@ -24,8 +24,6 @@ public class Book
 
     [Required]
     public string PublishedDate { get; set; }
-
-    [MaxLength(500)]
     public string CoverImage { get; set; }
 
 }

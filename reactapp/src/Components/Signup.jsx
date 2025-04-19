@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import './Signup.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: '',
@@ -18,130 +17,198 @@ const Signup = () => {
 
   const [errors, setErrors] = useState({});
   const [showModal, setShowModal] = useState(false);
-  const [formError, setFormError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
-
-  const validators = {
-    username: (value) => value.trim() ? '' : "User Name is required",
-    email: (value) => !value.trim() ? "Email is required" : /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value) ? '' : "Invalid email format",
-    mobileNumber: (value) => !value ? "Mobile number is required" : /^[6-9]\d{9}$/.test(value) ? '' : "Invalid mobile number",
-    password: (value) => value.trim() ? '' : "Password is required",
-    confirmPassword: (value) => {
-      if (!value.trim()) return "Confirm Password is required";
-      if (value !== formData.password) return "Passwords do not match";
-      return '';
-    },
-    userRole: (value) => value.trim() ? '' : "Role is required"
-  };
-
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
   };
+  const validate = () => {
+    const validEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const validMobile = /^\d{10}$/;
+    let formErrors = {};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = Object.keys(validators).reduce((acc, key) => {
-      const error = validators[key](formData[key]);
-      if (error) acc[key] = error;
-      return acc;
-    }, {});
+    if (!formData.username) {
+      formErrors.username = "User Name is required";
+    }
+    if (!formData.email) {
+      formErrors.email = "Email is required";
+    }
+    else if (!validEmail.test(formData.email)) {
+      formErrors.email = "Invalid email format";
+    }
+    if (!formData.mobileNumber) {
+      formErrors.mobileNumber = "Mobile number is required";
+    }
+    else if (!validMobile.test(formData.mobileNumber)) {
+      formErrors.mobileNumber = "Invalid mobile number";
+    }
+    if (!formData.password) {
+      formErrors.password = "Password is required";
+    }
+    else if (formData.password.length < 6) {
+      formErrors.password = "Password must be at least 6 characters long";
+    }
+    if (!formData.confirmPassword) {
+      formErrors.confirmPassword = "Confirm Password is required";
+    }
+    else if (formData.password !== formData.confirmPassword) {
+      formErrors.confirmPassword = "Passwords do not match";
+    }
+    if (!formData.userRole) {
+      formErrors.userRole = "Please select a role";
+    }
 
-    setErrors(validationErrors);
+    setErrors(formErrors);
+    return Object.keys(formErrors).length === 0;
+  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (validate()) {
+    try {
+      const { confirmPassword, ...payload } = formData;
 
-    if (Object.keys(validationErrors).length === 0) {
-      try {
-        await axios
-          .post(`${API_BASE_URL}/register`, formData)
-          .then((res) => {
-            setSuccessMessage("Registration successful!");
-            setShowModal(true);
-            navigate("/login");
-          })
-      } catch (error) {
-        setFormError("An error occurred during registration. Please try again.");
-      }
-    };
+      const response = await axios.post(
+        `${API_BASE_URL}/register`,
+        payload
+      );
+      console.log("Signup successful:", response.data);
+      setSuccessMessage(true); // Show success modal
+    } catch (error) {
+      console.error("Signup failed:", error.response?.data || error.message);
+      const errorMessage = error.response?.data?.message || "Signup failed. Please try again.";
+      setErrors({ apiError: errorMessage });
+    }
   }
+};
 
-  const handleModalClose = () => {
-    setShowModal(false);
-    navigate("/login");
+  const redirectToLogin = () => {
+    navigate('/login');
   };
 
   return (
-    <div className="signup-container container d-flex justify-content-center align-items-center mt-5">
-       <div className="d-flex flex-row align-items-center justify-content-center w-100">
-      <div className="left-side w-50 d-flex flex-column align-items-center justify-content-center text-center">
-      
-        <h1>BookFinder</h1>
-        <p>
-       An app to discover, explore, and
-        recommend books tailored to your
-         reading preferences.
-        </p>
+    <div className="container-fluid vh-100 d-flex">
+      <div className="row w-100">
+        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-primary text-white p-5">
+          <h1 className="fw-bold">BookFinder</h1>
+          <p className="fs-5 text-center">An app to discover, explore, and recommend books tailored to your reading preferences.</p>
+        </div>
+        <div className="col-md-6 d-flex flex-column justify-content-center align-items-center bg-light p-5">
+          <h2>Signup</h2>
+          <form onSubmit={handleSubmit} className="w-75">
+            <div className="form-group mb-3">
+              <label>Username:</label>
+              <input
+                type="text"
+                name="username"
+                value={formData.username}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Username"
+              />
+              {errors.username && <span className="text-danger">{errors.username}</span>}
+            </div>
+            <div className="form-group mb-3">
+              <label>Email:</label>
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Email"
+              />
+              {errors.email && <span className="text-danger">{errors.email}</span>}
+            </div>
+            <div className="form-group mb-3">
+              <label>Mobile Number:</label>
+              <input
+                type="text"
+                name="mobileNumber"
+                value={formData.mobileNumber}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Mobile Number"
+              />
+              {errors.mobileNumber && <span className="text-danger">{errors.mobileNumber}</span>}
+            </div>
+            <div className="form-group mb-3">
+              <label>Password:</label>
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Password"
+              />
+              {errors.password && <span className="text-danger">{errors.password}</span>}
+            </div>
+            <div className="form-group mb-3">
+              <label>Confirm Password:</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                className="form-control"
+                placeholder="Confirm Password"
+              />
+              {errors.confirmPassword && <span className="text-danger">{errors.confirmPassword}</span>}
+            </div>
+            <div className="form-group mb-3">
+              <label>Role:</label>
+              <select
+                name="userRole"
+                value={formData.userRole}
+                onChange={handleChange}
+                className="form-control"
+              >
+                <option value="">Select a Role</option>
+                <option value="BookRecommender">Recommender</option>
+                <option value="BookReader">Reader</option>
+              </select>
+              {errors.userRole && <span className="text-danger">{errors.userRole}</span>}
+            </div>
+            {errors.apiError && <span className="text-danger">{errors.apiError}</span>}
+            <button type="submit" className="btn btn-primary w-100">Submit</button>
+          </form>
+
+          {/* Success Modal */}
+          {successMessage && (
+            <div className="modal show d-block" tabIndex="-1" role="dialog">
+              <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                  <div className="modal-header">
+                    <h5 className="modal-title">Signup Successful</h5>
+                  </div>
+                  <div className="modal-body">
+                    <p>Your account has been created successfully!</p>
+                  </div>
+                  <div className="modal-footer">
+                    <button
+                      type="button"
+                      className="btn btn-primary"
+                      onClick={redirectToLogin}
+                    >
+                      Ok
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          <p className="mt-3">
+            Already have an account? <span style={{ color: 'blue', cursor: 'pointer' }} onClick={redirectToLogin}>Login</span>
+          </p>
+        </div>
       </div>
-      <div className="right-side w-50" >
-      <div className="Card p-4  shadow-lg">
-      <h2 className="text-center mb-4">Signup</h2>
-      {formError && <div className="error-message alert alert-danger">{formError}</div>}
-      {successMessage && <div className="success-message alert alert success-message">{successMessage}</div>}
-      <form onSubmit={handleSubmit}>
-        {[
-          { label: "User Name", name: "username", type: "text" },
-          { label: "Email", name: "email", type: "email" },
-          { label: "Mobile Number", name: "mobileNumber", type: "tel" },
-          { label: "Password", name: "password", type: "password" },
-          { label: "Confirm Password", name: "confirmPassword", type: "password" }
-        ].map(({ label, name, type }) => (
-          <div className="input-group mb-3" key={name}>
-            <label htmlFor={name} className="form-label">{label} *</label>
-            <input id={name} name={name} type={type} onChange={handleChange} placeholder={label}  className="form-control full-width"/>
-            {errors[name] && <span className="error-message text-danger">{errors[name]}</span>}
-          </div>
-        ))}
-        <div className="input-group mb-3">
-          <label htmlFor="role" className="form-label">Role *</label>
-          <select id="role" name="userRole" onChange={handleChange} className="form-select">
-            <option value="">Select Role</option>
-            <option value="BookRecommender">Admin</option>
-            <option value="BookReader">User</option>
-          </select>
-          {errors.userRole && <span className="error-message text-danger">{errors.userRole}</span>}
-        </div>
-        <button type="submit" className="btn btn-primary w-100">Submit</button>
-      </form>
-      
-      <p className="mt-3 text-center">Already have an account? <a href="/login">Login</a></p>
-      {showModal && (
-        <div className="modal fade show d-block">
-          <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-            <h3 className="modal-title">Registration Successful!</h3>
-            <button type="button" className="btn-close" onClick={handleModalClose}></button>
-            </div>
-            <div className="modal-body">
-            <p>User Registration is Successful! Click OK to proceed to the login page.</p>
-            </div>
-            <div className="modal-footer">
-            <button type="button" className="btn btn-primary" onClick={handleModalClose}>OK</button>
-          </div>
-        </div>
-        </div>
-        </div>
-      )}
     </div>
-    </div>
-    </div>
-    </div>
-    
   );
 };
 
 export default Signup;
-
-   
-
-
-

@@ -10,10 +10,12 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowedOrigin ="https://8081-caecbbbbfbbdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io";
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
-        policy.WithOrigins("https://8081-bfdfdcabdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io")
+        policy.AllowAnyOrigin()
               .AllowAnyMethod()
               .AllowAnyHeader());
 });

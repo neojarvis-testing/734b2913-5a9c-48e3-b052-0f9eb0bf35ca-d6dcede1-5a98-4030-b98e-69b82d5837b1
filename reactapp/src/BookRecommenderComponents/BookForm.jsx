@@ -45,27 +45,6 @@ const BookForm = ({ mode = "add" }) => {
         fetchBookData();
     }, [mode, id]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-    const handleImageChange = (e) => {
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setFormData((prevData) => ({
-                    ...prevData,
-                    coverImage: reader.result,
-                }));
-            };
-            reader.readAsDataURL(file);
-        }
-    };
 
     const validateForm = () => {
         const errors = {};
@@ -76,7 +55,26 @@ const BookForm = ({ mode = "add" }) => {
         if (!formData.coverImage.trim()) errors.coverImage = "Cover Image is required";
         return errors;
     };
-
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+        if (files && files.length > 0) {
+            // Remove or comment out: setFileName(file.name);
+            const file = files[0];
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    [name]: reader.result, // Stores the base64-encoded image
+                }));
+            };
+            reader.readAsDataURL(file);
+        } else {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [name]: value,
+            }));
+        }
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -87,6 +85,7 @@ const BookForm = ({ mode = "add" }) => {
 
         try {
             if (mode === "add") {
+                console.log(formData);
                 await axios.post(`${API_BASE_URL}/books`, formData, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -126,6 +125,7 @@ const BookForm = ({ mode = "add" }) => {
                             { label: "Author", name: "author", type: "text", placeholder: "Author" },
                             { label: "Published Date", name: "publishedDate", type: "date" },
                             { label: "Genre", name: "genre", type: "text", placeholder: "Genre" },
+
                         ].map(({ label, name, type, placeholder }) => (
                             <div className="mb-3" key={name}>
                                 <label className="form-label"><b>{label}*</b></label>
@@ -140,6 +140,18 @@ const BookForm = ({ mode = "add" }) => {
                                 {formErrors[name] && <p className="text-danger">{formErrors[name]}</p>}
                             </div>
                         ))}
+                        <div className="mb-3">
+                            <label className="form-label"><b>Cover Image*</b></label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={handleChange}
+                            />
+                            {formErrors.coverImage && <p className="text-danger">{formErrors.coverImage}</p>}
+                        </div>
+                        <button type="submit">{mode === "add" ? "Add Book" : "Update Book"}</button>
+                        <button type="button" onClick={handleBack}>Back</button>
+
                         <div className="d-flex justify-content-between">
                             <button type="submit" className="btn btn-primary">{mode === "add" ? "Add Book" : "Update Book"}</button>
                             <button type="button" className="btn btn-primary" onClick={handleBack}>Back</button>

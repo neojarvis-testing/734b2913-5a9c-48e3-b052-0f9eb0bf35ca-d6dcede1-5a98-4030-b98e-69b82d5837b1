@@ -1,35 +1,31 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './BookRecommenderNavbar.css'; 
+import { Link, useNavigate } from 'react-router-dom';
+import './BookRecommenderNavbar.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const BookRecommenderNavbar = ({ username, role }) => {
-  const [showDropdown, setShowDropdown] = useState(false);
+const BookRecommenderNavbar = () => {
+  const username = localStorage.getItem('username') || 'Guest';
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
 
-  const handleBookHover = () => {
-    setShowDropdown(true);
+  const handleAddBook = () => {
+    navigate('/bookform');
   };
 
-  const handleBookLeave = () => {
-    setShowDropdown(false);
-  };
-
-  const handleAddBookClick = () => {
-    navigate('/bookform'); 
-  };
-
-  const handleViewBookClick = () => {
+  const handleViewBook = () => {
     navigate('/viewbook');
   };
 
   const handleLogoutClick = () => {
-    setShowLogoutModal(true); 
+    setShowLogoutModal(true);
   };
 
   const handleConfirmLogout = () => {
     setShowLogoutModal(false);
-    navigate('/login'); 
+    navigate('/login');
+  };
+  const handleLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -37,36 +33,38 @@ const BookRecommenderNavbar = ({ username, role }) => {
       <nav className="navbar">
         <div className="navbar-brand">BookFinder</div>
         <div className="navbar-links">
-          <a href="/">Home</a>
-          <div 
-            className="book-dropdown" 
-            onMouseEnter={handleBookHover} 
-            onMouseLeave={handleBookLeave}
-          >
-            <a href="#">Books</a>
-            {showDropdown && (
-              <div className="dropdown-menu">
-                <a href="#" onClick={handleAddBookClick}>Add Book</a>
-                <a href="#" onClick={handleViewBookClick}>View Book</a>
-              </div>
-            )}
+          <b><a>{username}~Recommender</a></b>
+          <b><Link to="/">Home</Link></b>
+          
+          <div>
+            <select onChange={(e) => {
+              if (e.target.value === 'add') handleAddBook();
+              if (e.target.value === 'view') handleViewBook();
+            }}>
+              <option value="">Books</option>
+              <option value="add">Add Book</option>
+              <option value="view">View Book</option>
+            </select>
           </div>
-          <a href="#" onClick={handleLogoutClick} className="text-danger">Logout</a>
-        </div>
-        <div className="navbar-user">
-          {username} / {role}
+          {localStorage.getItem("token")!=null?(
+             <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
+             ):(
+               <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
+               )}
+         
         </div>
       </nav>
 
       {showLogoutModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <p>Are you sure you want to logout?</p>
-            <button onClick={handleConfirmLogout}>Yes, Logout</button>
-            <button onClick={() => setShowLogoutModal(false)}>Cancel</button>
-          </div>
-        </div>
-      )}
+  <div className="modal">
+    <div className="modal-content">
+      <p>Are you sure you want to logout?</p>
+      <button onClick={handleConfirmLogout} className="btn btn-danger">Yes, Logout</button>
+      <button onClick={() => setShowLogoutModal(false)} className="btn btn-secondary">Cancel</button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };
