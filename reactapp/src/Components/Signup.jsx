@@ -16,7 +16,6 @@ const Signup = () => {
   });
 
   const [errors, setErrors] = useState({});
-  const [showModal, setShowModal] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
   const handleChange = (e) => {

@@ -37,9 +37,6 @@ const BookReaderViewBook = () => {
         fetchBooks();
     }, [navigate]);
 
-    const handleAddbook = () => {
-        navigate('/bookform');
-    };
 
     return (
         <div className="page-container">

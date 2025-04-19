@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './BookReaderNavbar.css'
 import { Link, useNavigate } from 'react-router-dom';
-import BookReaderViewBook from './BookReaderViewBook';
 const BookRecommenderNavbar = () => {
   const username = localStorage.getItem('username') || 'Guest';
   const [showLogoutModal, setShowLogoutModal] = useState(false);
@@ -15,16 +14,13 @@ const BookRecommenderNavbar = () => {
     setShowLogoutModal(false);
     navigate('/login');
   };
-  const handleLogin = () => {
-    navigate('/login');
-  };
   return (
     <div>
       <nav className="navbar">
         <div className="navbar-brand">BookFinder</div>   
         <div className="navbar-links">
-        <b><a>{username}~Reader</a></b>
-          <Link to="/home">Home</Link>
+        <b><p>{username}~Reader</p></b>
+          <Link to="/">Home</Link>
           <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
           {/* {localStorage.getItem("token")!=null?(
              <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
