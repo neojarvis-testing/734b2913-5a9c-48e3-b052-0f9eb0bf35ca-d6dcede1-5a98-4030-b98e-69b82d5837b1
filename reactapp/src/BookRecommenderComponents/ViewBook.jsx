@@ -13,6 +13,7 @@ const ViewBook = () => {
   const [loading, setLoading] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false); // State for delete confirmation modal
   const [selectedBookId, setSelectedBookId] = useState(null); // State for the selected book ID to delete
+  const [searchQuery, setSearchQuery] = useState(""); // State for search query
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -92,14 +93,33 @@ const ViewBook = () => {
     }
   };
 
+  // Filter books based on search query (case-insensitive search in title or author)
+  const filteredBooks = Books.filter((book) => {
+    return (
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
+
   return (
     <div className="page-container">
       <BookRecommenderNavbar />
 
-      <div className="book-list-container">
+      <div className="book-list-container container mt-4">
         <h2 className="book-list-title">📚 Book List</h2>
 
-        {error && <p className="error-text">{error}</p>}
+        {/* Search Bar */}
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by Title or Author"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+
+        {error && <p className="error-text text-danger">{error}</p>}
 
         {/* Display Spinner */}
         {loading && (
@@ -126,21 +146,21 @@ const ViewBook = () => {
             </tr>
           </thead>
           <tbody>
-            {Books.length === 0 && !loading && !error && (
+            {filteredBooks.length === 0 && !loading && !error && (
               <tr>
                 <td colSpan="6" className="text-center text-muted">
                   <i>Oops! No Books found.</i>
                 </td>
               </tr>
             )}
-            {Books.map((book) => (
+            {filteredBooks.map((book) => (
               <tr key={book.bookId}>
                 <td>
                   <img
                     src={
                       book.coverImage || "https://via.placeholder.com/100"
                     }
-                    alt={book.name || "book Image"}
+                    alt={book.name || "Book Image"}
                     style={{ height: "50px", objectFit: "cover" }}
                   />
                 </td>
