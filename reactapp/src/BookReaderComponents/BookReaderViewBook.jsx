@@ -6,41 +6,41 @@ import { useNavigate } from 'react-router-dom';
 import BookReaderNavbar from '../BookReaderComponents/BookReaderNavbar';
 
 const BookReaderViewBook = () => {
-    const [Books, setBooks] = useState([]);
-    const [error, setError] = useState('');
-    const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
+    // const [Books, setBooks] = useState([]);
+    // const [error, setError] = useState('');
+    // const [loading, setLoading] = useState(true);
+    // const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchBooks = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const response = await axios.get(`${API_BASE_URL}/books`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
-                setBooks(response.data);
-            } catch (err) {
-                console.error('Error fetching Books:', err);
-                if (err.response && err.response.status === 401) {
-                    setError('Unauthorized access. Please log in again.');
-                    localStorage.removeItem('token');
-                    navigate('/');
-                } else {
-                    setError('Failed to fetch Books. Please try again later.');
-                }
-            } finally {
-                setLoading(false);
-            }
-        };
-        fetchBooks();
-    }, [navigate]);
+    // useEffect(() => {
+    //     const fetchBooks = async () => {
+    //         try {
+    //             const token = localStorage.getItem('token');
+    //             const response = await axios.get(`${API_BASE_URL}/books`, {
+    //                 headers: {
+    //                     Authorization: `Bearer ${token}`,
+    //                 },
+    //             });
+    //             setBooks(response.data);
+    //         } catch (err) {
+    //             console.error('Error fetching Books:', err);
+    //             if (err.response && err.response.status === 401) {
+    //                 setError('Unauthorized access. Please log in again.');
+    //                 localStorage.removeItem('token');
+    //                 navigate('/');
+    //             } else {
+    //                 setError('Failed to fetch Books. Please try again later.');
+    //             }
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //     fetchBooks();
+    // }, [navigate]);
 
 
     return (
         <div className="page-container">
-            <nav><BookReaderNavbar /></nav><br/>
+            {/* <nav><BookReaderNavbar /></nav><br/>
             <div className="books-section">
                 <div className="book-list-container">
                     <h2 className="book-list-title">Available Books</h2>
@@ -93,7 +93,7 @@ const BookReaderViewBook = () => {
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 };

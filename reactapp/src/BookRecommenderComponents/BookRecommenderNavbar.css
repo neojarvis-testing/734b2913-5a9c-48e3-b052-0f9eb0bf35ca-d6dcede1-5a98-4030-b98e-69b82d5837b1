@@ -1,107 +1,155 @@
-.navbar {
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  padding: 1rem;
-  display: flex;
-  width:100%;
-  align-items: center;
-  justify-content: space-between;
-}
+.glass-container {
+    background: rgba(255, 255, 255, 0.1); /* Fallback for unsupported browsers */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .glass-navbar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+  }
+   
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .navbar-links .nav-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .navbar-links .nav-link:hover {
+    text-decoration: underline;
+  }
+  
+  .username {
+    margin: 0;
+    font-size: 1rem;
+    color:#fff;
+  }
+  
 
-.navbar-brand {
-  color: white;
-  font-size: 1.5rem;
-}
+  .books-section {
+    position: relative;
+  }
+  
+  .books-btn {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .books-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .book-actions {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+  }
+  
+  .book-actions button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    color:#fff;
+    cursor: pointer;
+  }
+  
+  .book-actions button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
 
-.navbar-links {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-links a {
-  color: white;
-  margin-left: 1rem;
-  text-decoration: none;
-}
-
-.navbar-links .text-danger {
-  color: red;
-}
-
-.navbar-user {
-  color: white;
-  margin-left: auto;
-}
-
-.demoreader-box {
-  background-color: white;
-  color: #6a11cb;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.book-dropdown .dropdown-menu {
-  background-color: white;
-  border: none;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1000;
-}
-
-.book-dropdown .dropdown-menu a {
-  color: black;
-  padding: 0.5rem 1rem;
-  display: block;
-  text-decoration: none;
-}
-
-.book-dropdown .dropdown-menu a:hover {
-  background-color: #f8f9fa;
-}
-.modal {
-  display: block; /* Show the modal */
-  position: fixed;
-  z-index: 1050;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-}
-
-.modal-content {
-  position: relative;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 500px;
-  background-color: #fff;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  top: 50%;
-  transform: translateY(-50%);
-  text-align: center;
-}
-
-.modal-content button {
-  margin: 10px;
-}
-
-.footer {
-  background-color: #000; /* Black background */
-  color: #fff; /* White text */
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-}
-
-.footer-content h3,
-.footer-content p {
-  margin: 0;
-  padding: 1px 0;
-}
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .glass-modal {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .modal-text {
+    color: white;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .modal-buttons .btn {
+    border-radius: 5px;
+  }
+  .glass-footer {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    backdrop-filter: blur(10px); /* Glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+    padding: 20px; /* Spacing inside the footer */
+    margin-top: 20px; /* Space above the footer */
+    color: white; /* Text color */
+  }
+  
+  .footer-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-content p {
+    margin: 5px 0;
+  }
+  
+  .footer-content a {
+    color: #007bff; /* Link color */
+    text-decoration: none;
+  }
+  
+  .footer-content a:hover {
+    text-decoration: underline;
+  }

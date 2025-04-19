@@ -2,21 +2,21 @@ import React, { useState } from 'react';
 import './BookReaderNavbar.css'
 import { Link, useNavigate } from 'react-router-dom';
 const BookRecommenderNavbar = () => {
-  const username = localStorage.getItem('username') || 'Guest';
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const navigate = useNavigate();
+//   const username = localStorage.getItem('username') || 'Guest';
+//   const [showLogoutModal, setShowLogoutModal] = useState(false);
+//   const navigate = useNavigate();
 
-  const handleLogoutClick = () => {
-    setShowLogoutModal(true);
-  };
+//   const handleLogoutClick = () => {
+//     setShowLogoutModal(true);
+//   };
 
-  const handleConfirmLogout = () => {
-    setShowLogoutModal(false);
-    navigate('/login');
-  };
+//   const handleConfirmLogout = () => {
+//     setShowLogoutModal(false);
+//     navigate('/login');
+//   };
   return (
     <div>
-      <nav className="navbar">
+      {/* <nav className="navbar">
         <div className="navbar-brand">BookFinder</div>   
         <div className="navbar-links">
         <b><p>{username}~Reader</p></b>
@@ -26,7 +26,7 @@ const BookRecommenderNavbar = () => {
              <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
              ):(
                <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
-               )} */}
+               )} *//*}
           </div>
       </nav>
       {showLogoutModal && (
@@ -37,7 +37,7 @@ const BookRecommenderNavbar = () => {
       <button onClick={() => setShowLogoutModal(false)} className="btn btn-secondary">Cancel</button>
     </div>
   </div>
-)}
+)} */}
     </div>
   );
 }
