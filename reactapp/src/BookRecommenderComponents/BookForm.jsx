@@ -57,15 +57,14 @@ const BookForm = ({ mode = "add" }) => {
     };
     const handleChange = (e) => {
         const { name, value, files } = e.target;
- 
         if (files && files.length > 0) {
+            // Remove or comment out: setFileName(file.name);
             const file = files[0];
-            setFileName(file.name);
             const reader = new FileReader();
             reader.onloadend = () => {
                 setFormData((prevFormData) => ({
                     ...prevFormData,
-                    [name]: reader.result, // Store the base64-encoded image
+                    [name]: reader.result, // Stores the base64-encoded image
                 }));
             };
             reader.readAsDataURL(file);
@@ -86,6 +85,7 @@ const BookForm = ({ mode = "add" }) => {
 
         try {
             if (mode === "add") {
+                console.log(formData);
                 await axios.post(`${API_BASE_URL}/books`, formData, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -134,13 +134,13 @@ const BookForm = ({ mode = "add" }) => {
                                     className="form-control w-100"
                                     name={name}
                                     placeholder={placeholder}
-                                    value={type !== "file" ? formData[name] : undefined}
-                                    onChange={type === "file" ? handleFileChange : handleChange}
+                                    value={formData[name]}
+                                    onChange={handleChange}
                                 />
                                 {formErrors[name] && <p className="text-danger">{formErrors[name]}</p>}
                             </div>
                         ))}
-                        
+
                         <div className="mb-3">
                             <label className="form-label"><b>Cover Image*</b></label>
                             <input
@@ -152,7 +152,7 @@ const BookForm = ({ mode = "add" }) => {
                             {formErrors.coverImage && <p className="text-danger">{formErrors.coverImage}</p>}
                         </div>
                         <div>
-                            <img src={formData.coverImage} alt="preview" />
+                            <img src={formData.coverImage} alt="preview" style={{width:"200px", maxHeight:"200px", objectFit:"cover"}}/>
                         </div>
                         <div className="d-flex justify-content-between">
                             <button type="submit" className="btn btn-primary">{mode === "add" ? "Add Book" : "Update Book"}</button>

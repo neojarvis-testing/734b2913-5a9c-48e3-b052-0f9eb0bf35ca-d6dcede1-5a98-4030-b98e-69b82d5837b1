@@ -54,6 +54,7 @@ namespace dotnetapp.Controllers
     public async Task<ActionResult>AddBook([FromBody] Book book){
         try{
             var books=await bookService.AddBook(book);
+            
             if(!books) return StatusCode(500,"Failed to add book");
 
             return Created("",new {Message="Book added successfully"});
