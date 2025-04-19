@@ -45,26 +45,6 @@ const BookForm = ({ mode = "add" }) => {
         fetchBookData();
     }, [mode, id]);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
-
-        const file = e.target.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setFormData((prevData) => ({
-                    ...prevData,
-                    coverImage: reader.result,
-                }));
-            };
-            reader.readAsDataURL(file);
-        }
-    };
 
     const validateForm = () => {
         const errors = {};
@@ -75,7 +55,27 @@ const BookForm = ({ mode = "add" }) => {
         if (!formData.coverImage.trim()) errors.coverImage = "Cover Image is required";
         return errors;
     };
-
+    const handleChange = (e) => {
+        const { name, value, files } = e.target;
+ 
+        if (files && files.length > 0) {
+            const file = files[0];
+            setFileName(file.name);
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    [name]: reader.result, // Store the base64-encoded image
+                }));
+            };
+            reader.readAsDataURL(file);
+        } else {
+            setFormData((prevFormData) => ({
+                ...prevFormData,
+                [name]: value,
+            }));
+        }
+    };
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -140,18 +140,20 @@ const BookForm = ({ mode = "add" }) => {
                                 {formErrors[name] && <p className="text-danger">{formErrors[name]}</p>}
                             </div>
                         ))}
-
+                        
                         <div className="mb-3">
                             <label className="form-label"><b>Cover Image*</b></label>
                             <input
                                 type="file"
                                 accept="image/*"
-                                onChange={handleImageChange}
+                                name="coverImage"
+                                onChange={handleChange}
                             />
                             {formErrors.coverImage && <p className="text-danger">{formErrors.coverImage}</p>}
                         </div>
-                        <button type="submit">{mode === "add" ? "Add Book" : "Update Book"}</button>
-                        <button type="button" onClick={handleBack}>Back</button>
+                        <div>
+                            <img src={formData.coverImage} alt="preview" />
+                        </div>
                         <div className="d-flex justify-content-between">
                             <button type="submit" className="btn btn-primary">{mode === "add" ? "Add Book" : "Update Book"}</button>
                             <button type="button" className="btn btn-primary" onClick={handleBack}>Back</button>
