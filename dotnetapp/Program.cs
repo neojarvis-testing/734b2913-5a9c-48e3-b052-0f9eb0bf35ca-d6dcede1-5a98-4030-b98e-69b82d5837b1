@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var allowedOrigin ="https://8081-ccceeeaadcbdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io/";
 
+
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
