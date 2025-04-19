@@ -10,7 +10,7 @@ reactapp/src/tests
 # Frontend Files
 
 /reactapp/node_modules
-reactapp/src/apiConfig.js
+/.env
 reactapp/package-lock.json
 /reactapp/src/tests
 

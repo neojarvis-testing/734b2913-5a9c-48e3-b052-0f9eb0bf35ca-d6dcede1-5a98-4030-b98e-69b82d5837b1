@@ -1,12 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BookRecommenderNavbar from '../BookRecommenderComponents/BookRecommenderNavbar';
+import BookReaderNavbar from '../BookReaderComponents/BookReaderNavbar';
 
 
 const HomePage = () => {
   return (
     <div>
-      <BookRecommenderNavbar/>
+      {localStorage.getItem("role")!=="BookReader"?(<BookRecommenderNavbar/>):(<BookReaderNavbar/>)}
+    
       <div className="container text-center">
         <div className="position-relative mb-4">
         <img src='./bookfindercoverimage.jpeg' alt="BookFinder" width="500" height="600" className="img-fluid rounded" />

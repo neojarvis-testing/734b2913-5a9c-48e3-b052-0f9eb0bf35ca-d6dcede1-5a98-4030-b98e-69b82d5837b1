@@ -26,7 +26,6 @@ const Signup = () => {
       [name]: value,
     }));
   };
-
   const validate = () => {
     const validEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
     const validMobile = /^\d{10}$/;
@@ -50,7 +49,7 @@ const Signup = () => {
     if (!formData.password) {
       formErrors.password = "Password is required";
     }
-    else if (formData.password.length < 8) {
+    else if (formData.password.length < 6) {
       formErrors.password = "Password must be at least 8 characters long";
     }
     if (!formData.confirmPassword) {
