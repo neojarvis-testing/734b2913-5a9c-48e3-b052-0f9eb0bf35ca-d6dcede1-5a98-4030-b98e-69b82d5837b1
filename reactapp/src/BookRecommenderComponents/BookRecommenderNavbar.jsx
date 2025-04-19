@@ -33,7 +33,7 @@ const BookRecommenderNavbar = () => {
       <nav className="navbar">
         <div className="navbar-brand">BookFinder</div>
         <div className="navbar-links">
-          <b><a>{username}~Recommender</a></b>
+          <b><a>{username}{localStorage.getItem("role")==='BookReader'?(<span> ~ Reader</span>):(<span> ~ Recommender</span>)}</a></b>
           <b><Link to="/">Home</Link></b>
           
           <div>
