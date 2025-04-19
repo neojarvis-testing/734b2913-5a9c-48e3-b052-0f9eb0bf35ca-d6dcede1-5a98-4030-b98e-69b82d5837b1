@@ -142,7 +142,7 @@ const ViewBook = () => {
                         <tr key={book.bookId}>
                             <td>
                                 <img
-                                    src={book.bookImage || 'https://via.placeholder.com/100'}
+                                    src={book.coverImage || 'https://via.placeholder.com/100'}
                                     alt={book.name || 'book Image'}
                                     style={{ height: '50px', objectFit: 'cover' }}
                                 />

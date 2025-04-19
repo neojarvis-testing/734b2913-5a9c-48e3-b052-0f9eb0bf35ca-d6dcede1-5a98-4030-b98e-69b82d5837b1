@@ -46,12 +46,13 @@ const BookRecommenderNavbar = () => {
               <option value="view">View Book</option>
             </select>
           </div>
-          {localStorage.getItem("token")!=null?(
+          <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
+          {/* {localStorage.getItem("token")!=null?(
              <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
              ):(
                <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
                )}
-         
+          */}
         </div>
       </nav>
 
