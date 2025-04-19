@@ -42,6 +42,8 @@ const Login = () => {
         localStorage.setItem("token", fetchedToken);
         const decoded = jwtDecode(fetchedToken);
         localStorage.setItem("role", decoded.role);
+        console.log(decoded.role)
+        console.log(localStorage.setItem("role"));
         localStorage.setItem("username", decoded.name);
         navigate(decoded.role === "BookReader" ? "/readerviewbook" : "/viewbook");
         console.log(decoded);
