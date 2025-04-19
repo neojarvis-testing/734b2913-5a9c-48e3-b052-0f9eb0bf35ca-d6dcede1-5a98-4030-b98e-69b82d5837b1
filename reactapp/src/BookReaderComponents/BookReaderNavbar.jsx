@@ -25,11 +25,12 @@ const BookRecommenderNavbar = () => {
         <div className="navbar-links">
         <b><a>{username}~Reader</a></b>
           <Link to="/home">Home</Link>
-          {localStorage.getItem("token")!=null?(
+          <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
+          {/* {localStorage.getItem("token")!=null?(
              <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
              ):(
                <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
-               )}
+               )} */}
           </div>
       </nav>
       {showLogoutModal && (

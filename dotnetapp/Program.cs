@@ -10,8 +10,8 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var allowedOrigin ="https://8081-ccceeeaadcbdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io/";
 
-var allowedOrigin ="https://8081-caecbbbbfbbdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io";
 
 builder.Services.AddCors(options =>
 {
