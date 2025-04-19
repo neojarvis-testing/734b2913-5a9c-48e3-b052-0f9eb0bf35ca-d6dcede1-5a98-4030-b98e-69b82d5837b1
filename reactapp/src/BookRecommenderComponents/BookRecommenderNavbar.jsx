@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const BookRecommenderNavbar = () => {
   const username = localStorage.getItem('username') || 'Guest';
   const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showBookOptions, setShowBookOptions] = useState(false); // Toggle for Add/View Book
   const navigate = useNavigate();
 
   const handleAddBook = () => {
@@ -24,8 +25,13 @@ const BookRecommenderNavbar = () => {
     setShowLogoutModal(false);
     navigate('/login');
   };
+
   const handleLogin = () => {
     navigate('/login');
+  };
+
+  const handleToggleBooks = () => {
+    setShowBookOptions((prev) => !prev);
   };
 
   return (
@@ -35,36 +41,35 @@ const BookRecommenderNavbar = () => {
         <div className="navbar-links">
           <b><a>{username}~Recommender</a></b>
           <b><Link to="/">Home</Link></b>
-          
-          <div>
-            <select onChange={(e) => {
-              if (e.target.value === 'add') handleAddBook();
-              if (e.target.value === 'view') handleViewBook();
-            }}>
-              <option value="">Books</option>
-              <option value="add">Add Book</option>
-              <option value="view">View Book</option>
-            </select>
-          </div>
-          {localStorage.getItem("token")!=null?(
-             <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
-             ):(
-               <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
-               )}
-         
+
+          {/* Books Toggle (NO DROPDOWN) */}
+          <button onClick={handleToggleBooks} className="btn btn-outline-dark fw-bold">Books</button>
+
+          {localStorage.getItem("token") ? (
+            <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
+          ) : (
+            <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
+          )}
         </div>
       </nav>
 
-      {showLogoutModal && (
-  <div className="modal">
-    <div className="modal-content">
-      <p>Are you sure you want to logout?</p>
-      <button onClick={handleConfirmLogout} className="btn btn-danger">Yes, Logout</button>
-      <button onClick={() => setShowLogoutModal(false)} className="btn btn-secondary">Cancel</button>
-    </div>
-  </div>
-)}
+      {/* Directly Showing Add Book & View Book Buttons Below Navbar */}
+      {showBookOptions && (
+        <div className="text-center mt-3">
+          <button className="btn btn-primary mx-2" onClick={handleViewBook}>View Book</button>
+          <button className="btn btn-secondary mx-2" onClick={handleAddBook}>Add Book</button>
+        </div>
+      )}
 
+      {showLogoutModal && (
+        <div className="modal">
+          <div className="modal-content">
+            <p>Are you sure you want to logout?</p>
+            <button onClick={handleConfirmLogout} className="btn btn-danger">Yes, Logout</button>
+            <button onClick={() => setShowLogoutModal(false)} className="btn btn-secondary">Cancel</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
