@@ -4,6 +4,7 @@ import './BookRecommenderNavbar.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const BookRecommenderNavbar = () => {
+  const username = localStorage.getItem('username') || 'Guest';
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const navigate = useNavigate();
 
@@ -23,13 +24,16 @@ const BookRecommenderNavbar = () => {
     setShowLogoutModal(false);
     navigate('/login');
   };
+  const handleLogin = () => {
+    navigate('/login');
+  };
 
   return (
     <div>
       <nav className="navbar">
         <div className="navbar-brand">BookFinder</div>
         <div className="navbar-links">
-          <b><a>DemoAdmin/BookRecommender</a></b>
+          <b><a>{username}~Recommender</a></b>
           <b><Link to="/">Home</Link></b>
           
           <div>
@@ -42,19 +46,25 @@ const BookRecommenderNavbar = () => {
               <option value="view">View Book</option>
             </select>
           </div>
-          <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
+          {localStorage.getItem("token")!=null?(
+             <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
+             ):(
+               <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
+               )}
+         
         </div>
       </nav>
 
       {showLogoutModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <p>Are you sure you want to logout?</p>
-            <button onClick={handleConfirmLogout}>Yes, Logout</button>
-            <button onClick={() => setShowLogoutModal(false)}>Cancel</button>
-          </div>
-        </div>
-      )}
+  <div className="modal">
+    <div className="modal-content">
+      <p>Are you sure you want to logout?</p>
+      <button onClick={handleConfirmLogout} className="btn btn-danger">Yes, Logout</button>
+      <button onClick={() => setShowLogoutModal(false)} className="btn btn-secondary">Cancel</button>
+    </div>
+  </div>
+)}
+
     </div>
   );
 };

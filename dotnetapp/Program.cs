@@ -10,8 +10,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Retrieve BASE_URL from environment variables
-var allowedOrigin = Environment.GetEnvironmentVariable("BASE_URL") ?? "https://default-url.com";
+var allowedOrigin ="https://8081-bfdfdcabdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io";
 
 builder.Services.AddCors(options =>
 {

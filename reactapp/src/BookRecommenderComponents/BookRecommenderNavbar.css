@@ -2,6 +2,7 @@
   background: linear-gradient(to right, #6a11cb, #2575fc);
   padding: 1rem;
   display: flex;
+  width:100%;
   align-items: center;
   justify-content: space-between;
 }
@@ -60,4 +61,47 @@
 .book-dropdown .dropdown-menu a:hover {
   background-color: #f8f9fa;
 }
+.modal {
+  display: block; /* Show the modal */
+  position: fixed;
+  z-index: 1050;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+}
 
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  background-color: #fff;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+}
+
+.modal-content button {
+  margin: 10px;
+}
+
+.footer {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text */
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.footer-content h3,
+.footer-content p {
+  margin: 0;
+  padding: 1px 0;
+}
