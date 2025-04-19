@@ -24,7 +24,6 @@ public class Book
 
     [Required]
     public string PublishedDate { get; set; }
-
     public string CoverImage { get; set; }
 
 }

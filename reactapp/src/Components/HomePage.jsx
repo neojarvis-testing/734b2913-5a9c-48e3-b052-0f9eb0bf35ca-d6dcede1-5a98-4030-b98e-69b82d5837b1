@@ -3,10 +3,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BookRecommenderNavbar from '../BookRecommenderComponents/BookRecommenderNavbar';
 import './HomePage.css';
 
+import BookReaderNavbar from '../BookReaderComponents/BookReaderNavbar';
+
 const HomePage = () => {
   return (
     <div>
-      <BookRecommenderNavbar/><br/>
+
+      {localStorage.getItem("role")!=="BookReader"?(<BookRecommenderNavbar/>):(<BookReaderNavbar/>)}
+
       <div className="container text-center">
         <div className="position-relative mb-4" style={{ 
           backgroundImage: "url('/bookbgimage.jpg')", 
