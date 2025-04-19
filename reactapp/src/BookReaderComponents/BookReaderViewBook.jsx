@@ -36,6 +36,8 @@ const BookReaderViewBook = () => {
         };
         fetchBooks();
     }, [navigate]);
+
+
     return (
         <div className="page-container">
             <nav><BookReaderNavbar /></nav><br/>
