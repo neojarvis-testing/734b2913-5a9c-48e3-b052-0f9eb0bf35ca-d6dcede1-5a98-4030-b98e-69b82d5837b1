@@ -39,14 +39,6 @@ const BookReaderViewBook = () => {
         };
         fetchBooks();
     }, [navigate]);
- 
-    // Handle Add book Button
-    const handleAddbook = () => {
-        navigate('/bookform'); // Navigate to bookForm in "add" mode
-    };
- 
- 
- 
     return (
       <div>
         <nav><BookReaderNavbar /></nav>

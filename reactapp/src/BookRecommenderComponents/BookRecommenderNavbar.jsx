@@ -10,14 +10,6 @@ const BookRecommenderNavbar = () => {
 
   const navigate = useNavigate();
 
-  const handleAddBook = () => {
-    navigate('/bookform');
-  };
-
-  const handleViewBook = () => {
-    navigate('/viewbook');
-  };
-
   const handleLogoutClick = () => {
     setShowLogoutModal(true);
   };
@@ -40,7 +32,7 @@ const BookRecommenderNavbar = () => {
       <nav className="navbar">
         <div className="navbar-brand">BookFinder</div>
         <div className="navbar-links">
-          <b><a>{username}{localStorage.getItem("role")==='BookReader'?(<span> ~ Reader</span>):(<span> ~ Recommender</span>)}</a></b>
+          <b><p>{username}{localStorage.getItem("role")==='BookReader'?(<span> ~ Reader</span>):(<span> ~ Recommender</span>)}</p></b>
           <b><Link to="/">Home</Link></b>
            {/* {localStorage.getItem("token")!=null?(
              <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
