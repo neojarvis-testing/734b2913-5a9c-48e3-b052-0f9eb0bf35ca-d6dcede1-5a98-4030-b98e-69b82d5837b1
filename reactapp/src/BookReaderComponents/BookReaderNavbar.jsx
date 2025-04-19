@@ -14,9 +14,7 @@ const BookRecommenderNavbar = () => {
           <Link to="/login">Logout</Link> 
           </div>
       </nav>
-      <BookReaderViewBook />
     </div>
-    
   );
 }
 

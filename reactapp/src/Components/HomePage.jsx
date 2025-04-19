@@ -8,7 +8,7 @@ const HomePage = () => {
   return (
     <div>
       {localStorage.getItem("role")!=="BookReader"?(<BookRecommenderNavbar/>):(<BookReaderNavbar/>)}
-    
+      
       <div className="container text-center">
         <div className="position-relative mb-4">
         <img src='./bookfindercoverimage.jpeg' alt="BookFinder" width="500" height="600" className="img-fluid rounded" />
