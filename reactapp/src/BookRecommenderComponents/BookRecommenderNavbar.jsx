@@ -41,28 +41,14 @@ const BookRecommenderNavbar = () => {
         <div className="navbar-links">
           <b><a>{username}{localStorage.getItem("role")==='BookReader'?(<span> ~ Reader</span>):(<span> ~ Recommender</span>)}</a></b>
           <b><Link to="/">Home</Link></b>
-          
-          <div>
-            <select onChange={(e) => {
-              if (e.target.value === 'add') handleAddBook();
-              if (e.target.value === 'view') handleViewBook();
-            }}>
-              <option value="">Books</option>
-              <option value="add">Add Book</option>
-              <option value="view">View Book</option>
-            </select>
-          </div>
-          <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
-          {/* {localStorage.getItem("token")!=null?(
+           {/* {localStorage.getItem("token")!=null?(
              <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
              ):(
                <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
                )}
           */}
 
-          {/* Books Toggle (NO DROPDOWN) */}
-          <button onClick={handleToggleBooks} className="btn btn-outline-dark fw-bold">Books</button>
-
+  
           {localStorage.getItem("token") ? (
             <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
           ) : (
