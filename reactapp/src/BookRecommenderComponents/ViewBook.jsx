@@ -117,6 +117,8 @@ const ViewBook = () => {
                     <div className="mt-2">Loading...</div>
                 </div>
             )}
+ 
+            {/* Always Render Table */}
             <table className="table table-bordered table-striped text-center">
                 <thead className="thead-dark">
                     <tr>
@@ -140,9 +142,9 @@ const ViewBook = () => {
                         <tr key={book.bookId}>
                             <td>
                                 <img
-                                    src={book.coverImage}
+                                    src={book.bookImage || 'https://via.placeholder.com/100'}
                                     alt={book.name || 'book Image'}
-                                    style={{ height: '100px', objectFit: 'cover' }}
+                                    style={{ height: '50px', objectFit: 'cover' }}
                                 />
                             </td>
                             <td>{book.title}</td>

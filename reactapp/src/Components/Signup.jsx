@@ -179,7 +179,7 @@ const handleSubmit = async (e) => {
 
           {/* Success Modal */}
           {successMessage && (
-            <div className="modal show d-block" tabIndex="-1" role="dialog">
+            <div className="modal show d-block justify-content-center" tabIndex="-1" role="dialog">
               <div className="modal-dialog" role="document">
                 <div className="modal-content">
                   <div className="modal-header">

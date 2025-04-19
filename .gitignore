@@ -10,9 +10,10 @@ reactapp/src/tests
 # Frontend Files
 
 /reactapp/node_modules
-/.env
+
 reactapp/package-lock.json
 /reactapp/src/tests
+/home/coder/project/workspace/reactapp/.env
 
 # Testing Files
 package-lock.json

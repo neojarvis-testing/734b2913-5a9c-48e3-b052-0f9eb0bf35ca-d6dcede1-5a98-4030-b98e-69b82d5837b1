@@ -42,7 +42,6 @@ const BookRecommenderNavbar = () => {
   </div>
 )}
     </div>
-    
   );
 }
 
