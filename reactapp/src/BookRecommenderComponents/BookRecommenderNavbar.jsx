@@ -44,19 +44,35 @@ const BookRecommenderNavbar = () => {
             </p>
           </b>
           <b><Link to="/" className="nav-link">Home</Link></b>
-
+          
           {/* Books Section for Admin */}
-          {localStorage.getItem("role") === 'BookRecommender' && (
-            <div className="books-section">
-              <button onClick={handleToggleBooks} className="books-btn">Books ▼</button>
-              {showBookOptions && (
-                <div className="book-actions">
-                  <button className="view-book-btn" onClick={() => navigate('/viewbook')}>View Books</button>
-                  <button className="add-book-btn" onClick={() => navigate('/bookform')}>Add Book</button>
-                </div>
-              )}
-            </div>
-          )}
+
+{localStorage.getItem("role") === 'BookRecommender' && (
+  <div className="books-section">
+    <button
+      onClick={handleToggleBooks}
+      className="books-btn"
+    >
+      Books
+    </button>
+    {showBookOptions && (
+      <div className="book-actions">
+        <button
+          className="dropdown-item view-book-btn"
+          onClick={() => navigate('/viewbook')}
+        >
+          View Books
+        </button>
+        <button
+          className="dropdown-item add-book-btn"
+          onClick={() => navigate('/bookform')}
+        >
+          Add Book
+        </button>
+      </div>
+    )}
+  </div>
+)}
 
           {/* Logout/Login Button */}
           {localStorage.getItem("token") ? (

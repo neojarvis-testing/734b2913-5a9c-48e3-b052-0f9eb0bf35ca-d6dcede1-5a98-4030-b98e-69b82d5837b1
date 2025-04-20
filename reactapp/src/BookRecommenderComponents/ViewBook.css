@@ -1,4 +1,7 @@
 /* Glass Effect for Search Bar */
+:root{
+  --text-color : #fff;
+}
 .glass-search-bar {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -9,7 +12,7 @@
     padding: 10px;
   }
   h2{
-    color: #fff;
+    color: var(--text-color);
   }
 
   .page-container {
@@ -49,20 +52,20 @@
 
 .table th,
 .table td {
-  color: #fff;
+  color: var(--text-color);
   padding: 10px; /* Add padding inside cells */
   text-align: center; /* Center-align text */
   border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for cells */
 }
 
 .table th {
-  color: #fff;
+  color: var(--text-color);
   background: rgba(255, 255, 255, 0.2); /* Slightly darker background for headers */
   font-weight: bold;
 }
 
 .table td {
-  color: #fff;
+  color: var(--text-color);
   background: rgba(255, 255, 255, 0.1); /* Lighter background for table cells */
 }
 

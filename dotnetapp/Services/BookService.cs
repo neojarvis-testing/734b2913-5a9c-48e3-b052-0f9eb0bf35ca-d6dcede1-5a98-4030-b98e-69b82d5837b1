@@ -23,8 +23,10 @@ namespace dotnetapp.Services
             {
                 throw new Exception("Failed to add book");
             }
- 
-            _context.Books.Add(book);
+            var exist = await _context.Books.FirstOrDefaultAsync(b=>b.Title ==book.Title);
+            if(exist!=null)
+                return false;
+             _context.Books.Add(book);
             await _context.SaveChangesAsync();
             return true;
         }

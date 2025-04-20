@@ -21,7 +21,7 @@
   .navbar-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #fff;
+    color: var(--text-color);
   }
    
   .navbar-links {
@@ -31,7 +31,7 @@
   }
   
   .navbar-links .nav-link {
-    color: #fff;
+    color: var(--text-color);
     text-decoration: none;
   }
   
@@ -42,54 +42,53 @@
   .username {
     margin: 0;
     font-size: 1rem;
-    color:#fff;
+    color:var(--text-color);
   }
-  
-
   .books-section {
-    position: relative;
+    position: relative; /* Ensure the dropdown is positioned relative to the button */
   }
   
   .books-btn {
-    background-color: rgba(255, 255, 255, 0.2);
-    color: #fff;
+    background-color: #6c757d; /* Button background color */
+    color: white;
     border: none;
-    padding: 5px 10px;
-    cursor: pointer;
+    padding: 10px 15px;
     border-radius: 5px;
+    cursor: pointer;
   }
   
   .books-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: #5a6268; /* Darker shade on hover */
   }
   
   .book-actions {
-    position: absolute;
-    top: 30px;
+    position: absolute; /* Position the dropdown relative to the button */
+    top: 100%; /* Place it directly below the button */
     left: 0;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for glass effect */
+    backdrop-filter: blur(10px); /* Glass blur effect */
+    -webkit-backdrop-filter: blur(10px); /* Safari support */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    z-index: 1000; /* Ensure it appears above other elements */
+    padding: 10px 0;
+    min-width: 150px; /* Set a minimum width for the dropdown */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
   }
   
-  .book-actions button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: transparent;
+  .book-actions .dropdown-item {
+    padding: 10px 15px;
+    background: none;
     border: none;
     text-align: left;
-    color:#fff;
+    width: 100%;
+    color: white; /* Text color */
     cursor: pointer;
   }
   
-  .book-actions button:hover {
-    background-color: rgba(255, 255, 255, 0.3);
+  .book-actions .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
   }
-  
-
   .modal-overlay {
     position: fixed;
     top: 0;

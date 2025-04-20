@@ -36,7 +36,7 @@ const ViewBook = () => {
           setError("Failed to fetch books. Please try again later.");
         }
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
     fetchBooks();
@@ -107,7 +107,7 @@ const ViewBook = () => {
       <BookRecommenderNavbar />
 
       <div className="book-list-container container mt-4">
-        <h2 className="book-list-title text-center">📚 Book List</h2>
+        <h2 className="book-list-title text-center">Book List</h2>
 
         {/* Search Bar */}
         <div className="glass-search-bar mb-3">
@@ -122,17 +122,7 @@ const ViewBook = () => {
 
         {error && <p className="error-text text-danger">{error}</p>}
 
-        {/* Display Spinner */}
-        {loading && (
-          <div className="text-center">
-            <div
-              className="spinner-border text-primary mb-2"
-              role="status"
-              aria-hidden="true"
-            ></div>
-            <div className="mt-2">Loading...</div>
-          </div>
-        )}
+
 
         {/* Scrollable Table */}
         <div className="glass-table">
@@ -145,19 +135,20 @@ const ViewBook = () => {
                   <th>Author</th>
                   <th>Publication Date</th>
                   <th>Genre</th>
+                  {localStorage.getItem('role')==='BookRecommender' &&(
                   <th>Action</th>
+                  )}
                 </tr>
               </thead>
-              {/* {loading && (
-          <div className="text-center justify-content-center">
-            <div
-              className="spinner-border text-primary mt-2 justify-content-center"
-              role="status"
-              aria-hidden="true"
-            ></div>
-            <div className="mt-2">Loading...</div>
-          </div>)} */}
               <tbody>
+              {loading && (
+      <tr>
+        <td colSpan="6" className="text-center">
+          <div className="spinner-border text-primary mt-2" role="status" aria-hidden="true"></div>
+          <div className="mt-2">Loading...</div>
+        </td>
+      </tr>
+    )}
                 {filteredBooks.length === 0 && !loading && !error && (
                   <tr>
                     <td colSpan="6" className="text-center text-muted">
@@ -169,7 +160,7 @@ const ViewBook = () => {
                   <tr key={book.bookId}>
                     <td>
                       <img
-                        src={book.coverImage || "https://via.placeholder.com/100"}
+                        src={book.coverImage}
                         alt={book.name || "Book Image"}
                         style={{ height: "50px", objectFit: "cover" }}
                       />
@@ -178,7 +169,7 @@ const ViewBook = () => {
                     <td>{book.author}</td>
                     <td>{book.publishedDate}</td>
                     <td>{book.genre}</td>
-                    <td>
+                    {localStorage.getItem('role')==='BookRecommender' && (<td>
                       <button
                         className="btn btn-primary btn-sm me-2"
                         onClick={() => handleEdit(book)}
@@ -193,7 +184,7 @@ const ViewBook = () => {
                       >
                         Delete
                       </button>
-                    </td>
+                    </td>)}
                   </tr>
                 ))}
               </tbody>

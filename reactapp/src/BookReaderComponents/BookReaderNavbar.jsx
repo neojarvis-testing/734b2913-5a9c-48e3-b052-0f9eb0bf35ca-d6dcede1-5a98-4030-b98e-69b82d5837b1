@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import './BookReaderNavbar.css'
+import './BookReaderNavbar.css';
+import BookRecommenderNavbar from '../BookRecommenderComponents/BookRecommenderNavbar';
 import { Link, useNavigate } from 'react-router-dom';
-const BookRecommenderNavbar = () => {
+const BookReaderNavbar = () => {
 //   const username = localStorage.getItem('username') || 'Guest';
 //   const [showLogoutModal, setShowLogoutModal] = useState(false);
 //   const navigate = useNavigate();
@@ -16,6 +17,7 @@ const BookRecommenderNavbar = () => {
 //   };
   return (
     <div>
+      <BookRecommenderNavbar/>
       {/* <nav className="navbar">
         <div className="navbar-brand">BookFinder</div>   
         <div className="navbar-links">
@@ -42,4 +44,4 @@ const BookRecommenderNavbar = () => {
   );
 }
 
-export default BookRecommenderNavbar
+export default BookReaderNavbar

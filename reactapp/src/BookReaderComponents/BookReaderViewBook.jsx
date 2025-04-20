@@ -4,6 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
 import BookReaderNavbar from '../BookReaderComponents/BookReaderNavbar';
+import BookRecommenderNavbar from '../BookRecommenderComponents/BookRecommenderNavbar';
+import BookRecommenderNavbarFooter from '../BookRecommenderComponents/BookRecommenderNavbarFooter';
+import ViewBook from '../BookRecommenderComponents/ViewBook';
 
 const BookReaderViewBook = () => {
     // const [Books, setBooks] = useState([]);
@@ -40,6 +43,7 @@ const BookReaderViewBook = () => {
 
     return (
         <div className="page-container">
+            <ViewBook/>
             {/* <nav><BookReaderNavbar /></nav><br/>
             <div className="books-section">
                 <div className="book-list-container">

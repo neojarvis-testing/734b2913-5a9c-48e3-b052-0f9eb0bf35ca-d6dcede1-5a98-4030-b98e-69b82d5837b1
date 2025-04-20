@@ -30,13 +30,13 @@
 }
 
 .glass-container h2 {
-  color: #fff;
+  color: var(--text-color);
 }
 
 .glass-container .form-control {
   background: rgba(255, 255, 255, 0.2);
   border: none;
-  color: #fff;
+  color: var(--text-color);
 }
 
 .glass-container .form-control::placeholder {

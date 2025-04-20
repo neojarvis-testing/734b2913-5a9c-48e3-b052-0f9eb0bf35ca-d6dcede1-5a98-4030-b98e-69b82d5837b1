@@ -1,14 +1,132 @@
-/* .blur-background {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 45%;
-    background: rgba(255, 255, 255, 0.8); 
-    padding: 3px;
-    z-index: 1;
-    backdrop-filter: blur(1px); 
-    -webkit-backdrop-filter: blur(1px); 
-    border-radius: 08px; 
-  }
-   */
+/* General Page Styling */
+.homepage-container {
+  background: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Dark gradient background */
+  min-height: 100vh; /* Full-screen height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Space between content and footer */
+  padding: 20px;
+  color: white;
+}
+
+/* Slider Section */
+.slider-section {
+  width: 1000px;
+  margin: 20px auto;
+  height: 200px; /* Fixed height for the slider */
+  text-align: center;
+  position: relative; /* For positioning the navigation buttons */
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: center; /* Horizontally center content */
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border-radius: 15px; /* Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  backdrop-filter: blur(10px); /* Glass effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+}
+
+/* Quote Slide */
+.quote-slide {
+  text-align: center;
+  color: white;
+}
+
+.quote-line {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.quote-author {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+.slider-btn {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for proper centering */
+  color: white; /* Arrow color */
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.5rem; /* Increase font size for arrows */
+  opacity: 0.5; /* Make the arrows semi-transparent */
+  background: none; /* No background */
+  border: none; /* No border */
+  transition: opacity 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.slider-btn:hover {
+  opacity: 1; /* Fully visible on hover */
+}
+
+.prev-btn {
+  left: 10px; /* Position on the left inside the slider */
+}
+
+.next-btn {
+  right: 10px; /* Position on the right inside the slider */
+}
+
+
+/* Buttons Section */
+.button-section {
+  display: flex;
+  justify-content: center;
+  gap: 15px; /* Space between buttons */
+  margin-top: 20px;
+}
+
+.button-section .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button-section .btn-primary {
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient for primary button */
+  border: none;
+  color: white;
+}
+
+.button-section .btn-primary:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Hover effect */
+}
+
+.button-section .btn-secondary {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for secondary button */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  color: white;
+}
+
+.button-section .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
+}
+
+/* Footer */
+.homepage-footer {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  backdrop-filter: blur(10px); /* Glass effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  padding: 20px;
+  text-align: center;
+  color: white;
+  margin-top: 20px;
+}
+
+.homepage-footer a {
+  color: #007bff; /* Link color */
+  text-decoration: none;
+}
+
+.homepage-footer a:hover {
+  text-decoration: underline;
+}
