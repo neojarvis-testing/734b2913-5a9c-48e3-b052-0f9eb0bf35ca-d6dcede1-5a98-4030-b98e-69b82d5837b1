@@ -15,6 +15,7 @@ const BookRecommenderNavbar = () => {
   };
 
   const handleConfirmLogout = () => {
+    localStorage.clear(); // Clear all localStorage data
     setShowLogoutModal(false);
     navigate('/login');
   };
@@ -29,27 +30,51 @@ const BookRecommenderNavbar = () => {
 
   return (
     <div>
-      <nav className="navbar">
+      <nav className="navbar glass-navbar">
         <div className="navbar-brand">BookFinder</div>
         <div className="navbar-links">
-          <b><p>{username}{localStorage.getItem("role")==='BookReader'?(<span> ~ Reader</span>):(<span> ~ Recommender</span>)}</p></b>
-          <b><Link to="/">Home</Link></b>
-           {/* {localStorage.getItem("token")!=null?(
-             <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
-             ):(
-               <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
-               )}
-          */}
+          <b>
+            <p className="username">
+              {username}
+              {localStorage.getItem("role") === 'BookReader' ? (
+                <span> ~ Reader</span>
+              ) : (
+                <span> ~ Recommender</span>
+              )}
+            </p>
+          </b>
+          <b><Link to="/" className="nav-link">Home</Link></b>
+          
+          {/* Books Section for Admin */}
 
-            <div className="books-section">
-                <button onClick={handleToggleBooks} className="books-btn">Books ▼</button>
-                {showBookOptions && (
-                    <div className="book-actions">
-                        <button className="view-book-btn" onClick={() => navigate('/viewbook')}>View Book</button>
-                        <button className="add-book-btn" onClick={() => navigate('/bookform')}>Add Book</button>
-                    </div>
-                )}
-            </div>
+{localStorage.getItem("role") === 'BookRecommender' && (
+  <div className="books-section">
+    <button
+      onClick={handleToggleBooks}
+      className="books-btn"
+    >
+      Books
+    </button>
+    {showBookOptions && (
+      <div className="book-actions">
+        <button
+          className="dropdown-item view-book-btn"
+          onClick={() => navigate('/viewbook')}
+        >
+          View Books
+        </button>
+        <button
+          className="dropdown-item add-book-btn"
+          onClick={() => navigate('/bookform')}
+        >
+          Add Book
+        </button>
+      </div>
+    )}
+  </div>
+)}
+
+          {/* Logout/Login Button */}
           {localStorage.getItem("token") ? (
             <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
           ) : (
@@ -58,12 +83,15 @@ const BookRecommenderNavbar = () => {
         </div>
       </nav>
 
+      {/* Logout Confirmation Modal */}
       {showLogoutModal && (
-        <div className="modal">
-          <div className="modal-content">
-            <p>Are you sure you want to logout?</p>
-            <button onClick={handleConfirmLogout} className="btn btn-danger">Yes, Logout</button>
-            <button onClick={() => setShowLogoutModal(false)} className="btn btn-secondary">Cancel</button>
+        <div className="modal-overlay">
+          <div className="glass-modal">
+            <p className="modal-text">Are you sure you want to logout?</p>
+            <div className="modal-buttons">
+              <button onClick={handleConfirmLogout} className="btn btn-danger w-100 mb-2">Yes, Logout</button>
+              <button onClick={() => setShowLogoutModal(false)} className="btn btn-secondary w-100">Cancel</button>
+            </div>
           </div>
         </div>
       )}

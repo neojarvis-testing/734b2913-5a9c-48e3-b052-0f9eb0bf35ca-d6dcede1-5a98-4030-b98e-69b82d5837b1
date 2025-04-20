@@ -5,6 +5,7 @@ import "./ViewBook.css"; // Ensure correct import
 import API_BASE_URL from "../apiConfig";
 import BookRecommenderNavbar from "./BookRecommenderNavbar";
 import BookRecommenderNavbarFooter from "./BookRecommenderNavbarFooter";
+
 import { useNavigate } from "react-router-dom";
 
 const ViewBook = () => {
@@ -106,10 +107,10 @@ const ViewBook = () => {
       <BookRecommenderNavbar />
 
       <div className="book-list-container container mt-4">
-        <h2 className="book-list-title">📚 Book List</h2>
+        <h2 className="book-list-title text-center">Book List</h2>
 
         {/* Search Bar */}
-        <div className="mb-3">
+        <div className="glass-search-bar mb-3">
           <input
             type="text"
             className="form-control"
@@ -121,106 +122,101 @@ const ViewBook = () => {
 
         {error && <p className="error-text text-danger">{error}</p>}
 
-        {/* Display Spinner */}
-        {loading && (
-          <div className="text-center">
-            <div
-              className="spinner-border text-primary mb-2"
-              role="status"
-              aria-hidden="true"
-            ></div>
-            <div className="mt-2">Loading...</div>
-          </div>
-        )}
 
-        {/* Always Render Table */}
-        <table className="table table-bordered table-striped text-center">
-          <thead className="thead-dark">
-            <tr>
-              <th>Cover Image</th>
-              <th>Title</th>
-              <th>Author</th>
-              <th>Publication Date</th>
-              <th>Genre</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBooks.length === 0 && !loading && !error && (
-              <tr>
-                <td colSpan="6" className="text-center text-muted">
-                  <i>Oops! No Books found.</i>
-                </td>
-              </tr>
-            )}
-            {filteredBooks.map((book) => (
-              <tr key={book.bookId}>
-                <td>
-                  <img
-                    src={
-                      book.coverImage || "https://via.placeholder.com/100"
-                    }
-                    alt={book.name || "Book Image"}
-                    style={{ height: "50px", objectFit: "cover" }}
-                  />
-                </td>
-                <td>{book.title}</td>
-                <td>{book.author}</td>
-                <td>{book.publishedDate}</td>
-                <td>{book.genre}</td>
-                <td>
-                  <button
-                    className="btn btn-primary btn-sm me-2"
-                    onClick={() => handleEdit(book)}
-                    aria-label={`Edit ${book.name}`}
-                  >
-                    Edit
-                  </button>
-                  <button
-                    className="btn btn-danger btn-sm"
-                    onClick={() => openDeleteModal(book.bookId)}
-                    aria-label={`Delete ${book.name}`}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+
+        {/* Scrollable Table */}
+        <div className="glass-table">
+          <div className="table-container">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Cover Image</th>
+                  <th>Title</th>
+                  <th>Author</th>
+                  <th>Publication Date</th>
+                  <th>Genre</th>
+                  {localStorage.getItem('role')==='BookRecommender' &&(
+                  <th>Action</th>
+                  )}
+                </tr>
+              </thead>
+              <tbody>
+              {loading && (
+      <tr>
+        <td colSpan="6" className="text-center">
+          <div className="spinner-border text-primary mt-2" role="status" aria-hidden="true"></div>
+          <div className="mt-2">Loading...</div>
+        </td>
+      </tr>
+    )}
+                {filteredBooks.length === 0 && !loading && !error && (
+                  <tr>
+                    <td colSpan="6" className="text-center text-muted">
+                      <i>Oops! No Books found.</i>
+                    </td>
+                  </tr>
+                )}
+                {filteredBooks.map((book) => (
+                  <tr key={book.bookId}>
+                    <td>
+                      <img
+                        src={book.coverImage}
+                        alt={book.name || "Book Image"}
+                        style={{ height: "50px", objectFit: "cover" }}
+                      />
+                    </td>
+                    <td>{book.title}</td>
+                    <td>{book.author}</td>
+                    <td>{book.publishedDate}</td>
+                    <td>{book.genre}</td>
+                    {localStorage.getItem('role')==='BookRecommender' && (<td>
+                      <button
+                        className="btn btn-primary btn-sm me-2"
+                        onClick={() => handleEdit(book)}
+                        aria-label={`Edit ${book.name}`}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => openDeleteModal(book.bookId)}
+                        aria-label={`Delete ${book.name}`}
+                      >
+                        Delete
+                      </button>
+                    </td>)}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         {/* Delete Confirmation Modal */}
         {showDeleteModal && (
-          <div className="modal fade show d-block" tabIndex="-1" role="dialog">
-            <div className="modal-dialog modal-dialog-centered">
-              <div className="modal-content shadow-sm border-0">
-                <div className="modal-header bg-danger text-white">
-                  <h5 className="modal-title mx-auto">
-                    Are you sure you want to delete this book?
-                  </h5>
-                </div>
-                <div className="modal-footer justify-content-center">
-                  <button
-                    type="button"
-                    className="btn btn-danger px-4"
-                    onClick={confirmDelete}
-                  >
-                    Yes, Delete
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btn-secondary px-4"
-                    onClick={closeDeleteModal}
-                  >
-                    Cancel
-                  </button>
-                </div>
+          <div className="modal-overlay">
+            <div className="glass-modal">
+              <p className="modal-text">Are you sure you want to delete this book?</p>
+              <div className="modal-buttons">
+                <button
+                  type="button"
+                  className="btn btn-danger w-100 mb-2"
+                  onClick={confirmDelete}
+                >
+                  Yes, Delete
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary w-100"
+                  onClick={closeDeleteModal}
+                >
+                  Cancel
+                </button>
               </div>
             </div>
           </div>
         )}
       </div>
-
       <BookRecommenderNavbarFooter />
     </div>
   );

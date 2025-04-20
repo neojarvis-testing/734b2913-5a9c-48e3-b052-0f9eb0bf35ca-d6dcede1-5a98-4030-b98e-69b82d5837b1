@@ -1,24 +1,53 @@
-.container {
-    /* display: flex; */
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background-color: #f9f9f9;
-  }
-  
-  .heading {
-    color: #8B0000;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .sub {
-    color: #000000; 
-    font-size: 18px;
-  }
-  
-  .eicon {
-    width: 200px; 
-  }
-  
+/* Error Page Container */
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Full-screen height */
+  background: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Dark gradient background */
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Error Icon */
+.error-icon {
+  width: 150px; /* Adjust the size of the error icon */
+  height: auto;
+  margin-bottom: 20px;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2)); /* Add a subtle shadow */
+}
+
+/* Error Heading */
+.error-heading {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Error Subtext */
+.error-subtext {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Return to Home Button */
+.error-home-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.error-home-btn:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Reverse gradient on hover */
+  transform: scale(1.05); /* Slight zoom effect */
+}

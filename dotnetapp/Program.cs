@@ -10,7 +10,7 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var allowedOrigin ="https://8081-ccceeeaadcbdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io/";
+var allowedOrigin ="https://8081-bfdfdcabdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io/";
 
 builder.Services.AddCors(options =>
 {
@@ -76,7 +76,7 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-        Description = "Enter 'Bearer' [space] and then your valid JWT token.\n\nExample: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'"
+        Description = "Enter your valid JWT token.\n\nExample: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...'"
     });
 
     options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement

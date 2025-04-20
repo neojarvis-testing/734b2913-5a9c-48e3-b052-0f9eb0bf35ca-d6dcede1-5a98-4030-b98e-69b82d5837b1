@@ -53,14 +53,15 @@ namespace dotnetapp.Controllers
     [Authorize(Roles = "BookRecommender")]
     public async Task<ActionResult>AddBook([FromBody] Book book){
         try{
+            if (book==null)
+            return BadRequest("Invalid book details");
+
             var books=await bookService.AddBook(book);
             
-            if(!books) return StatusCode(500,"Failed to add book");
+            if(!books) 
+            return BadRequest("A book with this name already exists.");
 
-            return Created("",new {Message="Book added successfully"});
-
-            return Created("", new { Message = "Book added successfully" });
-
+            return Ok("Book added successfully");
         }
         catch(Exception e){
             return StatusCode(500, e.Message);
