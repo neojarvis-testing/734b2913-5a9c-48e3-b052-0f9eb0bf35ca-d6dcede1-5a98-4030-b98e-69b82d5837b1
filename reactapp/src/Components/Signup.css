@@ -1,5 +1,5 @@
 .signup-page {
-  background: linear-gradient(135deg, #1e1e2f, #2a2a3b);
+  background: var(--background-gradient) !important;
   background-size: cover;
   position: relative;
   overflow: hidden;
@@ -26,7 +26,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   width: 400px;
   padding: 30px;
-  color: white;
+  color: var(--text-color);
 }
 
 .glass-container h2 {
@@ -40,7 +40,7 @@
 }
 
 .glass-container .form-control::placeholder {
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-color-mild);
 }
 
 .glass-container .form-control:focus {
@@ -64,7 +64,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
   border-radius: 5px; /* Rounded corners */
   padding: 10px;
-  color: white; /* Text color */
+  color: var(--text-color); /* Text color */
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
@@ -79,12 +79,12 @@
 .form-control:focus {
   outline: none; /* Remove default focus outline */
   background: rgba(255, 255, 255, 0.2); /* Slightly darker background on focus */
-  border-color: rgba(255, 255, 255, 0.7); /* Brighter border on focus */
+  border-color: var(--text-color-mild); /* Brighter border on focus */
 }
 
 /* Styling for the Options */
 .form-control option {
   background: rgba(0, 0, 0, 0.8); /* Dark background for options */
-  color: white; /* Text color for options */
+  color: var(--text-color); /* Text color for options */
   padding: 10px;
 }

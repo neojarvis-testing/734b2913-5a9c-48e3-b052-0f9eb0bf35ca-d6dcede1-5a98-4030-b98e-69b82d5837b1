@@ -1,7 +1,4 @@
-/* Glass Effect for Search Bar */
-:root{
-  --text-color : #fff;
-}
+
 .glass-search-bar {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -16,7 +13,7 @@
   }
 
   .page-container {
-    background: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Dark gradient background */
+    background: var(--background-gradient); /* Dark gradient background */
     min-height: 100vh; /* Full-screen height */
     display: flex;
     flex-direction: column;
@@ -36,7 +33,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
   padding: 20px; /* Add padding inside the table */
   margin-top: 20px; /* Space above the table */
-  color: white; /* Text color */
+  color: var(--text-color); /* Text color */
 }
 
 /* Scrollable Table */
@@ -79,7 +76,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
   padding: 20px; /* Spacing inside the footer */
   text-align: center; /* Center-align text */
-  color: white; /* Text color */
+  color: var(--text-color); /* Text color */
   margin-top: 20px; /* Space above the footer */
 }
   
@@ -111,7 +108,7 @@
   }
   
   .modal-text {
-    color: white;
+    color: var(--text-color);
     font-size: 1.2rem;
     margin-bottom: 20px;
   }

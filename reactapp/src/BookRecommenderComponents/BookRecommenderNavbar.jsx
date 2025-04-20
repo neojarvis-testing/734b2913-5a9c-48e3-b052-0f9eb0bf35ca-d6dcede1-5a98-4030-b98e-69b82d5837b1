@@ -7,7 +7,8 @@ const BookRecommenderNavbar = () => {
   const username = localStorage.getItem('username') || 'Guest';
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showBookOptions, setShowBookOptions] = useState(false); // Toggle for Add/View Book
-
+  const [isDarkMode, setIsDarkMode] = useState(true); // Default to dark mode
+  
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
@@ -28,10 +29,32 @@ const BookRecommenderNavbar = () => {
     setShowBookOptions((prev) => !prev);
   };
 
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    const root = document.documentElement;
+    if (isDarkMode) {
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #f6f6ff, #c0e9ff)'); // Light mode gradient
+      root.style.setProperty('--text-color', '#000000'); // Light mode text color
+      root.style.setProperty('--text-color-mild', 'rgba(0,0,0, 0.7)'); 
+      root.style.setProperty('--input-color', 'rgba(0,0,0, 0.7)'); 
+      // Light mode text color
+    } else {
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #1e1e2f, #2a2a3b)'); // Dark mode gradient
+      root.style.setProperty('--text-color', '#ffffff'); // Dark mode text color
+      root.style.setProperty('--text-color-mild', 'rgba(255,255,255, 0.7)'); // Dark mode text color
+      root.style.setProperty('--input-color', 'rgba(255,255,255, 0.7)'); 
+    }
+  };
+
   return (
     <div>
       <nav className="navbar glass-navbar">
-        <div className="navbar-brand">BookFinder</div>
+        <div className="navbar-brand">
+          <b>
+            <Link to="/" className="nav-link">BookFinder</Link>
+          </b>
+        </div>
         <div className="navbar-links">
           <b>
             <p className="username">
@@ -44,41 +67,48 @@ const BookRecommenderNavbar = () => {
             </p>
           </b>
           <b><Link to="/" className="nav-link">Home</Link></b>
-          
-          {/* Books Section for Admin */}
 
-{localStorage.getItem("role") === 'BookRecommender' && (
-  <div className="books-section">
-    <button
-      onClick={handleToggleBooks}
-      className="books-btn"
-    >
-      Books
-    </button>
-    {showBookOptions && (
-      <div className="book-actions">
-        <button
-          className="dropdown-item view-book-btn"
-          onClick={() => navigate('/viewbook')}
-        >
-          View Books
-        </button>
-        <button
-          className="dropdown-item add-book-btn"
-          onClick={() => navigate('/bookform')}
-        >
-          Add Book
-        </button>
-      </div>
-    )}
-  </div>
-)}
+          {/* Books Section for Admin */}
+          {localStorage.getItem("role") === 'BookRecommender' && (
+            <div className="books-section">
+              <button
+                onClick={handleToggleBooks}
+                className="books-btn"
+              >
+                Books
+              </button>
+              {showBookOptions && (
+                <div className="book-actions">
+                  <button
+                    className="dropdown-item view-book-btn"
+                    onClick={() => navigate('/viewbook')}
+                  >
+                    View Books
+                  </button>
+                  <button
+                    className="dropdown-item add-book-btn"
+                    onClick={() => navigate('/bookform')}
+                  >
+                    Add Book
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="btn btn-secondary theme-toggle-btn"
+          >
+            {isDarkMode ? 'Light Mode' : 'Dark Mode'}
+          </button>
 
           {/* Logout/Login Button */}
           {localStorage.getItem("token") ? (
-            <button onClick={handleLogoutClick} className="btn btn-primary btn-block">Logout</button>
+            <button onClick={handleLogoutClick} className="btn btn-primary logout-btn">Logout</button>
           ) : (
-            <button onClick={handleLogin} className="btn btn-primary btn-block">Login</button>
+            <button onClick={handleLogin} className="btn btn-primary login-btn">Login</button>
           )}
         </div>
       </nav>

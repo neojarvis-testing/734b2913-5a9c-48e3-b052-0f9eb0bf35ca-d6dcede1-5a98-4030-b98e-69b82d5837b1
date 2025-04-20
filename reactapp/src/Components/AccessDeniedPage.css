@@ -5,8 +5,8 @@
     align-items: center;
     justify-content: center;
     height: 100vh; /* Full-screen height */
-    background: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Dark gradient background */
-    color: white;
+    background: var(--background-gradient); /* Dark gradient background */
+    color: var(--text-color);
     text-align: center;
     padding: 20px;
   }
@@ -38,7 +38,7 @@
   .access-denied-home-btn {
     display: inline-block;
     background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
-    color: white;
+    color: var(--text-color);
     text-decoration: none;
     padding: 10px 20px;
     border-radius: 5px;

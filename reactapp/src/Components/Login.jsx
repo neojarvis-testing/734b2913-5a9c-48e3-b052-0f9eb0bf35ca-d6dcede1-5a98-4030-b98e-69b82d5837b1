@@ -43,7 +43,7 @@ const Login = () => {
         const decoded = jwtDecode(fetchedToken);
         localStorage.setItem("role", decoded.role);
         localStorage.setItem("username", decoded.name);
-        navigate(decoded.role === "BookReader" ? "/readerviewbook" : "/viewbook");
+        navigate("/");
       } catch (error) {
         setFormError("Error logging in");
       } finally {

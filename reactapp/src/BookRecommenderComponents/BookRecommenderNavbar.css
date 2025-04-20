@@ -36,6 +36,7 @@
   }
   
   .navbar-links .nav-link:hover {
+    color: var(--text-color);
     text-decoration: underline;
   }
   
@@ -47,12 +48,14 @@
   .books-section {
     position: relative; /* Ensure the dropdown is positioned relative to the button */
   }
-  
+  button{
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Button background color */
+    color: #fff;
+  }
   
   
   .books-btn {
-    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Button background color */
-    color: white;
+    
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -84,7 +87,7 @@
     border: none;
     text-align: left;
     width: 100%;
-    color: white; /* Text color */
+    color: var(--text-color); /* Text color */
     cursor: pointer;
   }
   
@@ -117,7 +120,7 @@
   }
   
   .modal-text {
-    color: white;
+    color: var(--text-color);
     font-size: 1.2rem;
     margin-bottom: 20px;
   }
@@ -134,7 +137,7 @@
     border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
     padding: 20px; /* Spacing inside the footer */
     margin-top: 20px; /* Space above the footer */
-    color: white; /* Text color */
+    color: var(--text-color); /* Text color */
   }
   
   .footer-content h3 {

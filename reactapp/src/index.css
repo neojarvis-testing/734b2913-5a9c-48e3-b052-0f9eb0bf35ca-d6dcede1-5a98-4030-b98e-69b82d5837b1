@@ -11,8 +11,19 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+button{
+  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Button background color */
+  color: #fff;
+}
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+:root {
+  --background-gradient: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Default dark mode gradient */ /* Default dark mode gradient */
+  --background-gradient-subtle: linear-gradient(135deg, #f6f6ff, #c0e9ff); /* Default dark mode gradient */
+  --text-color: #ffffff; /* Default dark mode text color */
+  --text-color-mild: rgba(255,255,255, 0.7); /* Default dark mode text color */
+  --input-color: rgba(255,255,255, 0.2); /* Default dark mode text color */
 }
