@@ -57,3 +57,34 @@
 .glass-container .btn-primary:hover {
   background: linear-gradient(135deg, #2575fc, #6a11cb);
 }
+.form-control {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Glass effect */
+  -webkit-backdrop-filter: blur(10px); /* Safari support */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px;
+  color: white; /* Text color */
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover and Focus Effects */
+.form-control:hover {
+  background: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
+  border-color: rgba(255, 255, 255, 0.5); /* Brighter border on hover */
+}
+
+.form-control:focus {
+  outline: none; /* Remove default focus outline */
+  background: rgba(255, 255, 255, 0.2); /* Slightly darker background on focus */
+  border-color: rgba(255, 255, 255, 0.7); /* Brighter border on focus */
+}
+
+/* Styling for the Options */
+.form-control option {
+  background: rgba(0, 0, 0, 0.8); /* Dark background for options */
+  color: white; /* Text color for options */
+  padding: 10px;
+}

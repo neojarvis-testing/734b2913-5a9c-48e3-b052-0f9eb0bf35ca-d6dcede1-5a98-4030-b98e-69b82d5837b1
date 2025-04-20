@@ -1,14 +1,16 @@
 import React from 'react';
-import { Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './ErrorPage.css';
 
 const ErrorPage = () => {
     return (
-        <div className="container">
-            {/* <h1 className="heading">Oops! Something Went Wrong</h1>
-            <p className="sub">Please try again later.</p>
-            <img src='./alert.png' alt="Error Icon" className="eicon" /> 
-            <Link to="/">Return to HomePage</Link> */}
+        <div className="error-container">
+            <img src="./alert.png" alt="Error Icon" className="error-icon" />
+            <h1 className="error-heading">Oops! Something Went Wrong</h1>
+            <p className="error-subtext">We couldn't find the page you're looking for.</p>
+            <Link to="/" className="error-home-btn">
+                Return to HomePage
+            </Link>
         </div>
     );
 };

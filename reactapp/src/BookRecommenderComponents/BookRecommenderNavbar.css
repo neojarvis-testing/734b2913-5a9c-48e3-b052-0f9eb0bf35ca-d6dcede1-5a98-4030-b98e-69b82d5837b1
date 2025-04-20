@@ -48,8 +48,10 @@
     position: relative; /* Ensure the dropdown is positioned relative to the button */
   }
   
+  
+  
   .books-btn {
-    background-color: #6c757d; /* Button background color */
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Button background color */
     color: white;
     border: none;
     padding: 10px 15px;
@@ -58,7 +60,7 @@
   }
   
   .books-btn:hover {
-    background-color: #5a6268; /* Darker shade on hover */
+    background-color: linear-gradient(135deg, #2575fc, #6a11cb); /* Darker shade on hover */
   }
   
   .book-actions {

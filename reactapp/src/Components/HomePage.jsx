@@ -80,14 +80,21 @@ const HomePage = () => {
 
       {/* Buttons Section */}
       <div className="button-section mt-4">
+      {role===null&&(<button
+          className="btn btn-primary me-3"
+          onClick={() => navigate('/login')}
+        >
+          Login
+        </button>)}
         {/* View Books Button (Visible to All Users) */}
+        {(role ==="BookRecommender" || role==="BookReader") && (
         <button
           className="btn btn-primary me-3"
-          onClick={() => navigate('/viewbook')}
+          onClick={() => navigate(role === "BookReader" ? "/readerviewbook" : "/viewbook")}
         >
           View Books
         </button>
-
+        )}
         {/* Add Book Button (Visible Only to Admin/BookRecommender) */}
         {role === "BookRecommender" && (
           <button

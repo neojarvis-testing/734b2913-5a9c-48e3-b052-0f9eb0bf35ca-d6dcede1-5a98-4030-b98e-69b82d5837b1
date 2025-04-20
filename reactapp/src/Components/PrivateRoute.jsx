@@ -1,29 +1,17 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
-import {jwtDecode} from 'jwt-decode';
 
-const getUserRole = () => {
-  const token = localStorage.getItem('token');
-  if (!token) return null;
-
-  try {
-    const decodedToken = jwtDecode(token);
-    return decodedToken.role; // Assuming the role is stored in the 'role' field
-  } catch (error) {
-    console.error('Invalid token:', error);
-    return null;
-  }
-};
+import AccessDeniedPage from './AccessDeniedPage'; // Import the Access Denied page
 
 const PrivateRoute = ({ children, requiredRole }) => {
-  const role = getUserRole();
+  const role = localStorage.getItem('role');
 
   if (!role) {
     return <Navigate to="/login" />;
   }
 
   if (role !== requiredRole) {
-    return <Navigate to="/*" />;
+    return <AccessDeniedPage />;
   }
 
   return children;
