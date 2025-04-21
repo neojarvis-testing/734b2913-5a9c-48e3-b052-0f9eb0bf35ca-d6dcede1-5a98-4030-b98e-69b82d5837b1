@@ -4,8 +4,6 @@ import ViewBook from '../BookRecommenderComponents/ViewBook';
 
 const BookReaderViewBook = () => {
 
-
-
     return (
         <div className="page-container">
             <div>Available Books</div>
