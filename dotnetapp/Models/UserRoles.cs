@@ -12,3 +12,4 @@ namespace dotnetapp.Models
         public string BookReader{get;set;}
     }
 }
+
