@@ -28,10 +28,10 @@ namespace dotnetapp.Controllers
             var (statusCode, message) = await _authService.Registration(model, model.UserRole);
             if (statusCode == 400)
             {
-                return BadRequest(new { Message = message });
+                return BadRequest(message);
             }
 
-            return StatusCode(statusCode, new { Message = message });
+            return StatusCode(statusCode, message);
             }catch(Exception e)
             {
                 return StatusCode(500, e.Message);

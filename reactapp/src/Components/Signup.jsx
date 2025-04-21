@@ -42,6 +42,7 @@ const Signup = () => {
   };
   const validate = () => {
     const validEmail = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
     const validMobile = /^\d{10}$/;
     let formErrors = {};
 
@@ -62,6 +63,9 @@ const Signup = () => {
       formErrors.password = "Password is required";
     } else if (formData.password.length < 6) {
       formErrors.password = "Password must be at least 6 characters long";
+    }
+    else if(!passwordRegex.test(formData.password)){
+      formErrors.password = "Password must contain atleast 1 uppercase, 1 lowercase and 1 special character."
     }
     if (!formData.confirmPassword) {
       formErrors.confirmPassword = "Confirm Password is required";
@@ -91,11 +95,13 @@ const Signup = () => {
 
           redirectToLogin();
         } catch (error) {
-        console.error("Signup failed:", error.response?.data || error.message);
-        const errorMessage = error.response?.data?.message || "Signup failed. Please try again.";
+        console.error("Error:", error.response?.data || error.message);
+        const errorMessage = error.response.data.message || 'Account with this email already exist';
         setErrors({ apiError: errorMessage });
       }
-      setLoading(true);
+      finally{
+      setLoading(false);
+      }
     }
   };
 

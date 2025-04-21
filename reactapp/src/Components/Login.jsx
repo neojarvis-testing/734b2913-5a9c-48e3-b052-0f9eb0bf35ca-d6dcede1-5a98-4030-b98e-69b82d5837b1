@@ -60,6 +60,10 @@ const Login = () => {
         localStorage.setItem("username", decoded.name);
         navigate("/");
       } catch (error) {
+        if(error.response && error.response.status===400){
+          setFormError(error.response.data.message || 'Invalid Email or Password.')
+      }
+        else
         setFormError("Error logging in");
       } finally {
         setLoading(false);

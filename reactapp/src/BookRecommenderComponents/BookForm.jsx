@@ -107,7 +107,7 @@ const BookForm = ({ mode = "add" }) => {
             }
         } catch (error) {
             if(error.response && error.response.status===400){
-                setFormError(error.response.data.message || 'Name already exists.')
+                setFormError(error.response.data.message || 'Book title already exists.')
             }
             else
                 setFormError(mode === "add" ? "Error creating book" : "Error updating book");
