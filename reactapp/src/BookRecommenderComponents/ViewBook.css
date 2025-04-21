@@ -53,7 +53,8 @@
   color: var(--text-color);
   padding: 10px; 
   text-align: center; 
-  border: 1px solid rgba(255, 255, 255, 0.2); 
+  border: 1px solid var(--input-color);
+  vertical-align: middle;
 }
 
 .table th {
@@ -67,7 +68,20 @@
   background: rgba(255, 255, 255, 0.1); 
 }
 
-
+.background-text {
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 15vw;
+  font-weight: bold;
+  color: var(--text-color-mild); 
+  white-space: nowrap; 
+  pointer-events: none;
+  opacity: 0.5;
+  margin:0px;
+  margin-top:60px;
+}
 .glass-footer {
 
   background: rgba(255, 255, 255, 0.1); 
@@ -81,6 +95,25 @@
   color: var(--text-color); 
   margin-top: 20px; 
 
+}
+/* Scrollbar Styling for WebKit Browsers */
+.table-container::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1); /* Track background */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: var(--text-color-mild); /* Thumb background */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: Add a border for the thumb */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: var(--text-color-mild); /* Slightly brighter thumb on hover */
 }
   
   
@@ -119,3 +152,42 @@
   .modal-buttons .btn {
     border-radius: 5px;
   }
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    text-align: center;
+  }
+  
+  .loader {
+    height: 60px;
+    aspect-ratio: 2;
+    border-bottom: 3px solid #0000;
+    background: 
+      linear-gradient(90deg, #524656 50%, #0000 0)
+      -25% 100% / 50% 3px repeat-x border-box;
+    position: relative;
+    animation: l3-0 .75s linear infinite;
+  }
+  
+  .loader:before {
+    content: "";
+    position: absolute;
+    inset: auto 42.5% 0;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgb(69, 122, 251);
+    animation: l3-1 .75s cubic-bezier(0, 900, 1, 900) infinite;
+  }
+  
+  @keyframes l3-0 {
+    to { background-position: -125% 100%; }
+  }
+  
+  @keyframes l3-1 {
+    0%, 2% { bottom: 0%; }
+    98%, to { bottom: .1%; }
+  }
+  

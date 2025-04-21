@@ -10,7 +10,6 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var allowedOrigin ="https://8081-bfdfdcabdadfebcbebfdaeaeddcedeabebdb.premiumproject.examly.io/";
 
 builder.Services.AddCors(options =>
 {

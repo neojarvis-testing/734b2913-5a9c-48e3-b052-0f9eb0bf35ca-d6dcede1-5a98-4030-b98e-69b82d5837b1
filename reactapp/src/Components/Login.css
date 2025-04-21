@@ -1,13 +1,5 @@
+
 .login-page {
-  background: var(--background-gradient) !important;
-  position: relative;
-  overflow: hidden;
-}
-.backgroundsake{
-  background: var(--backgound-gradient);
-  height: 100vh;
-}
-.signup-page, .login-page {
   position: relative; /* Ensure the pseudo-element is positioned relative to this container */
   background: var(--background-gradient); /* Dynamic gradient background */
   color: var(--text-color); /* Dynamic text color */
@@ -32,68 +24,3 @@
   pointer-events: none; /* Prevent interaction with the text */
 }
 
-.glass-container {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-color); /* Use dynamic text color */
-  border-radius: 15px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  width: 400px;
-  padding: 30px;
-}
-
-.glass-container h2 {
-  color: var(--text-color); /* Use dynamic text color */
-}
-
-.glass-container .form-control {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: var(--text-color); /* Use dynamic text color */
-}
-
-.glass-container .form-control::placeholder {
-  color: var(--text-color-mild); /* Use dynamic mild text color */
-}
-.glass-container {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 15px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  width: 400px;
-  padding: 30px;
-  color: var(--text-color);
-}
-
-.glass-container h2 {
-  color: var(--text-color);
-}
-
-.glass-container .form-control {
-  background: rgba(255, 255, 255, 0.2);
-  border: none;
-  color: var(--text-color);
-}
-
-.glass-container .form-control::placeholder {
-  color: var(--text-color-mild);
-}
-
-.glass-container .form-control:focus {
-  background: rgba(255, 255, 255, 0.3);
-  outline: none;
-  box-shadow: none;
-}
-
-.glass-container .btn-primary {
-  background: linear-gradient(135deg, #6a11cb, #2575fc);
-  border: none;
-}
-
-.glass-container .btn-primary:hover {
-  background: linear-gradient(135deg, #2575fc, #6a11cb);
-}

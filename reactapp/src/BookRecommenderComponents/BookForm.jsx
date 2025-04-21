@@ -121,6 +121,7 @@ const BookForm = ({ mode = "add" }) => {
     return (
         <div className="page-container">
             <BookRecommenderNavbar />
+            <div class="background-text"><pre>Book Finder</pre></div>
             <div className="glass-form-container container mt-4">
                 <h2 className="text-center">{mode === "add" ? "Create New Book" : "Edit Book"}</h2>
                 {formError && <p className="text-danger">{formError}</p>}

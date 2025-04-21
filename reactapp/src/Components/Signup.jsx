@@ -107,10 +107,10 @@ const Signup = () => {
 
   return (
     <div className="signup-page d-flex align-items-center justify-content-center vh-100">
-      <div class="background-text">Book Finder</div>
+      <div class="background-text"><pre>Book  Finder</pre></div>
 
-      <div className="glass-container p-5">
-        <h2 className="text-center mb-4">Signup</h2>
+      <div className="glass-container">
+        <h2 className="text-center mb-2">Signup</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-3">
             <label>Username:</label>
