@@ -1,0 +1,163 @@
+/* 🌟 Background Styling */
+.page-container {
+    background-image: url("/home/coder/project/workspace/reactapp/public/backlist.jpg");
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    padding: 30px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* 📚 Book List Container */
+.book-list-container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* 🏷️ Header */
+.book-list-title {
+    text-align: center;
+    color: #007bff;
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* ⚠️ Error Messages */
+.error-text {
+    color: red;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* 📖 Table Wrapper for Centering */
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    overflow-x: auto;
+}
+
+/* 📖 Table Styling */
+.book-table {
+    width: 90%;
+    max-width: 1000px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* 🔹 Table Header Styling */
+.book-table th {
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    padding: 14px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #0056b3;
+    text-align: center;
+}
+
+/* 🔹 Table Row Styling */
+.book-table td {
+    padding: 14px;
+    text-align: center;
+    background-color: white;
+    color: black;
+    font-size: 16px;
+    font-weight: 500;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 📘 Book Cover Styling */
+.book-cover {
+    width: 90px;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 📌 Empty Message */
+.empty-message {
+    font-style: italic;
+    color: gray;
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+}
+
+/* 📂 Books Section */
+.books-section {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* 🔘 Books Toggle Button */
+.books-btn {
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.books-btn:hover {
+    background-color: #0056b3;
+}
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    text-align: center;
+  }
+  
+.loader{
+    height: 60px;
+    aspect-ratio: 2;
+    border-bottom: 3px solid #0000;
+    background: 
+      linear-gradient(90deg,#524656 50%,#0000 0)
+      -25% 100%/50% 3px repeat-x border-box;
+    position: relative;
+    animation: l3-0 .75s linear infinite;
+  }
+  .loader:before {
+    content: "";
+    position: absolute;
+    inset: auto 42.5% 0;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgb(69, 122, 251);
+    animation: l3-1 .75s cubic-bezier(0,900,1,900) infinite;
+  }
+  @keyframes l3-0 {
+    to {background-position: -125% 100%}
+  }
+  @keyframes l3-1 {
+    0%,2% {bottom: 0%}
+    98%,to {bottom:.1%}
+  }
+
+/* 📲 Mobile Optimization */
+@media (max-width: 768px) {
+    .book-cover {
+        width: 70px;
+    }
+
+    .book-table th,
+    .book-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
