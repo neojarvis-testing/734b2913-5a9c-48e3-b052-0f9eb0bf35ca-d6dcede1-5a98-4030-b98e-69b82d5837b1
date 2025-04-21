@@ -107,7 +107,7 @@ const BookForm = ({ mode = "add" }) => {
             }
         } catch (error) {
             if(error.response && error.response.status===400){
-                setFormError(error.response.data.message || 'Name already exists.')
+                setFormError(error.response.data.message || 'Book title already exists.')
             }
             else
                 setFormError(mode === "add" ? "Error creating book" : "Error updating book");
@@ -162,7 +162,6 @@ const BookForm = ({ mode = "add" }) => {
                             <button type="button" className="btn btn-secondary" onClick={handleBack}>Back</button>
                         </div>
                     </form>
-                {successMessage && <p className="text-success">{successMessage}</p>}
                 {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
