@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {jwtDecode} from "jwt-decode"; // Corrected import
+import {jwtDecode} from "jwt-decode"; 
 import API_BASE_URL from "../apiConfig";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"; // Ensure this file contains the glassmorphism styles
+import "./Login.css"; 
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });

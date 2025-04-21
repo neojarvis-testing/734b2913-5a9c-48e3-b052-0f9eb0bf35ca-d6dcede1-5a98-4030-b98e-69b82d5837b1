@@ -5,7 +5,7 @@ import API_BASE_URL from '../apiConfig';
 import BookRecommenderNavbar from './BookRecommenderNavbar';
 import BookRecommenderNavbarFooter from "./BookRecommenderNavbarFooter";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './BookForm.css'; // Add a CSS file for glassmorphism styles
+import './BookForm.css'; 
 
 const BookForm = ({ mode = "add" }) => {
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const BookForm = ({ mode = "add" }) => {
     const [formError, setFormError] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
-    const [showModal, setShowModal] = useState(false); // State to control modal visibility
+    const [showModal, setShowModal] = useState(false);
 
 
     useEffect(() => {
@@ -66,7 +66,7 @@ const BookForm = ({ mode = "add" }) => {
             reader.onloadend = () => {
                 setFormData((prevFormData) => ({
                     ...prevFormData,
-                    [name]: reader.result, // Stores the base64-encoded image
+                    [name]: reader.result, 
                 }));
             };
             reader.readAsDataURL(file);

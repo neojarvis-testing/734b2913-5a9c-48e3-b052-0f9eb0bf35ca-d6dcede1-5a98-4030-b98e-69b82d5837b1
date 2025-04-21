@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 
-import AccessDeniedPage from './AccessDeniedPage'; // Import the Access Denied page
+import AccessDeniedPage from './AccessDeniedPage'; 
 
 const PrivateRoute = ({ children, requiredRole }) => {
   const role = localStorage.getItem('role');
