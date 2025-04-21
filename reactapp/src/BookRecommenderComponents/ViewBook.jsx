@@ -36,7 +36,7 @@ const ViewBook = () => {
           setError("Failed to fetch books. Please try again later.");
         }
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
     fetchBooks();
