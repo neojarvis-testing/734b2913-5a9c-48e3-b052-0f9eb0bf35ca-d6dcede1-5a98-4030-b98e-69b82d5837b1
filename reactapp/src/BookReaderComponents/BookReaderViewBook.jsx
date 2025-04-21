@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
 import BookReaderNavbar from '../BookReaderComponents/BookReaderNavbar';
+import './BookReaderViewBook.css';
 
 const BookReaderViewBook = () => {
     const [Books, setBooks] = useState([]);
@@ -43,7 +44,8 @@ const BookReaderViewBook = () => {
 
     return (
         <div className="page-container">
-            <nav><BookReaderNavbar /></nav><br/>
+
+            <nav><BookReaderNavbar /></nav><br />
             <div className="books-section">
                 <div className="book-list-container">
                     <h2 className="book-list-title">Available Books</h2>
@@ -51,11 +53,12 @@ const BookReaderViewBook = () => {
                     {error && <p className="error-text">{error}</p>}
 
                     {loading && (
-                        <div className="text-center">
-                            <div className="spinner-border text-primary mb-2" role="status" aria-hidden="true"></div>
-                            <div className="mt-2">Loading...</div>
+                        <div className="loading-container">
+                            <div className="loader"></div>
+                            <p>Loading...</p>
                         </div>
                     )}
+
 
                     <div className="table-responsive table-wrapper">
                         <table className="book-table">
@@ -73,7 +76,7 @@ const BookReaderViewBook = () => {
                                     <tr>
                                         <td colSpan="5" className="text-center text-muted">
                                             <i>Oops! No Books found.</i>
-                                            <img src='./no_records_found.png' alt="Error Icon" className="eicon" /> 
+                                            <img src='./no_records_found.png' alt="Error Icon" className="eicon" />
                                         </td>
                                     </tr>
                                 )}
