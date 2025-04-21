@@ -6,9 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css"; 
 
 const Login = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    return localStorage.getItem('theme') === 'light' ? false : true;
-  });
+  const isDarkMode = localStorage.getItem('theme')  === 'light' ? false : true;
 
   // Apply the theme on load
   useEffect(() => {
@@ -24,14 +22,6 @@ const Login = () => {
     }
   }, [isDarkMode]);
 
-  // Toggle theme and save to localStorage
-  const toggleTheme = () => {
-    setIsDarkMode((prevMode) => {
-      const newMode = !prevMode;
-      localStorage.setItem('theme', newMode ? 'dark' : 'light'); // Save theme to localStorage
-      return newMode;
-    });
-  };
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -40,7 +30,6 @@ const Login = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData)
   };
 
   const handleSubmit = async (e) => {

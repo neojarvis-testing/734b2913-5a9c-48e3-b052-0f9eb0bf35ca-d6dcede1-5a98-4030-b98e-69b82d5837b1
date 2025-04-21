@@ -18,7 +18,6 @@ const BookForm = ({ mode = "add" }) => {
         genre: '',
         coverImage: '',
     });
-    const load = 'loading...'
     const [formErrors, setFormErrors] = useState({});
     const [formError, setFormError] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");

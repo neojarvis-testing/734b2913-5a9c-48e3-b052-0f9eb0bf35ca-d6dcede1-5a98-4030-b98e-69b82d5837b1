@@ -6,9 +6,7 @@ import './Signup.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Signup = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    return localStorage.getItem('theme') === 'light' ? false : true;
-  });
+  const isDarkMode = localStorage.getItem('theme')  === 'light' ? false : true;
 
   // Apply the theme on load
   useEffect(() => {
@@ -24,14 +22,6 @@ const Signup = () => {
     }
   }, [isDarkMode]);
 
-  // Toggle theme and save to localStorage
-  const toggleTheme = () => {
-    setIsDarkMode((prevMode) => {
-      const newMode = !prevMode;
-      localStorage.setItem('theme', newMode ? 'dark' : 'light'); // Save theme to localStorage
-      return newMode;
-    });
-  };
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -42,6 +32,7 @@ const Signup = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState();
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -91,20 +82,22 @@ const Signup = () => {
     e.preventDefault();
     if (validate()) {
       try {
+        setLoading(true);
         const { confirmPassword, ...payload } = formData;
-
+        
         const response = await axios.post(
           `${API_BASE_URL}/register`,
           payload
-        );
-        console.log("Signup successful:", response.data);
-        setSuccessMessage(true); 
-        redirectToLogin();
-      } catch (error) {
+          );
+          console.log("Signup successful:", response.data);
+          setSuccessMessage(true); 
+          redirectToLogin();
+        } catch (error) {
         console.error("Signup failed:", error.response?.data || error.message);
         const errorMessage = error.response?.data?.message || "Signup failed. Please try again.";
         setErrors({ apiError: errorMessage });
       }
+      setLoading(true);
     }
   };
 
@@ -114,6 +107,8 @@ const Signup = () => {
 
   return (
     <div className="signup-page d-flex align-items-center justify-content-center vh-100">
+      <div class="background-text">Book Finder</div>
+
       <div className="glass-container p-5">
         <h2 className="text-center mb-4">Signup</h2>
         <form onSubmit={handleSubmit}>
@@ -192,7 +187,9 @@ const Signup = () => {
             {errors.userRole && <span className="text-danger">{errors.userRole}</span>}
           </div>
           {errors.apiError && <span className="text-danger">{errors.apiError}</span>}
-          <button type="submit" className="btn btn-primary w-100">Submit</button>
+          <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+            {loading ? "Signing in..." : "Submit"}
+          </button>
         </form>
 
         <p className="mt-3 text-center">

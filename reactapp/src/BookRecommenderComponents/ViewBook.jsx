@@ -107,7 +107,7 @@ const ViewBook = () => {
       <BookRecommenderNavbar />
 
       <div className="book-list-container container mt-4">
-        <h2 className="book-list-title text-center">Book List</h2>
+        <h2 className="book-list-title text-center">{localStorage.getItem('role')==='BookReader'? 'Available Books':'Books'}</h2>
 
         
         <div className="glass-search-bar mb-3">
