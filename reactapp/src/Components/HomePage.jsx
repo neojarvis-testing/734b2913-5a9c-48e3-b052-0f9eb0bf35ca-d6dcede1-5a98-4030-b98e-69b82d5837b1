@@ -9,6 +9,7 @@ import './HomePage.css';
 const HomePage = () => {
   const navigate = useNavigate();
   const role = localStorage.getItem("role");
+  const token = localStorage.getItem("token");
 
   
   const quotes = [
@@ -80,14 +81,14 @@ const HomePage = () => {
 
       
       <div className="button-section mt-4">
-      {role===null&&(<button
-          className="btn btn-primary me-3"
+      {(role===null || token==null)&&(<button
+          className="btn btn-primary"
           onClick={() => navigate('/login')}
         >
-          Login
+          Try Logging in
         </button>)}
-        
-        {(role ==="BookRecommender" || role==="BookReader") && (
+        {/* View Books Button (Visible to All Users) */}
+        {(role ==="BookRecommender" || role==="BookReader") && token && (
         <button
           className="btn btn-primary me-3"
           onClick={() => navigate(role === "BookReader" ? "/readerviewbook" : "/viewbook")}
@@ -95,8 +96,8 @@ const HomePage = () => {
           View Books
         </button>
         )}
-        
-        {role === "BookRecommender" && (
+        {/* Add Book Button (Visible Only to Admin/BookRecommender) */}
+        {role === "BookRecommender"&& token && (
           <button
             className="btn btn-secondary"
             onClick={() => navigate('/bookform')}

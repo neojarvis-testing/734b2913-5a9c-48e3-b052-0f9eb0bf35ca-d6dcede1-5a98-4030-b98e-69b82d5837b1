@@ -1,12 +1,13 @@
 
 .homepage-container {
-  background: linear-gradient(135deg, #1e1e2f, #2a2a3b); 
-  min-height: 100vh; 
+  background: var(--background-gradient); /* Dark gradient background */
+  min-height: 100vh; /* Full-screen height */
+
   display: flex;
   flex-direction: column;
   justify-content: space-between; 
   padding: 20px;
-  color: white;
+  color: var(--text-color);
 }
 
 
@@ -30,7 +31,7 @@
 
 .quote-slide {
   text-align: center;
-  color: white;
+  color: var(--text-color);
 }
 
 .quote-line {
@@ -42,15 +43,17 @@
 .quote-author {
   font-size: 1.2rem;
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-color-mild);
 }
 
 
 .slider-btn {
   position: absolute;
-  top: 50%; 
-  transform: translateY(-50%); 
-  color: white; 
+
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for proper centering */
+  color: var(--text-color); /* Arrow color */
+
   padding: 10px 20px;
   cursor: pointer;
   font-size: 1.5rem; 
@@ -89,9 +92,7 @@
 }
 
 .button-section .btn-primary {
-  background: linear-gradient(135deg, #6a11cb, #2575fc); 
   border: none;
-  color: white;
 }
 
 .button-section .btn-primary:hover {
@@ -99,9 +100,10 @@
 }
 
 .button-section .btn-secondary {
-  background: rgba(255, 255, 255, 0.1); 
-  border: 1px solid rgba(255, 255, 255, 0.3); 
-  color: white;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for secondary button */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  color: var(--text-color);
+
 }
 
 .button-section .btn-secondary:hover {
@@ -118,7 +120,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3); 
   padding: 20px;
   text-align: center;
-  color: white;
+  color: var(--text-color);
   margin-top: 20px;
 }
 

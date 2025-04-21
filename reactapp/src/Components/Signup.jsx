@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,32 @@ import './Signup.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Signup = () => {
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    return localStorage.getItem('theme') === 'light' ? false : true;
+  });
+
+  // Apply the theme on load
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDarkMode) {
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #1e1e2f, #2a2a3b)'); // Dark mode gradient
+      root.style.setProperty('--text-color', '#ffffff'); // Dark mode text color
+      root.style.setProperty('--text-color-mild', 'rgba(255, 255, 255, 0.7)'); // Dark mode mild text color
+    } else {
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #f6f6ff, #c0e9ff)'); // Light mode gradient
+      root.style.setProperty('--text-color', '#000000'); // Light mode text color
+      root.style.setProperty('--text-color-mild', 'rgba(0, 0, 0, 0.7)'); // Light mode mild text color
+    }
+  }, [isDarkMode]);
+
+  // Toggle theme and save to localStorage
+  const toggleTheme = () => {
+    setIsDarkMode((prevMode) => {
+      const newMode = !prevMode;
+      localStorage.setItem('theme', newMode ? 'dark' : 'light'); // Save theme to localStorage
+      return newMode;
+    });
+  };
   const [formData, setFormData] = useState({
     username: '',
     email: '',

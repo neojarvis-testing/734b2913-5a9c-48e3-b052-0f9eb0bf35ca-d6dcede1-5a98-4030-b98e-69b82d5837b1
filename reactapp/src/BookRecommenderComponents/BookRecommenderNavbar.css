@@ -36,6 +36,7 @@
   }
   
   .navbar-links .nav-link:hover {
+    color: var(--text-color);
     text-decoration: underline;
   }
   
@@ -47,10 +48,14 @@
   .books-section {
     position: relative; 
   }
-  
+  button{
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Button background color */
+    color: #fff;
+  }
   
   
   .books-btn {
+
     background: linear-gradient(135deg, #6a11cb, #2575fc); 
     color: white;
     border: none;
@@ -84,7 +89,7 @@
     border: none;
     text-align: left;
     width: 100%;
-    color: white;
+    color: var(--text-color); /* Text color */
     cursor: pointer;
   }
   
@@ -117,7 +122,7 @@
   }
   
   .modal-text {
-    color: white;
+    color: var(--text-color);
     font-size: 1.2rem;
     margin-bottom: 20px;
   }
@@ -126,15 +131,15 @@
     border-radius: 5px;
   }
   .glass-footer {
-    background: rgba(255, 255, 255, 0.1); 
-    border-radius: 10px; 
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); 
-    border: 1px solid rgba(255, 255, 255, 0.3); 
-    padding: 20px; 
-    margin-top: 20px; 
-    color: white; 
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    backdrop-filter: blur(10px); /* Glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+    padding: 20px; /* Spacing inside the footer */
+    margin-top: 20px; /* Space above the footer */
+    color: var(--text-color); /* Text color */
   }
   
   .footer-content h3 {
