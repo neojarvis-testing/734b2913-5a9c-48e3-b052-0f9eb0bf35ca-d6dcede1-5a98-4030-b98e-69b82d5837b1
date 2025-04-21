@@ -36,7 +36,7 @@ const ViewBook = () => {
           setError("Failed to fetch books. Please try again later.");
         }
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
     fetchBooks();
@@ -107,7 +107,9 @@ const ViewBook = () => {
       <BookRecommenderNavbar />
 
       <div className="book-list-container container mt-4">
-        <h2 className="book-list-title text-center">Book List</h2>
+      <div class="background-text">{loading && (<pre>Book Finder</pre>)}</div>
+
+        <h2 className="book-list-title text-center">{localStorage.getItem('role')==='BookReader'? 'Available Books':'Books'}</h2>
 
 
         <div className="glass-search-bar mb-3">
@@ -127,6 +129,7 @@ const ViewBook = () => {
 
         <div className="glass-table">
           <div className="table-container">
+            
             <table className="table">
               <thead>
                 <tr>
@@ -164,7 +167,7 @@ const ViewBook = () => {
                       <img
                         src={book.coverImage}
                         alt={book.name || "Book Image"}
-                        style={{ height: "50px", objectFit: "cover" }}
+                        style={{ height: "150px", objectFit: "cover" }}
                       />
                     </td>
                     <td>{book.title}</td>
