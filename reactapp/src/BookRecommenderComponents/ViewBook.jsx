@@ -163,14 +163,14 @@ const ViewBook = () => {
                 )}
                 {filteredBooks.map((book) => (
                   <tr key={book.bookId}>
-                    <td>
+                    <td className="centre-text">
                       <img
                         src={book.coverImage}
                         alt={book.name || "Book Image"}
                         style={{ height: "150px", objectFit: "cover" }}
                       />
                     </td>
-                    <td>{book.title}</td>
+                    <td className="centre-text">{book.title}</td>
                     <td>{book.author}</td>
                     <td>{book.publishedDate}</td>
                     <td>{book.genre}</td>
