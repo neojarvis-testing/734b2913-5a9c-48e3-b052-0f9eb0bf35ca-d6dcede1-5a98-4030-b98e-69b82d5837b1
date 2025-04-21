@@ -50,7 +50,7 @@ namespace dotnetapp.Controllers
             var (statusCode, result) = await _authService.Login(model);
             if (statusCode == 400)
             {
-                return BadRequest(new { Message = result });
+                return BadRequest(result);
             }
 
             return Ok(result);

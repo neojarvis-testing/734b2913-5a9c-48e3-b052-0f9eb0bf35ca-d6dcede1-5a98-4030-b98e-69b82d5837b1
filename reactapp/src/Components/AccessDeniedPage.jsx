@@ -1,17 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './AccessDeniedPage.css';
 
 const AccessDeniedPage = () => {
+  const stars = Array.from({ length: 50 }, (_, index) => (
+    <div
+        key={index}
+        className="star"
+        style={{
+            top: `${Math.random() * 100}vh`,
+            left: `${Math.random() * 100}vw`,
+            animationDuration: `${Math.random() * 3 + 2}s`,
+            animationDelay: `${Math.random() * 2}s`,
+        }}
+    ></div>
+));
   return (
-    <div className="access-denied-container">
-      <img src="./alert.png" alt="Access Denied Icon" className="access-denied-icon" />
-      <h1 className="access-denied-heading">Access Denied</h1>
-      <p className="access-denied-subtext">You do not have permission to view this page.</p>
-      <Link to="/" className="access-denied-home-btn">
-        Return to HomePage
-      </Link>
-    </div>
+    <div className='errorpage'>
+            <div className="error-page-container">
+                {stars}
+
+                <div className="text">
+                    <h2 className="Error-text">Access Denied</h2>
+                    <h1>403</h1>
+                    <div>Please try with a valid account.</div>
+                    <Link to="/" className="home-link">Go to Homepage</Link>
+                </div>
+
+                <div className="astronaut">
+                    <img
+                        src="https://images.vexels.com/media/users/3/152639/isolated/preview/506b575739e90613428cdb399175e2c8-space-astronaut-cartoon-by-vexels.png"
+                        alt="Astronaut"
+                    />
+                </div>
+            </div>
+        </div>
   );
 };
 
