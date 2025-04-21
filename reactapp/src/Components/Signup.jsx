@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
-import './Signup.css'; // Ensure this file contains the glassmorphism styles
+import './Signup.css'; 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Signup = () => {
@@ -72,7 +72,7 @@ const Signup = () => {
           payload
         );
         console.log("Signup successful:", response.data);
-        setSuccessMessage(true); // Show success modal
+        setSuccessMessage(true); 
         redirectToLogin();
       } catch (error) {
         console.error("Signup failed:", error.response?.data || error.message);
