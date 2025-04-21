@@ -107,7 +107,7 @@ const Signup = () => {
 
   return (
     <div className="signup-page d-flex align-items-center justify-content-center vh-100">
-      <div class="background-text"><pre>Book  Finder</pre></div>
+      <div class="background-text-signing"><pre>Book  Finder</pre></div>
 
       <div className="glass-container">
         <h2 className="text-center mb-2">Signup</h2>

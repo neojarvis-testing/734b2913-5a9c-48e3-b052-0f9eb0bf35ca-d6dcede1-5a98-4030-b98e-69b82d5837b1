@@ -69,7 +69,7 @@ const Login = () => {
 
   return (
     <div className="login-page d-flex align-items-center justify-content-center vh-100">
-      <div class="background-text"><pre>Book  Finder</pre></div>
+      <div class="background-text-signing"><pre>Book  Finder</pre></div>
 
       <div className="glass-container p-5">
         <h2 className="text-center mb-4">Login</h2>

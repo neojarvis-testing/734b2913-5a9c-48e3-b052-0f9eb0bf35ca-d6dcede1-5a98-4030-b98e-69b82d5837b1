@@ -35,7 +35,7 @@
   display: inline-block;
   margin-top: 20px;
   color: #fff;
-  background: #cf4647;
+  background: var(--button-color);
   padding: 10px 20px;
   border-radius: 6px;
   text-decoration: none;
