@@ -26,4 +26,8 @@ code {
   --text-color: #ffffff; /* Default dark mode text color */
   --text-color-mild: rgba(255,255,255, 0.7); /* Default dark mode text color */
   --input-color: rgba(255,255,255, 0.2); /* Default dark mode text color */
+  --button-color:linear-gradient(135deg, #6a11cb, #2575fc);
+  --button-color-diff:linear-gradient(135deg, #2575fc, #6a11cb);
+  --button-color-text : #ffffff
+
 }
