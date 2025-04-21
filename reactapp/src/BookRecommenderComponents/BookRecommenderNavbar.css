@@ -1,0 +1,161 @@
+.glass-container {
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); 
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .glass-navbar {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  .navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+  }
+   
+  .navbar-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .navbar-links .nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  
+  .navbar-links .nav-link:hover {
+    color: var(--text-color);
+    text-decoration: underline;
+  }
+  
+  .username {
+    margin: 0;
+    font-size: 1rem;
+    color:var(--text-color);
+  }
+  .books-section {
+    position: relative; 
+  }
+  button{
+    background: linear-gradient(135deg, #6a11cb, #2575fc); /* Button background color */
+    color: #fff;
+  }
+  
+  
+  .books-btn {
+
+    background: linear-gradient(135deg, #6a11cb, #2575fc); 
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .books-btn:hover {
+    background-color: linear-gradient(135deg, #2575fc, #6a11cb); 
+  }
+  
+  .book-actions {
+    position: absolute; 
+    top: 100%;
+    left: 0;
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
+    padding: 10px 0;
+    min-width: 150px; 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+  }
+  
+  .book-actions .dropdown-item {
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    text-align: left;
+    width: 100%;
+    color: var(--text-color); /* Text color */
+    cursor: pointer;
+  }
+  
+  .book-actions .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.2); 
+  }
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .glass-modal {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    width: 300px;
+    text-align: center;
+  }
+  
+  .modal-text {
+    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
+  
+  .modal-buttons .btn {
+    border-radius: 5px;
+  }
+  .glass-footer {
+    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    backdrop-filter: blur(10px); /* Glass effect */
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+    padding: 20px; /* Spacing inside the footer */
+    margin-top: 20px; /* Space above the footer */
+    color: var(--text-color); /* Text color */
+  }
+  
+  .footer-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .footer-content p {
+    margin: 5px 0;
+  }
+  
+  .footer-content a {
+    color: #007bff; 
+    text-decoration: none;
+  }
+  
+  .footer-content a:hover {
+    text-decoration: underline;
+  }
