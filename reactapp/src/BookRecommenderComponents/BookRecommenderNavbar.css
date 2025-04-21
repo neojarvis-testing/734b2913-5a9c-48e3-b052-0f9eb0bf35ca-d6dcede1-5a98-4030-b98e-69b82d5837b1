@@ -1,7 +1,7 @@
 .glass-container {
-    background: rgba(255, 255, 255, 0.1); /* Fallback for unsupported browsers */
+    background: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    -webkit-backdrop-filter: blur(10px); 
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.3);
   }
@@ -46,7 +46,7 @@
     color:var(--text-color);
   }
   .books-section {
-    position: relative; /* Ensure the dropdown is positioned relative to the button */
+    position: relative; 
   }
   button{
     background: linear-gradient(135deg, #6a11cb, #2575fc); /* Button background color */
@@ -55,7 +55,9 @@
   
   
   .books-btn {
-    
+
+    background: linear-gradient(135deg, #6a11cb, #2575fc); 
+    color: white;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -63,22 +65,22 @@
   }
   
   .books-btn:hover {
-    background-color: linear-gradient(135deg, #2575fc, #6a11cb); /* Darker shade on hover */
+    background-color: linear-gradient(135deg, #2575fc, #6a11cb); 
   }
   
   .book-actions {
-    position: absolute; /* Position the dropdown relative to the button */
-    top: 100%; /* Place it directly below the button */
+    position: absolute; 
+    top: 100%;
     left: 0;
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for glass effect */
-    backdrop-filter: blur(10px); /* Glass blur effect */
-    -webkit-backdrop-filter: blur(10px); /* Safari support */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    z-index: 1000; /* Ensure it appears above other elements */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+    z-index: 1000; 
     padding: 10px 0;
-    min-width: 150px; /* Set a minimum width for the dropdown */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+    min-width: 150px; 
+    border: 1px solid rgba(255, 255, 255, 0.3); 
   }
   
   .book-actions .dropdown-item {
@@ -92,7 +94,7 @@
   }
   
   .book-actions .dropdown-item:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
+    background-color: rgba(255, 255, 255, 0.2); 
   }
   .modal-overlay {
     position: fixed;
@@ -150,7 +152,7 @@
   }
   
   .footer-content a {
-    color: #007bff; /* Link color */
+    color: #007bff; 
     text-decoration: none;
   }
   

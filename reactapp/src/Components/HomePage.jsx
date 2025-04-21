@@ -11,7 +11,7 @@ const HomePage = () => {
   const role = localStorage.getItem("role");
   const token = localStorage.getItem("token");
 
-  // Famous lines for the slider
+  
   const quotes = [
     {
       line: "A room without books is like a body without a soul.",
@@ -33,20 +33,20 @@ const HomePage = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Automatically slide to the next quote every 3 seconds
+  
   useEffect(() => {
     const interval = setInterval(() => {
-      handleNext(); // Automatically go to the next slide
-    }, 3000); // 3 seconds
-    return () => clearInterval(interval); // Cleanup on component unmount
+      handleNext(); 
+    }, 3000); 
+    return () => clearInterval(interval); 
   }, [currentIndex]);
 
-  // Handle Next Slide
+  
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % quotes.length);
   };
 
-  // Handle Previous Slide
+ 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? quotes.length - 1 : prevIndex - 1
@@ -55,20 +55,20 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      {/* Conditional Navbar */}
+      
       {role !== "BookReader" ? (
         <BookRecommenderNavbar />
       ) : (
         <BookReaderNavbar />
       )}
 
-      {/* Slider Section */}
+      
       <div className="slider-section">
         <div className="quote-slide">
           <p className="quote-line">"{quotes[currentIndex].line}"</p>
           <p className="quote-author">- {quotes[currentIndex].author}</p>
         </div>
-        {/* Custom Navigation Buttons */}
+        
         <div className="slider-controls">
           <button className="slider-btn prev-btn" onClick={handlePrev}>
             &#8592;
@@ -79,7 +79,7 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* Buttons Section */}
+      
       <div className="button-section mt-4">
       {(role===null || token==null)&&(<button
           className="btn btn-primary"
@@ -107,7 +107,7 @@ const HomePage = () => {
         )}
       </div>
 
-      {/* Footer */}
+      
       <BookRecommenderNavbarFooter/>
     </div>
   );

@@ -7,8 +7,7 @@ const BookRecommenderNavbar = () => {
   const username = localStorage.getItem('username') || 'Guest';
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showBookOptions, setShowBookOptions] = useState(false); // Toggle for Add/View Book
-  
-  
+
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
@@ -16,7 +15,7 @@ const BookRecommenderNavbar = () => {
   };
 
   const handleConfirmLogout = () => {
-    localStorage.clear(); // Clear all localStorage data
+    localStorage.clear(); 
     setShowLogoutModal(false);
     navigate('/login');
   };
@@ -77,8 +76,6 @@ const BookRecommenderNavbar = () => {
             </p>
           </b>
           <b><Link to="/" className="nav-link">Home</Link></b>
-
-          {/* Books Section for Admin */}
           {localStorage.getItem("role") === 'BookRecommender' && (
             <div className="books-section">
               <button
@@ -105,8 +102,6 @@ const BookRecommenderNavbar = () => {
               )}
             </div>
           )}
-
-          {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             className="btn btn-secondary theme-toggle-btn"
@@ -114,7 +109,7 @@ const BookRecommenderNavbar = () => {
             {isDarkMode ? 'Light Mode' : 'Dark Mode'}
           </button>
 
-          {/* Logout/Login Button */}
+          
           {localStorage.getItem("token") ? (
             <button onClick={handleLogoutClick} className="btn btn-primary logout-btn">Logout</button>
           ) : (
@@ -123,7 +118,7 @@ const BookRecommenderNavbar = () => {
         </div>
       </nav>
 
-      {/* Logout Confirmation Modal */}
+      
       {showLogoutModal && (
         <div className="modal-overlay">
           <div className="glass-modal">

@@ -59,33 +59,37 @@
   background: linear-gradient(135deg, #2575fc, #6a11cb);
 }
 .form-control {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  backdrop-filter: blur(10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
-  border-radius: 5px; /* Rounded corners */
+  background: rgba(255, 255, 255, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  border-radius: 5px; 
   padding: 10px;
   color: var(--text-color); /* Text color */
+
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Hover and Focus Effects */
+
 .form-control:hover {
-  background: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
-  border-color: rgba(255, 255, 255, 0.5); /* Brighter border on hover */
+  background: rgba(255, 255, 255, 0.2); 
+  border-color: rgba(255, 255, 255, 0.5); 
 }
 
 .form-control:focus {
+
   outline: none; /* Remove default focus outline */
   background: rgba(255, 255, 255, 0.2); /* Slightly darker background on focus */
   border-color: var(--text-color-mild); /* Brighter border on focus */
-}
 
-/* Styling for the Options */
+
+
 .form-control option {
+
   background: rgba(0, 0, 0, 0.8); /* Dark background for options */
   color: var(--text-color); /* Text color for options */
+
   padding: 10px;
 }

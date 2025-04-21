@@ -20,68 +20,71 @@
     padding: 20px;
   }
   .book-list-container {
-    flex-grow: 1; /* Allow the content to grow and push the footer down */
-    margin-top: 20px; /* Add spacing from the top */
+    flex-grow: 1;
+    margin-top: 20px; 
   }
-/* Glass Effect for Table */
+
 .glass-table {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  backdrop-filter: blur(10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
-  padding: 20px; /* Add padding inside the table */
-  margin-top: 20px; /* Space above the table */
-  color: var(--text-color); /* Text color */
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  padding: 20px; 
+  margin-top: 20px; 
+  color: var(--text-color); 
+
 }
 
-/* Scrollable Table */
+
 .table-container {
-  max-height: 400px; /* Limit the height of the table */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; 
+  overflow-y: auto; 
 }
 
 .table {
-  width: 100%; /* Full width */
-  border-collapse: collapse; /* Remove gaps between table cells */
+  width: 100%; 
+  border-collapse: collapse; 
 }
 
 .table th,
 .table td {
   color: var(--text-color);
-  padding: 10px; /* Add padding inside cells */
-  text-align: center; /* Center-align text */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for cells */
+  padding: 10px; 
+  text-align: center; 
+  border: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
 .table th {
   color: var(--text-color);
-  background: rgba(255, 255, 255, 0.2); /* Slightly darker background for headers */
+  background: rgba(255, 255, 255, 0.2); 
   font-weight: bold;
 }
 
 .table td {
   color: var(--text-color);
-  background: rgba(255, 255, 255, 0.1); /* Lighter background for table cells */
+  background: rgba(255, 255, 255, 0.1); 
 }
 
-/* Footer Styling */
+
 .glass-footer {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  backdrop-filter: blur(10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
-  padding: 20px; /* Spacing inside the footer */
-  text-align: center; /* Center-align text */
-  color: var(--text-color); /* Text color */
-  margin-top: 20px; /* Space above the footer */
+
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  padding: 20px; 
+  text-align: center;
+  color: var(--text-color); 
+  margin-top: 20px; 
+
 }
   
   
-  /* Modal Glass Effect */
+  
   .modal-overlay {
     position: fixed;
     top: 0;
