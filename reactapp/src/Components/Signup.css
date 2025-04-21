@@ -1,6 +1,7 @@
 .signup-page {
-  background: var(--background-gradient) !important;
-  background-size: cover;
+    background: var(--background-gradient) !important;
+    color: var(--text-color) !important;
+  
   position: relative;
   overflow: hidden;
 }
@@ -12,7 +13,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  
+  background: var(--background-gradient);
   filter: blur(10px);
   z-index: -1;
 }
