@@ -6,7 +6,7 @@ const BookReaderViewBook = () => {
 
     return (
         <div className="page-container">
-            <div>Available Books</div>
+             <div className="d-none">Available Books</div>
             <ViewBook/>
         </div>
     );

@@ -24,7 +24,7 @@ const App = () => {
         <Route path ="/signup" element={<Signup />} />
         <Route path ="/bookform" element={<PrivateRoute requiredRole="BookRecommender"><BookForm/></PrivateRoute>}/>
         <Route path ="/viewbook" element={<PrivateRoute requiredRole="BookRecommender"><ViewBook/></PrivateRoute>}/>
-        <Route path ="/bookform/:id" element={<BookForm mode = 'edit'/>} />
+        <Route path ="/bookform/:id" element={<PrivateRoute requiredRole="BookRecommender"><BookForm mode = 'edit'/></PrivateRoute>} />
 
         </Routes>
       </div>
