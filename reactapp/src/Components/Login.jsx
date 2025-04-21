@@ -1,11 +1,27 @@
-import React, { useState } from "react";
+import React, { useState ,useEffect } from "react";
 import axios from "axios";
-import {jwtDecode} from "jwt-decode"; // Corrected import
+import {jwtDecode} from "jwt-decode"; 
 import API_BASE_URL from "../apiConfig";
 import { useNavigate } from "react-router-dom";
-import "./Login.css"; // Ensure this file contains the glassmorphism styles
+import "./Login.css"; 
 
 const Login = () => {
+  const isDarkMode = localStorage.getItem('theme')  === 'light' ? false : true;
+
+  // Apply the theme on load
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDarkMode) {
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #1e1e2f, #2a2a3b)'); // Dark mode gradient
+      root.style.setProperty('--text-color', '#ffffff'); // Dark mode text color
+      root.style.setProperty('--text-color-mild', 'rgba(255, 255, 255, 0.7)'); // Dark mode mild text color
+    } else {
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #f6f6ff, #c0e9ff)'); // Light mode gradient
+      root.style.setProperty('--text-color', '#000000'); // Light mode text color
+      root.style.setProperty('--text-color-mild', 'rgba(0, 0, 0, 0.7)'); // Light mode mild text color
+    }
+  }, [isDarkMode]);
+
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
@@ -14,7 +30,6 @@ const Login = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-    console.log(formData)
   };
 
   const handleSubmit = async (e) => {
@@ -43,7 +58,7 @@ const Login = () => {
         const decoded = jwtDecode(fetchedToken);
         localStorage.setItem("role", decoded.role);
         localStorage.setItem("username", decoded.name);
-        navigate(decoded.role === "BookReader" ? "/readerviewbook" : "/viewbook");
+        navigate("/");
       } catch (error) {
         setFormError("Error logging in");
       } finally {
@@ -54,6 +69,8 @@ const Login = () => {
 
   return (
     <div className="login-page d-flex align-items-center justify-content-center vh-100">
+      <div class="background-text"><pre>Book  Finder</pre></div>
+
       <div className="glass-container p-5">
         <h2 className="text-center mb-4">Login</h2>
         <form onSubmit={handleSubmit}>

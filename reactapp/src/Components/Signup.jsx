@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 import { useNavigate } from 'react-router-dom';
-import './Signup.css'; // Ensure this file contains the glassmorphism styles
+import './Signup.css'; 
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const Signup = () => {
+  const isDarkMode = localStorage.getItem('theme')  === 'light' ? false : true;
+
+  // Apply the theme on load
+  useEffect(() => {
+    const root = document.documentElement;
+    if (isDarkMode) {
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #1e1e2f, #2a2a3b)'); // Dark mode gradient
+      root.style.setProperty('--text-color', '#ffffff'); // Dark mode text color
+      root.style.setProperty('--text-color-mild', 'rgba(255, 255, 255, 0.7)'); // Dark mode mild text color
+    } else {
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #f6f6ff, #c0e9ff)'); // Light mode gradient
+      root.style.setProperty('--text-color', '#000000'); // Light mode text color
+      root.style.setProperty('--text-color-mild', 'rgba(0, 0, 0, 0.7)'); // Light mode mild text color
+    }
+  }, [isDarkMode]);
+
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -16,6 +32,7 @@ const Signup = () => {
   });
 
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState();
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -65,20 +82,22 @@ const Signup = () => {
     e.preventDefault();
     if (validate()) {
       try {
+        setLoading(true);
         const { confirmPassword, ...payload } = formData;
-
+        
         const response = await axios.post(
           `${API_BASE_URL}/register`,
           payload
-        );
-        console.log("Signup successful:", response.data);
-        setSuccessMessage(true); // Show success modal
-        redirectToLogin();
-      } catch (error) {
+          );
+          console.log("Signup successful:", response.data);
+          setSuccessMessage(true); 
+          redirectToLogin();
+        } catch (error) {
         console.error("Signup failed:", error.response?.data || error.message);
         const errorMessage = error.response?.data?.message || "Signup failed. Please try again.";
         setErrors({ apiError: errorMessage });
       }
+      setLoading(true);
     }
   };
 
@@ -88,8 +107,10 @@ const Signup = () => {
 
   return (
     <div className="signup-page d-flex align-items-center justify-content-center vh-100">
-      <div className="glass-container p-5">
-        <h2 className="text-center mb-4">Signup</h2>
+      <div class="background-text"><pre>Book  Finder</pre></div>
+
+      <div className="glass-container">
+        <h2 className="text-center mb-2">Signup</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group mb-3">
             <label>Username:</label>
@@ -166,7 +187,9 @@ const Signup = () => {
             {errors.userRole && <span className="text-danger">{errors.userRole}</span>}
           </div>
           {errors.apiError && <span className="text-danger">{errors.apiError}</span>}
-          <button type="submit" className="btn btn-primary w-100">Submit</button>
+          <button type="submit" className="btn btn-primary w-100" disabled={loading}>
+            {loading ? "Signing in..." : "Submit"}
+          </button>
         </form>
 
         <p className="mt-3 text-center">

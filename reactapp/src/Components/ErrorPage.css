@@ -1,53 +1,109 @@
-/* Error Page Container */
-.error-container {
+.errorpage {
+  margin: 0;
+  padding: 0;
+  font-family: 'Tomorrow', sans-serif;
+  background-image: linear-gradient(to top, #2e1753, #1f1746, #131537, #0d1028, #050819);
+  overflow: hidden;
+}
+
+.error-page-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh; /* Full-screen height */
-  background: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Dark gradient background */
-  color: white;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Text Content */
+.text {
+  position: absolute;
+  top: 10%;
+  color: #fff;
   text-align: center;
-  padding: 20px;
+  z-index: 10;
 }
 
-/* Error Icon */
-.error-icon {
-  width: 150px; /* Adjust the size of the error icon */
-  height: auto;
-  margin-bottom: 20px;
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2)); /* Add a subtle shadow */
+.text h1 {
+  font-size: 50px;
+  margin: 10px 0;
 }
 
-/* Error Heading */
-.error-heading {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-/* Error Subtext */
-.error-subtext {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Return to Home Button */
-.error-home-btn {
+/* Go Home button */
+.home-link {
   display: inline-block;
-  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient background */
-  color: white;
-  text-decoration: none;
+  margin-top: 20px;
+  color: #fff;
+  background: #cf4647;
   padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 1rem;
+  border-radius: 6px;
+  text-decoration: none;
   font-weight: bold;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background 0.3s;
+}
+.home-link:hover {
+  background: #a73233;
 }
 
-.error-home-btn:hover {
-  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Reverse gradient on hover */
-  transform: scale(1.05); /* Slight zoom effect */
+/* Astronaut Animation */
+.astronaut img {
+  width: 100px;
+  position: absolute;
+  top: 55%;
+  z-index: 9;
+  animation: astronautFly 6s infinite linear;
+}
+
+@keyframes astronautFly {
+  0% {
+    left: -100px;
+  }
+  25% {
+    top: 50%;
+    transform: rotate(30deg);
+  }
+  50% {
+    transform: rotate(45deg);
+    top: 55%;
+  }
+  75% {
+    top: 60%;
+    transform: rotate(30deg);
+  }
+  100% {
+    left: 110%;
+    transform: rotate(45deg);
+  }
+}
+
+/* ⭐ Twinkling Stars */
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  z-index: 1;
+  animation-name: starTwinkle;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes starTwinkle {
+  0% {
+    opacity: 0.4;
+  }
+  25% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 0.8;
+  }
+  100% {
+    opacity: 0.4;
+  }
 }

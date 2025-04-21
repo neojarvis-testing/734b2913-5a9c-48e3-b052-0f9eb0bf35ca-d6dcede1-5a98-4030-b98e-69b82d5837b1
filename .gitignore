@@ -1,20 +1,23 @@
-# Backend Files
-/dotnetapp/Migrations/
-/dotnetapp/cred.sh
-/dotnetapp/bin/
-/dotnetapp/obj/
-TestProject/TestProject.csp
-/TestProject/
-/tests
+# BackEnd Files
+ 
+dotnetapp/Migrations/
+dotnetapp/bin/
+dotnetapp/obj/
+dotnetapp/cred.sh
+ 
+ 
+# Front End File
+ 
+reactapp/node_modules
+ 
+reactapp/src/apiConfig.js
 reactapp/src/tests
-# Frontend Files
-
-/reactapp/node_modules
-.env
+reactapp/.env
 reactapp/package-lock.json
-/reactapp/src/tests
-/reactapp/.env
-/home/coder/project/workspace/reactapp/.env
-
-# Testing Files
-package-lock.json
+ 
+ 
+# Other Files
+ 
+/nunit
+/react
+ 

@@ -1,36 +1,37 @@
-/* General Page Styling */
+
 .homepage-container {
-  background: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Dark gradient background */
+  background: var(--background-gradient); /* Dark gradient background */
   min-height: 100vh; /* Full-screen height */
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Space between content and footer */
+  justify-content: space-between; 
   padding: 20px;
-  color: white;
+  color: var(--text-color);
 }
 
-/* Slider Section */
+
 .slider-section {
   width: 1000px;
   margin: 20px auto;
-  height: 200px; /* Fixed height for the slider */
+  height: 200px; 
   text-align: center;
-  position: relative; /* For positioning the navigation buttons */
+  position: relative; 
   display: flex;
-  align-items: center; /* Vertically center content */
-  justify-content: center; /* Horizontally center content */
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  border-radius: 15px; /* Rounded corners */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  backdrop-filter: blur(10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  align-items: center; 
+  justify-content: center; 
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 15px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
 }
 
-/* Quote Slide */
+
 .quote-slide {
   text-align: center;
-  color: white;
+  color: var(--text-color);
 }
 
 .quote-line {
@@ -42,42 +43,44 @@
 .quote-author {
   font-size: 1.2rem;
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-color-mild);
 }
 
 
 .slider-btn {
   position: absolute;
+
   top: 50%; /* Center vertically */
   transform: translateY(-50%); /* Adjust for proper centering */
-  color: white; /* Arrow color */
+  color: var(--text-color); /* Arrow color */
+
   padding: 10px 20px;
   cursor: pointer;
-  font-size: 1.5rem; /* Increase font size for arrows */
-  opacity: 0.5; /* Make the arrows semi-transparent */
-  background: none; /* No background */
-  border: none; /* No border */
-  transition: opacity 0.3s ease; /* Smooth transition for hover effects */
+  font-size: 1.5rem; 
+  opacity: 0.5; 
+  background: none; 
+  border: none; 
+  transition: opacity 0.3s ease; 
 }
 
 .slider-btn:hover {
-  opacity: 1; /* Fully visible on hover */
+  opacity: 1; 
 }
 
 .prev-btn {
-  left: 10px; /* Position on the left inside the slider */
+  left: 10px; 
 }
 
 .next-btn {
-  right: 10px; /* Position on the right inside the slider */
+  right: 10px; 
 }
 
 
-/* Buttons Section */
+
 .button-section {
   display: flex;
   justify-content: center;
-  gap: 15px; /* Space between buttons */
+  gap: 15px; 
   margin-top: 20px;
 }
 
@@ -89,41 +92,40 @@
 }
 
 .button-section .btn-primary {
-  background: linear-gradient(135deg, #6a11cb, #2575fc); /* Gradient for primary button */
   border: none;
-  color: white;
 }
 
 .button-section .btn-primary:hover {
-  background: linear-gradient(135deg, #2575fc, #6a11cb); /* Hover effect */
+  background: linear-gradient(135deg, #2575fc, #6a11cb); 
 }
 
 .button-section .btn-secondary {
   background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for secondary button */
   border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
-  color: white;
+  color: var(--text-color);
+
 }
 
 .button-section .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2); /* Slightly darker background on hover */
+  background: rgba(255, 255, 255, 0.2); 
 }
 
-/* Footer */
+
 .homepage-footer {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  backdrop-filter: blur(10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(10px); /* Safari support */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
   padding: 20px;
   text-align: center;
-  color: white;
+  color: var(--text-color);
   margin-top: 20px;
 }
 
 .homepage-footer a {
-  color: #007bff; /* Link color */
+  color: #007bff; 
   text-decoration: none;
 }
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./ViewBook.css"; // Ensure correct import
+import "./ViewBook.css";
 import API_BASE_URL from "../apiConfig";
 import BookRecommenderNavbar from "./BookRecommenderNavbar";
 import BookRecommenderNavbarFooter from "./BookRecommenderNavbarFooter";
@@ -12,9 +12,9 @@ const ViewBook = () => {
   const [Books, setBooks] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // State for delete confirmation modal
-  const [selectedBookId, setSelectedBookId] = useState(null); // State for the selected book ID to delete
-  const [searchQuery, setSearchQuery] = useState(""); // State for search query
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedBookId, setSelectedBookId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,28 +42,28 @@ const ViewBook = () => {
     fetchBooks();
   }, [navigate]);
 
-  // Handle Edit Button
+
   const handleEdit = (book) => {
     if (!book.bookId) {
       alert("Invalid book selected for editing.");
       return;
     }
-    navigate(`/bookform/${book.bookId}`); // Navigate to bookForm in "edit" mode with book ID
+    navigate(`/bookform/${book.bookId}`);
   };
 
-  // Open Delete Confirmation Modal
+
   const openDeleteModal = (bookId) => {
-    setSelectedBookId(bookId); // Set the selected book ID
-    setShowDeleteModal(true); // Show the delete confirmation modal
+    setSelectedBookId(bookId);
+    setShowDeleteModal(true);
   };
 
-  // Close Delete Confirmation Modal
+
   const closeDeleteModal = () => {
-    setSelectedBookId(null); // Clear the selected book ID
-    setShowDeleteModal(false); // Hide the delete confirmation modal
+    setSelectedBookId(null);
+    setShowDeleteModal(false);
   };
 
-  // Handle Delete Confirmation
+
   const confirmDelete = async () => {
     if (!selectedBookId) {
       alert("Invalid book selected for deletion.");
@@ -71,30 +71,30 @@ const ViewBook = () => {
     }
 
     try {
-      const token = localStorage.getItem("token"); // Retrieve token from localStorage
+      const token = localStorage.getItem("token");
       await axios.delete(`${API_BASE_URL}/books/${selectedBookId}`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Add Authorization header
+          Authorization: `Bearer ${token}`,
         },
       });
       setBooks((prevBooks) =>
         prevBooks.filter((book) => book.bookId !== selectedBookId)
-      ); // Remove deleted book from state
+      );
     } catch (err) {
       console.error("Error deleting book:", err);
       if (err.response && err.response.status === 401) {
         alert("Unauthorized access. Please log in again.");
         localStorage.removeItem("token");
-        navigate("/"); // Redirect to login page
+        navigate("/");
       } else {
         alert("Failed to delete the book. Please try again later.");
       }
     } finally {
-      closeDeleteModal(); // Close the delete confirmation modal
+      closeDeleteModal();
     }
   };
 
-  // Filter books based on search query (case-insensitive search in title or author)
+
   const filteredBooks = Books.filter((book) => {
     return (
       book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -107,9 +107,11 @@ const ViewBook = () => {
       <BookRecommenderNavbar />
 
       <div className="book-list-container container mt-4">
-        <h2 className="book-list-title text-center">Book List</h2>
+      <div class="background-text">{loading && (<pre>Book Finder</pre>)}</div>
 
-        {/* Search Bar */}
+        <h2 className="book-list-title text-center">{localStorage.getItem('role')==='BookReader'? 'Available Books':'Books'}</h2>
+
+
         <div className="glass-search-bar mb-3">
           <input
             type="text"
@@ -124,9 +126,10 @@ const ViewBook = () => {
 
 
 
-        {/* Scrollable Table */}
+
         <div className="glass-table">
           <div className="table-container">
+            
             <table className="table">
               <thead>
                 <tr>
@@ -135,20 +138,22 @@ const ViewBook = () => {
                   <th>Author</th>
                   <th>Publication Date</th>
                   <th>Genre</th>
-                  {localStorage.getItem('role')==='BookRecommender' &&(
-                  <th>Action</th>
+                  {localStorage.getItem('role') === 'BookRecommender' && (
+                    <th>Action</th>
                   )}
                 </tr>
               </thead>
               <tbody>
-              {loading && (
-      <tr>
-        <td colSpan="6" className="text-center">
-          <div className="spinner-border text-primary mt-2" role="status" aria-hidden="true"></div>
-          <div className="mt-2">Loading...</div>
-        </td>
-      </tr>
-    )}
+                {loading && (
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      <div className="loading-container">
+                        <div className="loader"></div>
+                        <div>Loading...</div>
+                      </div>
+                    </td>
+                  </tr>
+                )}
                 {filteredBooks.length === 0 && !loading && !error && (
                   <tr>
                     <td colSpan="6" className="text-center text-muted">
@@ -158,18 +163,18 @@ const ViewBook = () => {
                 )}
                 {filteredBooks.map((book) => (
                   <tr key={book.bookId}>
-                    <td>
+                    <td className="centre-text">
                       <img
                         src={book.coverImage}
                         alt={book.name || "Book Image"}
-                        style={{ height: "50px", objectFit: "cover" }}
+                        style={{ height: "150px", objectFit: "cover" }}
                       />
                     </td>
-                    <td>{book.title}</td>
+                    <td className="centre-text">{book.title}</td>
                     <td>{book.author}</td>
                     <td>{book.publishedDate}</td>
                     <td>{book.genre}</td>
-                    {localStorage.getItem('role')==='BookRecommender' && (<td>
+                    {localStorage.getItem('role') === 'BookRecommender' && (<td>
                       <button
                         className="btn btn-primary btn-sm me-2"
                         onClick={() => handleEdit(book)}
@@ -192,7 +197,7 @@ const ViewBook = () => {
           </div>
         </div>
 
-        {/* Delete Confirmation Modal */}
+
         {showDeleteModal && (
           <div className="modal-overlay">
             <div className="glass-modal">

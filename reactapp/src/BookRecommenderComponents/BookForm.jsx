@@ -5,7 +5,7 @@ import API_BASE_URL from '../apiConfig';
 import BookRecommenderNavbar from './BookRecommenderNavbar';
 import BookRecommenderNavbarFooter from "./BookRecommenderNavbarFooter";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './BookForm.css'; // Add a CSS file for glassmorphism styles
+import './BookForm.css'; 
 
 const BookForm = ({ mode = "add" }) => {
     const navigate = useNavigate();
@@ -18,12 +18,11 @@ const BookForm = ({ mode = "add" }) => {
         genre: '',
         coverImage: '',
     });
-    const load = 'loading...'
     const [formErrors, setFormErrors] = useState({});
     const [formError, setFormError] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
-    const [showModal, setShowModal] = useState(false); // State to control modal visibility
+    const [showModal, setShowModal] = useState(false);
 
 
     useEffect(() => {
@@ -66,7 +65,7 @@ const BookForm = ({ mode = "add" }) => {
             reader.onloadend = () => {
                 setFormData((prevFormData) => ({
                     ...prevFormData,
-                    [name]: reader.result, // Stores the base64-encoded image
+                    [name]: reader.result, 
                 }));
             };
             reader.readAsDataURL(file);
@@ -122,6 +121,7 @@ const BookForm = ({ mode = "add" }) => {
     return (
         <div className="page-container">
             <BookRecommenderNavbar />
+            <div class="background-text"><pre>Book Finder</pre></div>
             <div className="glass-form-container container mt-4">
                 <h2 className="text-center">{mode === "add" ? "Create New Book" : "Edit Book"}</h2>
                 {formError && <p className="text-danger">{formError}</p>}

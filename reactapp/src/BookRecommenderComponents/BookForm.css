@@ -1,35 +1,40 @@
 .page-container {
-    background: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Dark gradient background */
+    background: var(--background-gradient); /* Dark gradient background */
     min-height: 100vh; /* Full-screen height */
+
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* Space between content and footer */
+    justify-content: space-between; 
     padding: 20px;
   }
   
   .glass-form-container {
-    background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-    border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    backdrop-filter: blur(10px); /* Glass effect */
-    -webkit-backdrop-filter: blur(10px); /* For Safari */
-    border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 15px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3); 
     padding: 20px;
-    color: white;
+    width: 50%;
+    color: var(--text-color);
+  }
+  .background-text{
+    margin-top: 0px;
   }
   
   .glass-form-container h2 {
-    color: white;
+    color: var(--text-color);
   }
   
   .glass-form-container .form-control {
     background: rgba(255, 255, 255, 0.2);
     border: none;
-    color: white;
+    color: var(--text-color);
   }
   
   .glass-form-container .form-control::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+    color: var(--text-color-mild);
   }
   
   .glass-form-container .form-control:focus {
@@ -46,6 +51,20 @@
   .glass-form-container .btn-primary:hover {
     background: linear-gradient(135deg, #2575fc, #6a11cb);
   }
+  .theme-toggle-btn {
+    background: var(--background-gradient);
+    color: var(--text-color);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-color);
+  }
   /* Modal Overlay */
 .modal-overlay {
   position: fixed;
@@ -57,7 +76,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1000; /* Ensure it appears above other elements */
+    z-index: 1000; 
 }
 
 /* Modal Content */

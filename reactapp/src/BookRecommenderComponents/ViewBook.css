@@ -1,7 +1,4 @@
-/* Glass Effect for Search Bar */
-:root{
-  --text-color : #fff;
-}
+
 .glass-search-bar {
     background: rgba(255, 255, 255, 0.1);
     border-radius: 10px;
@@ -16,75 +13,114 @@
   }
 
   .page-container {
-    background: linear-gradient(135deg, #1e1e2f, #2a2a3b); /* Dark gradient background */
+    background: var(--background-gradient); /* Dark gradient background */
     min-height: 100vh; /* Full-screen height */
     display: flex;
     flex-direction: column;
     padding: 20px;
   }
   .book-list-container {
-    flex-grow: 1; /* Allow the content to grow and push the footer down */
-    margin-top: 20px; /* Add spacing from the top */
+    flex-grow: 1;
+    margin-top: 20px; 
   }
-/* Glass Effect for Table */
+
 .glass-table {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  backdrop-filter: blur(10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
-  padding: 20px; /* Add padding inside the table */
-  margin-top: 20px; /* Space above the table */
-  color: white; /* Text color */
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  padding: 20px; 
+  margin-top: 20px; 
+  color: var(--text-color); 
+
 }
 
-/* Scrollable Table */
+
 .table-container {
-  max-height: 400px; /* Limit the height of the table */
-  overflow-y: auto; /* Enable vertical scrolling */
+  max-height: 400px; 
+  overflow-y: auto; 
 }
 
 .table {
-  width: 100%; /* Full width */
-  border-collapse: collapse; /* Remove gaps between table cells */
+  width: 100%; 
+  border-collapse: collapse; 
 }
 
 .table th,
 .table td {
   color: var(--text-color);
-  padding: 10px; /* Add padding inside cells */
-  text-align: center; /* Center-align text */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Subtle border for cells */
+  padding: 10px; 
+  text-align: center; 
+  border: 1px solid var(--input-color);
+  vertical-align: middle;
 }
 
 .table th {
   color: var(--text-color);
-  background: rgba(255, 255, 255, 0.2); /* Slightly darker background for headers */
+  background: rgba(255, 255, 255, 0.2); 
   font-weight: bold;
+}
+.centre-text{
+  text-align: center;
 }
 
 .table td {
   color: var(--text-color);
-  background: rgba(255, 255, 255, 0.1); /* Lighter background for table cells */
+  background: rgba(255, 255, 255, 0.1); 
 }
 
-/* Footer Styling */
+.background-text {
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 15vw;
+  font-weight: bold;
+  color: var(--text-color-mild); 
+  white-space: nowrap; 
+  pointer-events: none;
+  opacity: 0.5;
+  margin:0px;
+  margin-top:60px;
+}
 .glass-footer {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  border-radius: 10px; /* Rounded corners */
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-  backdrop-filter: blur(10px); /* Glass effect */
-  -webkit-backdrop-filter: blur(10px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
-  padding: 20px; /* Spacing inside the footer */
-  text-align: center; /* Center-align text */
-  color: white; /* Text color */
-  margin-top: 20px; /* Space above the footer */
+
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  padding: 20px; 
+  text-align: center;
+  color: var(--text-color); 
+  margin-top: 20px; 
+
+}
+/* Scrollbar Styling for WebKit Browsers */
+.table-container::-webkit-scrollbar {
+  width: 8px; /* Width of the vertical scrollbar */
+}
+
+.table-container::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1); /* Track background */
+  border-radius: 10px; /* Rounded corners for the track */
+}
+
+.table-container::-webkit-scrollbar-thumb {
+  background: var(--text-color-mild); /* Thumb background */
+  border-radius: 10px; /* Rounded corners for the thumb */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: Add a border for the thumb */
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+  background: var(--text-color-mild); /* Slightly brighter thumb on hover */
 }
   
   
-  /* Modal Glass Effect */
+  
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -111,7 +147,7 @@
   }
   
   .modal-text {
-    color: white;
+    color: #fff;
     font-size: 1.2rem;
     margin-bottom: 20px;
   }
@@ -119,3 +155,42 @@
   .modal-buttons .btn {
     border-radius: 5px;
   }
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px auto;
+    text-align: center;
+  }
+  
+  .loader {
+    height: 60px;
+    aspect-ratio: 2;
+    border-bottom: 3px solid #0000;
+    background: 
+      linear-gradient(90deg, #524656 50%, #0000 0)
+      -25% 100% / 50% 3px repeat-x border-box;
+    position: relative;
+    animation: l3-0 .75s linear infinite;
+  }
+  
+  .loader:before {
+    content: "";
+    position: absolute;
+    inset: auto 42.5% 0;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background: rgb(69, 122, 251);
+    animation: l3-1 .75s cubic-bezier(0, 900, 1, 900) infinite;
+  }
+  
+  @keyframes l3-0 {
+    to { background-position: -125% 100%; }
+  }
+  
+  @keyframes l3-1 {
+    0%, 2% { bottom: 0%; }
+    98%, to { bottom: .1%; }
+  }
+  
