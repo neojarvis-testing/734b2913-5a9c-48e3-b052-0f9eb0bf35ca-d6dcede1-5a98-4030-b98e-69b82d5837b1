@@ -25,7 +25,7 @@ const ErrorPage = () => {
                 <div className="text">
                     <div>Oops! Something went wrong.</div>
                     <h1>404</h1>
-                    <div>Please try again later</div>
+                    <div>Please try again later.</div>
                     <Link to="/" className="home-link">Go to Homepage</Link>
                 </div>
 
