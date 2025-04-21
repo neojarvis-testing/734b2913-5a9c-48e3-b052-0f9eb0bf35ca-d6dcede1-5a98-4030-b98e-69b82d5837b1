@@ -85,7 +85,6 @@
   border-color: var(--text-color-mild); /* Brighter border on focus */
 }
 
-
 .form-control option {
 
   background: rgba(0, 0, 0, 0.8); /* Dark background for options */
