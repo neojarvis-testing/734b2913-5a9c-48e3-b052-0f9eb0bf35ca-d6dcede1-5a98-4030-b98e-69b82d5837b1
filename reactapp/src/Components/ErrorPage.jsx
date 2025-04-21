@@ -23,25 +23,21 @@ const ErrorPage = ({mode='error'}) => {
                 {stars}
 
                 <div className="text">
-                    {mode==='expiry' ?(
-                    <>
-                    <h1>Session Expired</h1>
-                    <div>Please try logging in again.</div>
-                    <Link to="/login" className="button">Login</Link>
-                    </>
-                    ):( mode==='accessdenied'?(
+                    {mode==='error' ?(
+                    (<>
+                        <div>Oops! Something went wrong.</div>
+                        <h1>404</h1>
+                        <div>Please try again later.</div>
+                        <Link to="/" className="home-link">Go to Homepage</Link>
+                        </>)
+                    ):(
                         <>
                     <h2 className="Error-text">Access Denied</h2>
                     <h1>403</h1>
                     <div>Please try with a valid account.</div>
                     <Link to="/" className="home-link">Go to Homepage</Link>
                     </>
-                    ) : (<>
-                        <div>Oops! Something went wrong.</div>
-                        <h1>404</h1>
-                        <div>Please try again later</div>
-                        <Link to="/" className="home-link">Go to Homepage</Link>
-                        </>))}
+                    )}
                 </div>
 
                 <div className="astronaut">
