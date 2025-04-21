@@ -162,7 +162,6 @@ const BookForm = ({ mode = "add" }) => {
                             <button type="button" className="btn btn-secondary" onClick={handleBack}>Back</button>
                         </div>
                     </form>
-                {successMessage && <p className="text-success">{successMessage}</p>}
                 {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">

@@ -1,7 +1,7 @@
 
 .homepage-container {
-  background: var(--background-gradient); /* Dark gradient background */
-  min-height: 100vh; /* Full-screen height */
+  background: var(--background-gradient); 
+  min-height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -50,9 +50,9 @@
 .slider-btn {
   position: absolute;
 
-  top: 50%; /* Center vertically */
-  transform: translateY(-50%); /* Adjust for proper centering */
-  color: var(--text-color); /* Arrow color */
+  top: 50%;
+  transform: translateY(-50%); 
+  color: var(--text-color); 
 
   padding: 10px 20px;
   cursor: pointer;
@@ -100,8 +100,8 @@
 }
 
 .button-section .btn-secondary {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for secondary button */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  background: rgba(255, 255, 255, 0.1); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
   color: var(--text-color);
 
 }

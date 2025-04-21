@@ -8,7 +8,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const Signup = () => {
   const isDarkMode = localStorage.getItem('theme')  === 'light' ? false : true;
 
-  // Apply the theme on load
   useEffect(() => {
     const root = document.documentElement;
     if (isDarkMode) {
@@ -33,7 +32,6 @@ const Signup = () => {
 
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState();
-  const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -90,7 +88,7 @@ const Signup = () => {
           payload
           );
           console.log("Signup successful:", response.data);
-          setSuccessMessage(true); 
+
           redirectToLogin();
         } catch (error) {
         console.error("Signup failed:", error.response?.data || error.message);

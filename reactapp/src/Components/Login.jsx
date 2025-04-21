@@ -8,17 +8,17 @@ import "./Login.css";
 const Login = () => {
   const isDarkMode = localStorage.getItem('theme')  === 'light' ? false : true;
 
-  // Apply the theme on load
+
   useEffect(() => {
     const root = document.documentElement;
     if (isDarkMode) {
-      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #1e1e2f, #2a2a3b)'); // Dark mode gradient
-      root.style.setProperty('--text-color', '#ffffff'); // Dark mode text color
-      root.style.setProperty('--text-color-mild', 'rgba(255, 255, 255, 0.7)'); // Dark mode mild text color
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #1e1e2f, #2a2a3b)'); 
+      root.style.setProperty('--text-color', '#ffffff'); 
+      root.style.setProperty('--text-color-mild', 'rgba(255, 255, 255, 0.7)');
     } else {
-      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #f6f6ff, #c0e9ff)'); // Light mode gradient
-      root.style.setProperty('--text-color', '#000000'); // Light mode text color
-      root.style.setProperty('--text-color-mild', 'rgba(0, 0, 0, 0.7)'); // Light mode mild text color
+      root.style.setProperty('--background-gradient', 'linear-gradient(135deg, #f6f6ff, #c0e9ff)'); 
+      root.style.setProperty('--text-color', '#000000'); 
+      root.style.setProperty('--text-color-mild', 'rgba(0, 0, 0, 0.7)'); 
     }
   }, [isDarkMode]);
 
