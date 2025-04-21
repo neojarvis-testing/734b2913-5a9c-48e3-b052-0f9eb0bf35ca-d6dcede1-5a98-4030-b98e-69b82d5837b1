@@ -23,9 +23,9 @@ const ErrorPage = () => {
                 {stars}
 
                 <div className="text">
-                    <div>ERROR</div>
+                    <div>Oops! Something went wrong.</div>
                     <h1>404</h1>
-                    <div>Page Not Found</div>
+                    <div>Please try again later</div>
                     <Link to="/" className="home-link">Go to Homepage</Link>
                 </div>
 

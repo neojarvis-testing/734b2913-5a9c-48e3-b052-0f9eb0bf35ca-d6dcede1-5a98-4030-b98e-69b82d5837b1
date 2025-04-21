@@ -3,8 +3,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import API_BASE_URL from '../apiConfig';
 import BookRecommenderNavbar from './BookRecommenderNavbar';
-import BookRecommenderNavbarFooter from './BookRecommenderNavbarFooter';
+import BookRecommenderNavbarFooter from "./BookRecommenderNavbarFooter";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import './BookForm.css'; 
 
 const BookForm = ({ mode = "add" }) => {
     const navigate = useNavigate();
@@ -17,11 +18,13 @@ const BookForm = ({ mode = "add" }) => {
         genre: '',
         coverImage: '',
     });
-
+    const load = 'loading...'
     const [formErrors, setFormErrors] = useState({});
     const [formError, setFormError] = useState(null);
     const [successMessage, setSuccessMessage] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+
 
     useEffect(() => {
         const fetchBookData = async () => {
@@ -45,7 +48,6 @@ const BookForm = ({ mode = "add" }) => {
         fetchBookData();
     }, [mode, id]);
 
-
     const validateForm = () => {
         const errors = {};
         if (!formData.title.trim()) errors.title = "Title is required";
@@ -55,16 +57,16 @@ const BookForm = ({ mode = "add" }) => {
         if (!formData.coverImage.trim()) errors.coverImage = "Cover Image is required";
         return errors;
     };
+
     const handleChange = (e) => {
         const { name, value, files } = e.target;
         if (files && files.length > 0) {
-            // Remove or comment out: setFileName(file.name);
             const file = files[0];
             const reader = new FileReader();
             reader.onloadend = () => {
                 setFormData((prevFormData) => ({
                     ...prevFormData,
-                    [name]: reader.result, // Stores the base64-encoded image
+                    [name]: reader.result, 
                 }));
             };
             reader.readAsDataURL(file);
@@ -75,6 +77,7 @@ const BookForm = ({ mode = "add" }) => {
             }));
         }
     };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -85,14 +88,14 @@ const BookForm = ({ mode = "add" }) => {
 
         try {
             if (mode === "add") {
-                console.log(formData);
                 await axios.post(`${API_BASE_URL}/books`, formData, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")}`,
                     },
                 });
                 setSuccessMessage("Book added successfully!");
-                setTimeout(() => navigate("/viewbook"), 3000);
+                setShowModal(true);
+                
             } else if (mode === "edit") {
                 await axios.put(`${API_BASE_URL}/books/${id}`, formData, {
                     headers: {
@@ -100,10 +103,15 @@ const BookForm = ({ mode = "add" }) => {
                     },
                 });
                 setSuccessMessage("Book updated successfully!");
-                setTimeout(() => navigate("/viewbook"), 3000);
+                setShowModal(true);
+                
             }
         } catch (error) {
-            setFormError(mode === "add" ? "Error creating book" : "Error updating book");
+            if(error.response && error.response.status===400){
+                setFormError(error.response.data.message || 'Name already exists.')
+            }
+            else
+                setFormError(mode === "add" ? "Error creating book" : "Error updating book");
         }
     };
 
@@ -112,20 +120,17 @@ const BookForm = ({ mode = "add" }) => {
     };
 
     return (
-        <div>
+        <div className="page-container">
             <BookRecommenderNavbar />
-            <div className="container mt-4">
+            <div className="glass-form-container container mt-4">
                 <h2 className="text-center">{mode === "add" ? "Create New Book" : "Edit Book"}</h2>
                 {formError && <p className="text-danger">{formError}</p>}
-                {loading && <p>Loading...</p>}
-                {!loading && (
-                    <form onSubmit={handleSubmit}>
-                        {[
-                            { label: "Title", name: "title", type: "text", placeholder: "Title" },
+                {loading && mode==='add' && <p>Loading...</p>}
+                <form onSubmit={handleSubmit}>
+                        {[{ label: "Title", name: "title", type: "text", placeholder: "Title" },
                             { label: "Author", name: "author", type: "text", placeholder: "Author" },
                             { label: "Published Date", name: "publishedDate", type: "date" },
                             { label: "Genre", name: "genre", type: "text", placeholder: "Genre" },
-
                         ].map(({ label, name, type, placeholder }) => (
                             <div className="mb-3" key={name}>
                                 <label className="form-label"><b>{label}*</b></label>
@@ -134,7 +139,7 @@ const BookForm = ({ mode = "add" }) => {
                                     className="form-control w-100"
                                     name={name}
                                     placeholder={placeholder}
-                                    value={formData[name]}
+                                    value={mode === 'edit' && loading ? 'loading...' : formData[name]}
                                     onChange={handleChange}
                                 />
                                 {formErrors[name] && <p className="text-danger">{formErrors[name]}</p>}
@@ -145,22 +150,34 @@ const BookForm = ({ mode = "add" }) => {
                             <input
                                 type="file"
                                 accept="image/*"
-                                name = "coverImage"
+                                name="coverImage"
                                 onChange={handleChange}
                             />
                             {formErrors.coverImage && <p className="text-danger">{formErrors.coverImage}</p>}
                         </div>
                         {formData.coverImage &&
-                            <div><img src={formData.coverImage} alt="preview" style={{width:"200px", maxHeight:"200px", objectFit:"cover"}}/></div>}
+                            <div><img src={formData.coverImage} alt="preview" style={{ width: "200px", maxHeight: "200px", objectFit: "cover" }} /></div>}
                         <div className="d-flex justify-content-between">
                             <button type="submit" className="btn btn-primary">{mode === "add" ? "Add Book" : "Update Book"}</button>
-                            <button type="button" className="btn btn-primary" onClick={handleBack}>Back</button>
+                            <button type="button" className="btn btn-secondary" onClick={handleBack}>Back</button>
                         </div>
                     </form>
-                )}
                 {successMessage && <p className="text-success">{successMessage}</p>}
+                {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h4>{successMessage}</h4>
+            <button
+              className="btn btn-primary mt-3"
+              onClick={() => navigate("/viewbook")}
+            >
+              Go to View Books
+            </button>
+          </div>
+        </div>
+      )}
             </div>
-            <BookRecommenderNavbarFooter />
+            <BookRecommenderNavbarFooter/>
         </div>
     );
 };

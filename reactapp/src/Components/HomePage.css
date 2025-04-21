@@ -1,14 +1,134 @@
-.blur-background {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 45%;
-    background: rgba(255, 255, 255, 0.8); 
-    padding: 3px;
-    z-index: 1;
-    backdrop-filter: blur(1px); 
-    -webkit-backdrop-filter: blur(1px); 
-    border-radius: 08px; 
-  }
-  
+
+.homepage-container {
+  background: var(--background-gradient); /* Dark gradient background */
+  min-height: 100vh; /* Full-screen height */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  padding: 20px;
+  color: var(--text-color);
+}
+
+
+.slider-section {
+  width: 1000px;
+  margin: 20px auto;
+  height: 200px; 
+  text-align: center;
+  position: relative; 
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 15px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+}
+
+
+.quote-slide {
+  text-align: center;
+  color: var(--text-color);
+}
+
+.quote-line {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+
+.quote-author {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--text-color-mild);
+}
+
+
+.slider-btn {
+  position: absolute;
+
+  top: 50%; /* Center vertically */
+  transform: translateY(-50%); /* Adjust for proper centering */
+  color: var(--text-color); /* Arrow color */
+
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 1.5rem; 
+  opacity: 0.5; 
+  background: none; 
+  border: none; 
+  transition: opacity 0.3s ease; 
+}
+
+.slider-btn:hover {
+  opacity: 1; 
+}
+
+.prev-btn {
+  left: 10px; 
+}
+
+.next-btn {
+  right: 10px; 
+}
+
+
+
+.button-section {
+  display: flex;
+  justify-content: center;
+  gap: 15px; 
+  margin-top: 20px;
+}
+
+.button-section .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.button-section .btn-primary {
+  border: none;
+}
+
+.button-section .btn-primary:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb); 
+}
+
+.button-section .btn-secondary {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background for secondary button */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* Border for glass effect */
+  color: var(--text-color);
+
+}
+
+.button-section .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.2); 
+}
+
+
+.homepage-footer {
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.3); 
+  padding: 20px;
+  text-align: center;
+  color: var(--text-color);
+  margin-top: 20px;
+}
+
+.homepage-footer a {
+  color: #007bff; 
+  text-decoration: none;
+}
+
+.homepage-footer a:hover {
+  text-decoration: underline;
+}

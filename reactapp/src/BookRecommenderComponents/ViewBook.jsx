@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./ViewBook.css"; // Ensure correct import
+import "./ViewBook.css";
 import API_BASE_URL from "../apiConfig";
 import BookRecommenderNavbar from "./BookRecommenderNavbar";
 import BookRecommenderNavbarFooter from "./BookRecommenderNavbarFooter";
+
 import { useNavigate } from "react-router-dom";
 
 const ViewBook = () => {
-  const [books, setBooks] = useState([]);
+  const [Books, setBooks] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showBookOptions, setShowBookOptions] = useState(false); // Toggle buttons for View/Add Book
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedBookId, setSelectedBookId] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -33,113 +36,189 @@ const ViewBook = () => {
           setError("Failed to fetch books. Please try again later.");
         }
       } finally {
-        setLoading(false);
+        setLoading(true);
       }
     };
     fetchBooks();
   }, [navigate]);
 
-  const handleToggleBooks = () => {
-    setShowBookOptions((prev) => !prev); // Toggle View/Add Book buttons visibility
+
+  const handleEdit = (book) => {
+    if (!book.bookId) {
+      alert("Invalid book selected for editing.");
+      return;
+    }
+    navigate(`/bookform/${book.bookId}`);
   };
+
+
+  const openDeleteModal = (bookId) => {
+    setSelectedBookId(bookId);
+    setShowDeleteModal(true);
+  };
+
+
+  const closeDeleteModal = () => {
+    setSelectedBookId(null);
+    setShowDeleteModal(false);
+  };
+
+
+  const confirmDelete = async () => {
+    if (!selectedBookId) {
+      alert("Invalid book selected for deletion.");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      await axios.delete(`${API_BASE_URL}/books/${selectedBookId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setBooks((prevBooks) =>
+        prevBooks.filter((book) => book.bookId !== selectedBookId)
+      );
+    } catch (err) {
+      console.error("Error deleting book:", err);
+      if (err.response && err.response.status === 401) {
+        alert("Unauthorized access. Please log in again.");
+        localStorage.removeItem("token");
+        navigate("/");
+      } else {
+        alert("Failed to delete the book. Please try again later.");
+      }
+    } finally {
+      closeDeleteModal();
+    }
+  };
+
+
+  const filteredBooks = Books.filter((book) => {
+    return (
+      book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      book.author.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  });
 
   return (
     <div className="page-container">
       <BookRecommenderNavbar />
 
-      <div className="books-section">
-        <button onClick={handleToggleBooks} className="books-btn">
-          Books ▼
-        </button>
-        {showBookOptions && (
-          <div className="book-actions">
-            <button
-              className="view-book-btn"
-              onClick={() => navigate("/viewbook")}
-            >
-              View Book
-            </button>
-            <button
-              className="add-book-btn"
-              onClick={() => navigate("/bookform")}
-            >
-              Add Book
-            </button>
-          </div>
-        )}
-      </div>
+      <div className="book-list-container container mt-4">
+        <h2 className="book-list-title text-center">Book List</h2>
 
-      <div className="book-list-container">
-        <h2 className="book-list-title">📚 Book List</h2>
 
-        {/* Display Error */}
-        {error && <p className="error-text">{error}</p>}
+        <div className="glass-search-bar mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search by Title or Author"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
 
-        {/* Display Spinner */}
-        {loading ? (
-          <div className="loading-container">
-            <div className="spinner-border text-primary" role="status"></div>
-            <p>Loading...</p>
-          </div>
-        ) : (
-          <div className="table-responsive">
-            <table className="table table-bordered table-striped text-center">
-              <thead className="thead-dark">
+        {error && <p className="error-text text-danger">{error}</p>}
+
+
+
+
+        <div className="glass-table">
+          <div className="table-container">
+            <table className="table">
+              <thead>
                 <tr>
                   <th>Cover Image</th>
                   <th>Title</th>
                   <th>Author</th>
                   <th>Publication Date</th>
                   <th>Genre</th>
-                  <th>Actions</th>
+                  {localStorage.getItem('role') === 'BookRecommender' && (
+                    <th>Action</th>
+                  )}
                 </tr>
               </thead>
               <tbody>
-                {books.length === 0 ? (
+                {loading && (
                   <tr>
-                    <td colSpan="6" className="text-center text-muted">
-                      <i>Oops! No Books Found.</i>
+                    <td colSpan="6" className="text-center">
+                      <div className="loading-container">
+                        <div className="loader"></div>
+                        <div>Loading...</div>
+                      </div>
                     </td>
                   </tr>
-                ) : (
-                  books.map((book) => (
-                    <tr key={book.bookId}>
-                      <td>
-                        <img
-                          src= {book.coverImage}
-                          alt={book.title || "Book Image"}
-                          style={{ height: "50px", objectFit: "cover" }}
-                        />
-                      </td>
-                      <td>{book.title}</td>
-                      <td>{book.author}</td>
-                      <td>{book.publishedDate}</td>
-                      <td>{book.genre}</td>
-                      <td>
-                        <button
-                          className="btn btn-primary btn-sm me-2"
-                          onClick={() => navigate(`/bookform/${book.bookId}`)}
-                          aria-label={`Edit ${book.title}`}
-                        >
-                          ✏ Edit
-                        </button>
-                        <button
-                          className="btn btn-danger btn-sm"
-                          onClick={() => navigate(`/deletebook/${book.bookId}`)}
-                          aria-label={`Delete ${book.title}`}
-                        >
-                          🗑 Delete
-                        </button>
-                      </td>
-                    </tr>
-                  ))
                 )}
+                {filteredBooks.length === 0 && !loading && !error && (
+                  <tr>
+                    <td colSpan="6" className="text-center text-muted">
+                      <i>Oops! No Books found.</i>
+                    </td>
+                  </tr>
+                )}
+                {filteredBooks.map((book) => (
+                  <tr key={book.bookId}>
+                    <td>
+                      <img
+                        src={book.coverImage}
+                        alt={book.name || "Book Image"}
+                        style={{ height: "50px", objectFit: "cover" }}
+                      />
+                    </td>
+                    <td>{book.title}</td>
+                    <td>{book.author}</td>
+                    <td>{book.publishedDate}</td>
+                    <td>{book.genre}</td>
+                    {localStorage.getItem('role') === 'BookRecommender' && (<td>
+                      <button
+                        className="btn btn-primary btn-sm me-2"
+                        onClick={() => handleEdit(book)}
+                        aria-label={`Edit ${book.name}`}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => openDeleteModal(book.bookId)}
+                        aria-label={`Delete ${book.name}`}
+                      >
+                        Delete
+                      </button>
+                    </td>)}
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
+        </div>
+
+
+        {showDeleteModal && (
+          <div className="modal-overlay">
+            <div className="glass-modal">
+              <p className="modal-text">Are you sure you want to delete this book?</p>
+              <div className="modal-buttons">
+                <button
+                  type="button"
+                  className="btn btn-danger w-100 mb-2"
+                  onClick={confirmDelete}
+                >
+                  Yes, Delete
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-secondary w-100"
+                  onClick={closeDeleteModal}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
-
       <BookRecommenderNavbarFooter />
     </div>
   );
