@@ -55,7 +55,10 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      
+
+      <div class="wavy-block"></div>
+
+
       {role !== "BookReader" ? (
         <BookRecommenderNavbar />
       ) : (
