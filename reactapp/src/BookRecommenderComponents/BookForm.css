@@ -1,6 +1,6 @@
 .page-container {
-    background: var(--background-gradient); /* Dark gradient background */
-    min-height: 100vh; /* Full-screen height */
+    background: var(--background-gradient); 
+    min-height: 100vh; 
 
     display: flex;
     flex-direction: column;

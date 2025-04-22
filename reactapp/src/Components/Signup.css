@@ -1,7 +1,7 @@
 .signup-page {
     background: var(--background-gradient) !important;
     color: var(--text-color) !important;
-    height: 100vh; /* Full viewport height */
+    height: 100vh; 
   position: relative;
   overflow: hidden;
 }
@@ -17,7 +17,6 @@
   pointer-events: none;
   opacity: 0.5;
   filter: blur(7px);
-  margin : 20px 40px auto;
 }
 
 .signup-page::before {
@@ -30,7 +29,6 @@
   filter: blur(10px);
   z-index: -1;
 }
-/* Scrollable Glass Container */
 .glass-container {
   background: rgba(255, 255, 255, 0.1);
   border-radius: 15px;
@@ -39,31 +37,30 @@
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3);
   width: 400px;
-  max-height: 90vh; /* Prevent the container from exceeding the viewport height */
+  max-height: 90vh; 
   padding: 20px;
   margin: 20px auto;
   color: var(--text-color);
-  overflow-y: auto; /* Enable vertical scrolling when content overflows */
+  overflow-y: auto; 
 }
 
-/* Scrollbar Styling for WebKit Browsers */
 .glass-container::-webkit-scrollbar {
-  width: 8px; /* Width of the vertical scrollbar */
+  width: 8px; 
 }
 
 .glass-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1); /* Track background */
-  border-radius: 10px; /* Rounded corners for the track */
+  background: rgba(255, 255, 255, 0.1); 
+  border-radius: 10px; 
 }
 
 .glass-container::-webkit-scrollbar-thumb {
-  background: var(--text-color-mild); /* Thumb background */
-  border-radius: 10px; /* Rounded corners for the thumb */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: Add a border for the thumb */
+  background: var(--text-color-mild); 
+  border-radius: 10px; 
+  border: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
 .glass-container::-webkit-scrollbar-thumb:hover {
-  background: var(--text-color-mild); /* Slightly brighter thumb on hover */
+  background: var(--text-color-mild); 
 }
 .glass-container h2 {
   color: var(--text-color);
@@ -100,7 +97,7 @@
   border: 1px solid rgba(255, 255, 255, 0.3); 
   border-radius: 5px; 
   padding: 10px;
-  color: var(--text-color); /* Text color */
+  color: var(--text-color); 
 
   font-size: 1rem;
   cursor: pointer;
@@ -115,15 +112,15 @@
 
 .form-control:focus {
 
-  outline: none; /* Remove default focus outline */
-  background: rgba(255, 255, 255, 0.2); /* Slightly darker background on focus */
-  border-color: var(--text-color-mild); /* Brighter border on focus */
+  outline: none;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: var(--text-color-mild); 
 }
 
 .form-control option {
 
-  background: rgba(0, 0, 0, 0.8); /* Dark background for options */
-  color: var(--text-color); /* Text color for options */
+  background: rgba(0, 0, 0, 0.8);
+  color: var(--text-color); 
 
   padding: 10px;
 }

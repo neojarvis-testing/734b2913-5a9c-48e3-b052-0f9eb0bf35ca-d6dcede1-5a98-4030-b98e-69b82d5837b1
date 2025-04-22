@@ -70,23 +70,20 @@ public async Task<(int, string)> Registration(User model, string role)
 {
     try
     {
-        // Find the user by email
+
         var user = await _userManager.FindByEmailAsync(model.Email);
         if (user == null)
         {
-            return (0, "Invalid email or password");
+            return (400, "Invalid email or password");
         }
 
-        // Validate the password
         if (!await _userManager.CheckPasswordAsync(user, model.Password))
         {
-            return (0, "Invalid email or password");
+            return (400, "Invalid email or password");
         }
 
-        // Get user roles
         var roles = await _userManager.GetRolesAsync(user);
 
-        // Generate JWT token
         var token = GenerateJwtToken(user, roles);
 
         return (1, new { Token = token });
@@ -118,7 +115,7 @@ private string GenerateJwtToken(ApplicationUser user, IList<string> roles)
     var tokenDescriptor = new SecurityTokenDescriptor
     {
         Subject = new ClaimsIdentity(claims),
-        Expires = DateTime.UtcNow.AddHours(1),
+        Expires = DateTime.UtcNow.AddHours(8),
         Issuer = jwtSettings["ValidIssuer"],
         Audience = jwtSettings["ValidAudience"],
         SigningCredentials = credentials
