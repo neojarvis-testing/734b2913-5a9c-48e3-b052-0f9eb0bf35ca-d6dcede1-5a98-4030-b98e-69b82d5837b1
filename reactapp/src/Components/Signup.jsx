@@ -96,8 +96,13 @@ const Signup = () => {
           redirectToLogin();
         } catch (error) {
         console.error("Error:", error.response?.data || error.message);
+        if(error.response && error.response.status===400){
         const errorMessage = error.response.data.message || 'Account with this email already exist';
+        
         setErrors({ apiError: errorMessage });
+        }
+        else
+          setErrors({apiError: 'Error Signing in, try again later.'})
       }
       finally{
       setLoading(false);
