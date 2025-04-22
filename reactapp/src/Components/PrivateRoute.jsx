@@ -27,9 +27,7 @@ const PrivateRoute = ({ children, requiredRole }) => {
   if (isTokenExpired()) {
     return <ErrorPage mode='accessdenied'/>;
   }
-  if (isTokenExpired()) {
-    return <ErrorPage mode='accessdenied'/>;
-  }
+  
 
   return children;
 };
