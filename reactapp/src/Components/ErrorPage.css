@@ -16,7 +16,7 @@
   overflow: hidden;
 }
 
-/* Text Content */
+
 .text {
   position: absolute;
   top: 10%;
@@ -30,7 +30,6 @@
   margin: 10px 0;
 }
 
-/* Go Home button */
 .home-link {
   display: inline-block;
   margin-top: 20px;
@@ -46,7 +45,6 @@
   background: #a73233;
 }
 
-/* Astronaut Animation */
 .astronaut img {
   width: 100px;
   position: absolute;

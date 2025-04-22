@@ -1,6 +1,6 @@
 import React from 'react';
 import {jwtDecode} from 'jwt-decode';
-import AccessDeniedPage from './AccessDeniedPage'; 
+
 import ErrorPage from './ErrorPage';
 const PrivateRoute = ({ children, requiredRole }) => {
   const role = localStorage.getItem('role');
@@ -23,7 +23,7 @@ const PrivateRoute = ({ children, requiredRole }) => {
   }
 
   if (role !== requiredRole) {
-    return <AccessDeniedPage />;
+    return <ErrorPage mode="accessdenied" />;
   }
   if (isTokenExpired()) {
     return <ErrorPage mode='accessdenied'/>;
