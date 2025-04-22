@@ -59,9 +59,10 @@ const BookRecommenderNavbar = () => {
   return (
     <div>
       <nav className="navbar glass-navbar">
+
         <div className="navbar-brand">
           <b>
-            <Link to="/" className="nav-link">BookFinder</Link>
+            <Link to="/" className="nav-link">          <img src="icons8-books-50.png" alt="mylogo" height='40px' width='40px' /> BookFinder</Link>
           </b>
         </div>
         <div className="navbar-links">

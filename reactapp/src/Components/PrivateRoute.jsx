@@ -4,31 +4,14 @@ import {jwtDecode} from 'jwt-decode';
 import ErrorPage from './ErrorPage';
 const PrivateRoute = ({ children, requiredRole }) => {
   const role = localStorage.getItem('role');
-  const isTokenExpired = () => {
-    const token = localStorage.getItem('token');
-    if (!token) return true; 
-  
-    try {
-      const decodedToken = jwtDecode(token);
-      const currentTime = Math.floor(Date.now() / 1000);
-      if(decodedToken.exp < currentTime || true)
-      return <ErrorPage mode='expiry'/>;
-    } catch (error) {
-      console.error('Error decoding token:', error);
-      return true;
-    }
-  };
+  console.log(role);
   if (!role) {
-    return <ErrorPage mode="expiry" />;
+    return <ErrorPage mode="error" />;
   }
 
   if (role !== requiredRole) {
     return <ErrorPage mode="accessdenied" />;
   }
-  if (isTokenExpired()) {
-    return <ErrorPage mode='accessdenied'/>;
-  }
-
   return children;
 };
 
