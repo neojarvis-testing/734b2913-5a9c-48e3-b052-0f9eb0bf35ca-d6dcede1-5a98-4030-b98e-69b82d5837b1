@@ -1,13 +1,13 @@
+
 .homepage-container {
-  position: relative; /* Ensure pseudo-elements are positioned relative to this container */
-  background: var(--background-gradient);
+  background: var(--background-gradient); 
   min-height: 100vh;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-between; 
   padding: 20px;
   color: var(--text-color);
-  overflow: hidden;
 }
 
 /* Wavy block */
