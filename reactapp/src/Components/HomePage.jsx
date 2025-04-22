@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BookRecommenderNavbarFooter from '../BookRecommenderComponents/BookRecommenderNavbarFooter';
 import BookRecommenderNavbar from '../BookRecommenderComponents/BookRecommenderNavbar';
@@ -34,17 +34,17 @@ const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   
+  const handleNext = useCallback(() => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % quotes.length);
+  }, [quotes.length]);
+  
   useEffect(() => {
     const interval = setInterval(() => {
       handleNext(); 
-    }, 3000); 
+    }, 5000); 
     return () => clearInterval(interval); 
-  }, [currentIndex]);
+  }, [currentIndex, handleNext]);
 
-  
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % quotes.length);
-  };
 
  
   const handlePrev = () => {
@@ -55,7 +55,10 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      
+
+      <div class="wavy-block"></div>
+
+
       {role !== "BookReader" ? (
         <BookRecommenderNavbar />
       ) : (
@@ -78,14 +81,14 @@ const HomePage = () => {
           </button>
         </div>
       </div>
-      <div className="button-section mt-4">
+      {/* <div className="button-section mt-4">
       {(role===null || token==null)&&(<button
           className="btn btn-primary"
           onClick={() => navigate('/login')}
         >
           Try Logging in
         </button>)}
-        {/* View Books Button (Visible to All Users) */}
+       
         {(role ==="BookRecommender" || role==="BookReader") && token && (
         <button
           className="btn btn-primary me-3"
@@ -94,7 +97,7 @@ const HomePage = () => {
           View Books
         </button>
         )}
-        {/* Add Book Button (Visible Only to Admin/BookRecommender) */}
+        
         {role === "BookRecommender"&& token && (
           <button
             className="btn btn-secondary"
@@ -102,8 +105,8 @@ const HomePage = () => {
           >
             Add Book
           </button>
-        )}
-      </div>
+        )} 
+      </div>*/}
 
       
       <BookRecommenderNavbarFooter/>

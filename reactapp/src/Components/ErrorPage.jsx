@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './ErrorPage.css';
 
 const ErrorPage = ({mode='error'}) => {
-    // Generate 50 stars with random position, animation delay, and duration
+
     const stars = Array.from({ length: 50 }, (_, index) => (
         <div
             key={index}

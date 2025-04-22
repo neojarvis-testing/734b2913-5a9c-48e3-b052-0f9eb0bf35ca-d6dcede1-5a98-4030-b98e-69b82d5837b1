@@ -34,10 +34,8 @@ namespace dotnetapp.Services
        public async Task<Book> GetBookById(int bookId)
         {
             var book = await _context.Books.FindAsync(bookId);
-            // if (book == null)
-            // {
-            //     throw new Exception("Cannot find any book");
-            // }
+            if (book == null)
+                throw new Exception("Cannot find any book");
             return book;
         }
         public async Task <IEnumerable<Book>> GetAllBooks()

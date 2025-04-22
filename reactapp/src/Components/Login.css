@@ -8,20 +8,19 @@
 }
 
 
-/* Add the Background Text */
 .signup-page::before, .login-page::before {
-  content: "Book Finder"; /* The text to display */
+  content: "Book Finder"; 
   position: absolute;
-  top: 50%; /* Center vertically */
-  left: 50%; /* Center horizontally */
-  transform: translate(-50%, -50%); /* Adjust for perfect centering */
-  font-size: 10rem; /* Adjust size as needed */
+  top: 50%; 
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  font-size: 10rem; 
   font-weight: bold;
-  color: rgba(255, 255, 255, 0.1); /* Light, transparent text */
-  white-space: nowrap; /* Prevent text from wrapping */
-  z-index: -1; /* Ensure it stays behind all other content */
-  width: 100%; /* Full width */
+  color: rgba(255, 255, 255, 0.1);
+  white-space: nowrap; 
+  z-index: -1;
+  width: 100%; 
   text-align: center;
-  pointer-events: none; /* Prevent interaction with the text */
+  pointer-events: none; 
 }
 

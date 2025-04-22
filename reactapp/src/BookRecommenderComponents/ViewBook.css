@@ -83,7 +83,7 @@
   pointer-events: none;
   opacity: 0.5;
   margin:0px;
-  margin-top:60px;
+  margin-top:50px;
 }
 .glass-footer {
 
@@ -93,30 +93,30 @@
   backdrop-filter: blur(10px); 
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.3); 
-  padding: 20px; 
+  padding-top: 5px;
   text-align: center;
   color: var(--text-color); 
   margin-top: 20px; 
 
 }
-/* Scrollbar Styling for WebKit Browsers */
+
 .table-container::-webkit-scrollbar {
-  width: 8px; /* Width of the vertical scrollbar */
+  width: 8px;
 }
 
 .table-container::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1); /* Track background */
-  border-radius: 10px; /* Rounded corners for the track */
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px; 
 }
 
 .table-container::-webkit-scrollbar-thumb {
-  background: var(--text-color-mild); /* Thumb background */
-  border-radius: 10px; /* Rounded corners for the thumb */
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Optional: Add a border for the thumb */
+  background: var(--text-color-mild); 
+  border-radius: 10px; 
+  border: 1px solid rgba(255, 255, 255, 0.2); 
 }
 
 .table-container::-webkit-scrollbar-thumb:hover {
-  background: var(--text-color-mild); /* Slightly brighter thumb on hover */
+  background: var(--text-color-mild); 
 }
   
   

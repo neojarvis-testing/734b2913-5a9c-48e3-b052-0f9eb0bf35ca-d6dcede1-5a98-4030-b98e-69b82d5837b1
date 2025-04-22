@@ -107,7 +107,7 @@ const BookForm = ({ mode = "add" }) => {
             }
         } catch (error) {
             if(error.response && error.response.status===400){
-                setFormError(error.response.data.message || 'Name already exists.')
+                setFormError(error.response.data.message || 'Book title already exists.')
             }
             else
                 setFormError(mode === "add" ? "Error creating book" : "Error updating book");
@@ -121,7 +121,7 @@ const BookForm = ({ mode = "add" }) => {
     return (
         <div className="page-container">
             <BookRecommenderNavbar />
-            <div class="background-text"><pre>Book Finder</pre></div>
+            <div className="background-text-bookform"><pre>Book Finder</pre></div>
             <div className="glass-form-container container mt-4">
                 <h2 className="text-center">{mode === "add" ? "Create New Book" : "Edit Book"}</h2>
                 {formError && <p className="text-danger">{formError}</p>}
@@ -162,7 +162,6 @@ const BookForm = ({ mode = "add" }) => {
                             <button type="button" className="btn btn-secondary" onClick={handleBack}>Back</button>
                         </div>
                     </form>
-                {successMessage && <p className="text-success">{successMessage}</p>}
                 {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
