@@ -102,7 +102,7 @@ const Signup = () => {
         setErrors({ apiError: errorMessage });
         }
         else
-          setErrors({apiError: 'Error Signing in, try again later.'})
+          setErrors({apiError: 'Something went wrong, try again later.'})
       }
       finally{
       setLoading(false);

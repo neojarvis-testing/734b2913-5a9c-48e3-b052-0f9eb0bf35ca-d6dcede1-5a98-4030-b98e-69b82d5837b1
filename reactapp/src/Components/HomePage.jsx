@@ -55,7 +55,10 @@ const HomePage = () => {
 
   return (
     <div className="homepage-container">
-      
+
+      <div class="wavy-block"></div>
+
+
       {role !== "BookReader" ? (
         <BookRecommenderNavbar />
       ) : (
@@ -78,7 +81,7 @@ const HomePage = () => {
           </button>
         </div>
       </div>
-      <div className="button-section mt-4">
+      {/* <div className="button-section mt-4">
       {(role===null || token==null)&&(<button
           className="btn btn-primary"
           onClick={() => navigate('/login')}
@@ -102,8 +105,8 @@ const HomePage = () => {
           >
             Add Book
           </button>
-        )}
-      </div>
+        )} 
+      </div>*/}
 
       
       <BookRecommenderNavbarFooter/>

@@ -1,7 +1,7 @@
 using dotnetapp.Data;
 using dotnetapp.Models;
 using dotnetapp.Services;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authentication.JwtBearer;//enable app to implement jwt authentication
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

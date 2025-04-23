@@ -16,14 +16,14 @@ namespace dotnetapp.Services
         {
             _context=context;
         }
-        public async Task<bool> AddBook(Book book)
+        public async Task<bool> AddBook(Book book)//the method runs just like a normal method, not asynchronously. It still returns a Task, which can be misleading because people might think it's doing something in the background, but it actually runs everything right away without pausing. 
         {
             var checkBook = await _context.Books.FindAsync(book.BookId);
             if (checkBook!=null)
             {
                 throw new Exception("Failed to add book");
             }
-            var exist = await _context.Books.FirstOrDefaultAsync(b=>b.Title ==book.Title);
+            var exist = await _context.Books.FirstOrDefaultAsync(b=>b.Title ==book.Title);//checks for the first record in db
             if(exist!=null)
                 return false;
              _context.Books.Add(book);
@@ -38,7 +38,7 @@ namespace dotnetapp.Services
                 throw new Exception("Cannot find any book");
             return book;
         }
-        public async Task <IEnumerable<Book>> GetAllBooks()
+        public async Task <IEnumerable<Book>> GetAllBooks()//collection
         {
             return await _context.Books.ToListAsync();
         }

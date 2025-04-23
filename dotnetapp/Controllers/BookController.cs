@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;//we used authorize attribute
 using dotnetapp.Services;
 using dotnetapp.Models;
 
@@ -11,7 +11,7 @@ namespace dotnetapp.Controllers
 {
     [ApiController]
     [Route("api/books")]
-    public class BookController : ControllerBase
+    public class BookController : ControllerBase//Methods for returning various HTTP responses, such as Ok(), BadRequest(), NotFound(), and Created().
     {
         private readonly BookService bookService;
 
@@ -19,9 +19,9 @@ namespace dotnetapp.Controllers
         bookService=ibookService;
         }
 
-    [HttpGet]
+    [HttpGet]//method responds to this request  //sends to Api
     [Authorize(Roles = "BookRecommender,BookReader")]
-    public async Task<ActionResult<IEnumerable<Book>>>GetAllBooks(){
+    public async Task<ActionResult<IEnumerable<Book>>>GetAllBooks(){//It helps you define what response your API sends back to the client, including HTTP status codes and data.
         try{
             return Ok(await bookService.GetAllBooks()); 
         }

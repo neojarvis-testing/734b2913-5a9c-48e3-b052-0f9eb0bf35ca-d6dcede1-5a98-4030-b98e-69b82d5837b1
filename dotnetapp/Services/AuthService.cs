@@ -2,7 +2,7 @@
 using dotnetapp.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
-using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens;//part of Identity model library for handling the token
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -43,7 +43,7 @@ public async Task<(int, string)> Registration(User model, string role)
             UserName = model.Username,
             Email = model.Email,
             PhoneNumber = model.MobileNumber,
-            Name = model.Username 
+            Name = model.Username //model has properties of u,e,p
         };
 
         var result = await _userManager.CreateAsync(user, model.Password);
@@ -98,18 +98,18 @@ public async Task<(int, string)> Registration(User model, string role)
 private string GenerateJwtToken(ApplicationUser user, IList<string> roles)
 {
     var jwtSettings = _configuration.GetSection("JWT");
-    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Secret"]));
+    var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Secret"]));//when we sign in and login it checks for credentials
     var credentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
 
-    var claims = new List<Claim>
+    var claims = new List<Claim>//crearting a list of claims
     {
-        new Claim(ClaimTypes.Name, user.UserName),
+        new Claim(ClaimTypes.Name, user.UserName),//keyvalue pair
         new Claim(ClaimTypes.Email, user.Email)
     };
 
     foreach (var role in roles)
     {
-        claims.Add(new Claim(ClaimTypes.Role, role));
+        claims.Add(new Claim(ClaimTypes.Role, role));//easy to check user permission when they use token
     }
 
     var tokenDescriptor = new SecurityTokenDescriptor

@@ -35,7 +35,6 @@ const ErrorPage = ({mode='error'}) => {
                     <h2 className="Error-text">Access Denied</h2>
                     <h1>403</h1>
                     <div>Please try with a valid account.</div>
-
                     <Link to="/" className="home-link">Go to Homepage</Link>
                     </>
                     )}

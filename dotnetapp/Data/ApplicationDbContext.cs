@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using dotnetapp.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;//conatins classes and features for building webapplication like apicontroller
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;//IdentityDbconetxt is a build in class that connects our db+IdentitySystem
 using Microsoft.EntityFrameworkCore;
 namespace dotnetapp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>//provides identity related tables
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options){}
         
@@ -22,7 +22,7 @@ namespace dotnetapp.Data
 
 
     modelBuilder.Entity<ApplicationUser>()
-        .HasIndex(u => u.Email)
+        .HasIndex(u => u.Email)//for faster loading like recordes for easy identifivcation
         .IsUnique();
 }
     }                                                                                                               
